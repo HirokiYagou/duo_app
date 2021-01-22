@@ -95,6 +95,7 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 | encrypted_password | string | null: false                   |
 | last_name          | string | null: false                   |
 | first_name         | string | null: false                   |
+| admin      | boolean | null: false, default: false     |
 
 ### Association
 
