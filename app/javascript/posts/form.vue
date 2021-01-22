@@ -54,6 +54,8 @@ export default {
       formData.append('post[content]', this.content)
       formData.append('post[image]', this.uploadImage)
       this.$emit("create-post", formData)
+      this.content = ''
+      this.uploadImage = null
     },
     doCloseForm: function() {
       this.$emit("close-form")

@@ -13,8 +13,8 @@
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4">John Smith</p>
-        <p class="subtitle is-6">@johnsmith</p>
+        <p class="title is-4">たまプラーザ</p>
+        <p class="subtitle is-6">@{{ post.username }}</p>
       </div>
     </div>
 
@@ -39,6 +39,12 @@ export default {
   props: {
     posts: Array,
   },
-
+  // watch: {
+  //   posts: {
+  //     handler: function(next) {
+  //       this
+  //     }
+  //   }
+  // }
 }
 </script>

@@ -2,7 +2,7 @@
 <div class="container">
   <div class="columns">
     <div class="column is-one-fifth">
-      <button class="button is-primary" @click="openForm">投稿する</button>
+      <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
     <div class="column is-half">
       <posts
@@ -36,6 +36,14 @@ export default {
       post: {},
     }
   },
+  // watch: {
+  //   post: {
+  //     handler: function(next) {
+  //       this.post = this.posts.unshift(next)
+  //     },
+  //     deep: true
+  //   }
+  // },
   methods: {
     fetchPosts: function() {
       fetch('/posts.json')
