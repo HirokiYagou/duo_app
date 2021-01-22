@@ -90,11 +90,12 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 
 | Column             | Type   | Options                       |
 | ------------------ | ------ | ----------------------------- |
-| name           | string | null: false                   |
+| username           | string | null: false, uniqueness: true |
 | email              | string | null: false, uniqueness: true |
 | encrypted_password | string | null: false                   |
 | last_name          | string | null: false                   |
 | first_name         | string | null: false                   |
+| admin      | boolean | null: false, default: false     |
 
 ### Association
 
@@ -111,7 +112,8 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
 | user    | reference | null: false foreign_key: true |
-| status | text    |       |
+| nickname | string |       |
+| status | text |       |
 
 ### Association
 
