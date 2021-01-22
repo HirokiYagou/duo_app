@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts
+  
   USERNAME_REGEX = /\A[a-zA-Z_0-9]+\z/.freeze
   EMAIL_REGEX = /\A\S+@\S+\.\S+\z/.freeze
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
@@ -18,5 +20,4 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :posts
 end
