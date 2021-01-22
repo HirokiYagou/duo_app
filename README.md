@@ -64,6 +64,7 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 * 投稿を編集・削除ができる
 * 一覧表示、詳細表示、ユーザーごとの詳細表示ができる
 * 検索機能がある
+* 登録された単語をタグとして検索できる
 * 互いにコメントができる
 * お気に入り機能がある
 ### 学習機能
@@ -85,13 +86,128 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 # 実装予定の機能
 
 # DB設計
+## usersテーブル
+
+| Column             | Type   | Options                       |
+| ------------------ | ------ | ----------------------------- |
+| name           | string | null: false                   |
+| email              | string | null: false, uniqueness: true |
+| encrypted_password | string | null: false                   |
+| last_name          | string | null: false                   |
+| first_name         | string | null: false                   |
+
+### Association
+
+- has_one :profile
+
+- has_many :posts
+- has_many :comments
+- has_many :favorites
+
+- has_many :exercises
+
+## profileテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false foreign_key: true |
+| status | text    |       |
+
+### Association
+
+- belongs_to :user
+
+## postsテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false foreign_key: true |
+| content | text    | null: false       |
+
+### Association
+
+- belongs_to :user
+
+- has_many :comments
+- has_many :favorites
+
+- has_many :post_terms
+- has_many :terms, through :post_terms
+
+## commentsテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false foreign_key: true |
+| post    | reference | null: false foreign_key: true |
+| content | text    | null: false       |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
+
+## favoritesテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false foreign_key: true |
+| post    | reference | null: false foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
+
+## exercisesテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false, foreign_key: true |
+| term | reference | null: false, foreign_key: true|
+| e_or_j | integer | null: false       |
+| score | integer | null: false       |
+
+### Association
+
+- belongs_to :user
+
+- belongs_to :terms
+
+## termsテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| term_type | integer | null: false       |
+| lesson | integer | null: false       |
+| english | string | null: false       |
+| japanese | string | null: false       |
+
+### Association
+
+- has_many :post_terms
+- has_many :posts, through :post_terms
+
+- has_many :exercises
+
+## post_termsテーブル
+
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | null: false foreign_key: true |
+| post    | reference | null: false foreign_key: true |
+
+### Association
+
+- belongs_to :post
+- belongs_to :term
 
 # ローカルでの動作方法
 * 基本情報
 
 | Name          | Version |
 | ------------- | ------- |
-| Ruby on Rails | 6.0.3   |
+| Ruby on Rails | 6.0.0   |
 | Ruby          | 2.6.5   |
 
 * gem
