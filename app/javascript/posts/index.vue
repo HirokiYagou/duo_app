@@ -1,16 +1,21 @@
 <template>
-<div>
-  <button class="button is-primary" @click="openForm">投稿する</button>
-  
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-fifth">
+      <button class="button is-primary" @click="openForm">投稿する</button>
+    </div>
+    <div class="column is-half">
+      <posts
+        :posts="posts"
+      ></posts>
+    </div>
+  </div>
+
   <post-form
     :is-Active="isActive"
     @close-form="closeForm"
     @create-post="createPost($event)"
   ></post-form>
-
-  <posts
-    :posts="posts"
-  ></posts>
 </div>
 </template>
 

@@ -28,7 +28,7 @@ export default {
   props: {
     isActive: {
       type: String,
-    }
+    },
   },
   data() {
     return {
