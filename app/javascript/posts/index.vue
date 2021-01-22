@@ -7,24 +7,43 @@
     @close-form="closeForm"
     @create-post="createPost($event)"
   ></post-form>
+
+  <posts
+    :posts="posts"
+  ></posts>
 </div>
 </template>
 
 <script>
 import Form from './form'
+import Posts from './posts'
 import { csrfToken } from "@rails/ujs"
 
 export default {
   components: {
     'post-form': Form,
+    'posts': Posts,
   },
   data() {
     return {
       isActive: '',
+      posts: [],
       post: {},
     }
   },
   methods: {
+    fetchPosts: function() {
+      fetch('/posts.json')
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.posts = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     createPost: function(formData) {
       fetch('/posts', {
           method: 'POST',
@@ -48,6 +67,9 @@ export default {
     closeForm: function() {
       this.isActive = ''
     },
+  },
+  mounted: function() {
+    this.fetchPosts()
   }
 }
 </script>

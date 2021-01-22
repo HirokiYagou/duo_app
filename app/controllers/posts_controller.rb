@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.includes(:user).order(id: "DESC")
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
