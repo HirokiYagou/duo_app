@@ -12,7 +12,7 @@ class User < ApplicationRecord
       validates :email, format: { with: EMAIL_REGEX,    message: 'には@を含めてください' }
     end
     validates :password, format: { with: PASSWORD_REGEX, message: 'には半角で英字と数字の両方を含めて設定してください' }
-    with_options format { with: FULLNAME_REGEX, message: 'は小文字の英字で入力してください'} do
+    with_options format: { with: FULLNAME_REGEX, message: 'は小文字の英字で入力してください'} do
       validates :last_name
       validates :first_name
     end
