@@ -1,23 +1,21 @@
 <template>
 <div>
-  <button class="button" @click="onClick">投稿する</button>
+  <button class="button is-primary" @click="openForm">投稿する</button>
   
-  <div :class="['modal', isActive]">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="columns is-mobile is-centered">
-        <div class="column is-half">
-          <p>{{ message }}</p>
-        </div>
-      </div>
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
+  <post-form
+    :is-Active="isActive"
+    @close-form="closeForm"
+  ></post-form>
 </div>
 </template>
 
 <script>
+import Form from './form'
+
 export default {
+  components: {
+    'post-form': Form,
+  },
   data() {
     return {
       message: 'たまプラーザ',
@@ -25,9 +23,13 @@ export default {
     }
   },
   methods: {
-    onClick: function() {
+      openForm: function() {
       this.isActive = 'is-active'
     },
-  },
+    closeForm: function() {
+      this.isActive = ''
+    },
+  }
 }
 </script>
+
