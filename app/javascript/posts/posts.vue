@@ -1,10 +1,10 @@
 <template>
-<div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-    </figure>
-  </div>
+<div
+  class="card"
+  v-for="post in posts"
+  :key="post.id"
+  :data-id="post.id"
+>
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -19,11 +19,16 @@
     </div>
 
     <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+      {{ post.content }}
+      <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a>
       <br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      <time datetime="2016-1-1">{{ post.created_at }}</time>
+    </div>
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img :src="post.image" alt="Placeholder image">
+      </figure>
     </div>
   </div>
 </div>
