@@ -4,7 +4,7 @@
   <div class="modal-content">
     <div class="box">
       <div class="content">
-        <form @submit.prevent="createPost">
+        <form @submit.prevent="doCreatePost">
           <textarea
             name="content"
             v-model="content"
@@ -13,6 +13,7 @@
             cols="30"
             rows="5"
             required></textarea>
+          <input type="file" name="post[image]" @change="selectImage" id="post-image">
           <button type="submit" :class="['button', 'is-primary', isEmpty]">投稿する</button>
         </form>
       </div>
@@ -32,6 +33,7 @@ export default {
   data() {
     return {
       content: '',
+      uploadImage: null,
     }
   },
   computed: {
@@ -43,11 +45,18 @@ export default {
     },
   },
   methods: {
+    selectImage: function(e) {
+      const files = e.target.files
+      this.uploadImage = files[0]
+    },
+    doCreatePost: function() {
+      const formData = new FormData()
+      formData.append('post[content]', this.content)
+      formData.append('post[image]', this.content)
+      this.$emit("create-post", formData)
+    },
     doCloseForm: function() {
       this.$emit("close-form")
-    },
-    createPost: function() {
-      
     },
   },
 }
