@@ -117,6 +117,9 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 
 - belongs_to :user
 
+- has_one_attach :icon
+- has_one_attach :header
+
 ## postsテーブル
 
 | Column  | Type      | Options           |
@@ -125,6 +128,8 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 | content | text    | null: false       |
 
 ### Association
+
+- has_one_attach :image
 
 - belongs_to :user
 
