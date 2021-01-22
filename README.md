@@ -96,14 +96,15 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 
 * gem
 
-| Name | Version |
-| -- | ----- |
-| devise |  |
+| Name   | Version |
+| ------ | ------- |
+| devise |         |
+| bulma-rails |         |
 
 * npm
 
-| Name | Version |
-| -- | ----- |
-| vue | 3.0.5 |
-| vue-loader | 16.1.2 |
-| @vue/compiler-sfc |  |
+| Name              | Version |
+| ----------------- | ------- |
+| vue               | 3.0.5   |
+| vue-loader        | 16.1.2  |
+| @vue/compiler-sfc |         |
