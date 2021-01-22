@@ -52,7 +52,7 @@ export default {
     doCreatePost: function() {
       const formData = new FormData()
       formData.append('post[content]', this.content)
-      formData.append('post[image]', this.content)
+      formData.append('post[image]', this.uploadImage)
       this.$emit("create-post", formData)
     },
     doCloseForm: function() {

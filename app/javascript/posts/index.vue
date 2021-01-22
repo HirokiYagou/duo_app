@@ -20,8 +20,8 @@ export default {
   },
   data() {
     return {
-      message: 'たまプラーザ',
       isActive: '',
+      post: {},
     }
   },
   methods: {
