@@ -12,6 +12,7 @@
           :post="post"
           :current_user_name="currentuser.name"
           @delete-post="deletePost($event, index)"
+          @edit-post="editPost($event, index)"
         ></post>
       </div>
     </div>
@@ -19,8 +20,9 @@
 
   <post-form
     :is-Active="isActive"
+    :edit-info="editInfo"
     @close-form="closeForm"
-    @create-post="createPost($event)"
+    @do-post="doPost($event)"
   ></post-form>
 </div>
 </template>
@@ -41,6 +43,12 @@ export default {
       posts: [],
       post: {},
       currentuser: {},
+      editInfo: {
+        editPost: {
+          id: undefined,
+        },
+        editIndex: undefined,
+      },
     }
   },
   watch: {
@@ -65,9 +73,11 @@ export default {
           console.log(error)
         })
     },
-    createPost: function(formData) {
-      fetch('/posts', {
-          method: 'POST',
+    doPost: function(formData) {
+      const path = this.editInfo.editPost.id ? `/post/${this.editInfo.editPost.id}` : '/post'
+      const method = this.editInfo.editPost.id ? 'PATCH' : 'POST'
+      fetch(path, {
+          method: method,
           headers: {
             'X-CSRF-Token': csrfToken(),
           },
@@ -94,11 +104,24 @@ export default {
 
       this.posts.splice(index, 1)
     },
+    editPost: function(post, index) {
+      this.editInfo = {
+        editPost: post,
+        editIndex: index,
+      }
+      this.openForm()
+    },
     openForm: function() {
       this.isActive = 'is-active'
     },
     closeForm: function() {
       this.isActive = ''
+      this.editInfo = {
+        editPost: {
+          id: undefined,
+        },
+        editIndex: undefined,
+      }
     },
   },
   mounted: function() {

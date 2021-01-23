@@ -4,10 +4,10 @@
   <div class="modal-content">
     <div class="box">
       <div class="content">
-        <form @submit.prevent="doCreatePost">
+        <form @submit.prevent="doPost">
           <textarea
             name="content"
-            v-model="content"
+            v-model="uploadContent"
             class="textarea is-medium"
             placeholder="いまなにしてる？"
             cols="30"
@@ -15,7 +15,8 @@
             autofocus
             required></textarea>
           <input type="file" name="post[image]" @change="selectImage" id="post-image">
-          <button type="submit" :class="['button', 'is-primary', isEmpty]">投稿する</button>
+          <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="!isEdit">投稿する</button>
+          <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="isEdit">編集する</button>
         </form>
       </div>
     </div>
@@ -30,19 +31,44 @@ export default {
     isActive: {
       type: String,
     },
+    editInfo: {
+      type: Object,
+    }
   },
   data() {
     return {
-      content: '',
+      uploadContent: '',
       uploadImage: null,
     }
   },
   computed: {
+    isEdit: function() {
+      if (this.editInfo.editPost.id) {
+        return true
+      }
+    },
     isEmpty: function() {
-      if (this.content) {
+      if (this.uploadContent) {
         return 'filled'
       }
       return 'empty'
+    },
+  },
+  watch: {
+    editInfo: {
+      handler: function(next) {
+        if (next.editPost.content) {
+          this.uploadContent = next.editPost.content
+        } else {
+          this.uploadContent = ''
+        }
+        if (next.editPost.image) {
+          this.uploadImage = next.editPost.image
+        } else {
+          this.uploadImage = null
+        }
+      },
+      deep: true,
     },
   },
   methods: {
@@ -50,14 +76,14 @@ export default {
       const files = e.target.files
       this.uploadImage = files[0]
     },
-    doCreatePost: function() {
+    doPost: function() {
       const formData = new FormData()
-      formData.append('post[content]', this.content)
+      formData.append('post[content]', this.uploadContent)
       if (this.uploadImage) {
         formData.append('post[image]', this.uploadImage)
       }
-      this.$emit("create-post", formData)
-      this.content = ''
+      this.$emit("do-post", formData)
+      this.uploadContent = ''
       this.uploadImage = null
     },
     doCloseForm: function() {

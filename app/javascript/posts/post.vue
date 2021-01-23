@@ -27,16 +27,16 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu3" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
+            <a @click="doEditPost(post)" v-show="isCurrentUser" class="dropdown-item">
               Edit
             </a>
             <a href="#" class="dropdown-item">
               Show
             </a>
             <hr class="dropdown-divider">
-            <div @click="doDeletePost(post)" v-show="isCurrentUser" class="dropdown-item button">
+            <a @click="doDeletePost(post)" v-show="isCurrentUser" class="dropdown-item">
               Delete
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -70,7 +70,10 @@ export default {
   methods: {
     doDeletePost: function(post) {
       this.$emit("delete-post", post)
-    }
+    },
+    doEditPost: function(post) {
+      this.$emit("edit-post", post)
+    },
   }
 }
 </script>
