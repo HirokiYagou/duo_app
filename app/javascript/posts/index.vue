@@ -83,7 +83,12 @@ export default {
         .catch(error => console.log(error))
     },
     deletePost: function(post) {
-      console.log(post)
+      fetch(`/posts/${post.id}`, {
+        method: 'DELETE',
+        headers: {
+          'X-CSRF-Token': csrfToken(),
+        }
+      })
     },
     openForm: function() {
       this.isActive = 'is-active'
