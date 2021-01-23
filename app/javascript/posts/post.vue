@@ -43,15 +43,15 @@
     </div>
   </div>
 
-  <div class="content">
-    <p>{{ post.content }}</p>
-    <!-- <a>@bulmaio</a>.
-    <a href="#">#css</a> <a href="#">#responsive</a> -->
-  </div>
-  <div class="card-image" v-if="post.image">
-    <figure class="image is-4by3">
-      <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
-    </figure>
+  <div class="columns">
+    <div class="content is-medium column is-two-third">
+      <p>{{ post.content }}</p>
+      <!-- <a>@bulmaio</a>.
+      <a href="#">#css</a> <a href="#">#responsive</a> -->
+    </div>
+    <div class="block column is-one-third" v-if="post.image">
+        <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
+    </div>
   </div>
 </div>
 </template>
@@ -88,5 +88,8 @@ export default {
 }
 .dropdown button {
   border: none;
+}
+.columns img {
+  max-height: 50vh;
 }
 </style>

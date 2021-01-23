@@ -12,13 +12,13 @@
     @close-form="closeForm"
   ></img-modal>
 
-  <div class="columns">
+  <div class="columns left-menu">
     <div class="column is-one-fifth">
       <a href="/users/sign_out" data-method="delete">ログアウト</a>
       <p>{{ currentuser.name }}</p>
       <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
-    <div class="column is-half">
+    <div class="column is-two-thirds">
       <div v-for="(post, index) in posts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
