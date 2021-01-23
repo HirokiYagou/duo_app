@@ -1,5 +1,5 @@
 <template>
-<div :class="['modal', isActive]">
+<div :class="['modal', {'is-active': formActive}]">
   <div class="modal-background" @click.self="doCloseForm"></div>
   <div class="modal-content">
     <div class="box">
@@ -28,8 +28,8 @@
 <script>
 export default {
   props: {
-    isActive: {
-      type: String,
+    formActive: {
+      type: Boolean,
     },
     editInfo: {
       type: Object,

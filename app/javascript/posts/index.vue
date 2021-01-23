@@ -1,11 +1,16 @@
 <template>
 <div class="container">
   <post-form
-    :is-Active="isActive"
+    :form-active="isActives.formActive"
     :edit-info="editInfo"
     @close-form="closeForm"
     @do-post="doPost($event)"
   ></post-form>
+  <img-modal
+    :img-active="isActives.imgActive"
+    :img-src="imgSrc"
+    @close-form="closeForm"
+  ></img-modal>
 
   <div class="columns">
     <div class="column is-one-fifth">
@@ -20,6 +25,7 @@
           :current_user_name="currentuser.name"
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
+          @open-img-modal="openImgModal($event)"
         ></post>
       </div>
     </div>
@@ -29,20 +35,28 @@
 
 <script>
 import Form from './form'
+import Image from './img_modal'
 import Post from './post'
 import { csrfToken } from "@rails/ujs"
 
 export default {
   components: {
     'post-form': Form,
-    'post': Post,
+    'img-modal': Image,
+    'post': Post
   },
   data() {
     return {
-      isActive: '',
+      currentuser: {},
       posts: [],
       post: {},
-      currentuser: {},
+      
+      isActives: {
+        formActive: false,
+        imgActive: false,
+      },
+      imgSrc: '',
+      
       editInfo: {
         editPost: {
           id: undefined,
@@ -117,10 +131,15 @@ export default {
       this.openForm()
     },
     openForm: function() {
-      this.isActive = 'is-active'
+      this.isActives.formActive = true
+    },
+    openImgModal: function(img) {
+      this.isActives.imgActive = true
+      this.imgSrc =img
     },
     closeForm: function() {
-      this.isActive = ''
+      this.isActives.formActive = false
+      this.isActives.imgActive = false
       this.editInfo = {
         editPost: {
           id: undefined,
