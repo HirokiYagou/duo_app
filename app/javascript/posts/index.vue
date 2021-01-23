@@ -8,11 +8,11 @@
     </div>
     <div class="column is-half">
       <div v-for="post in posts" :key="post.id" :data-id="post.id" class="card">
-        <posts
+        <post
           :post="post"
           :current_user_name="currentuser.name"
           @delete-post="deletePost($event)"
-        ></posts>
+        ></post>
       </div>
     </div>
   </div>
@@ -27,13 +27,13 @@
 
 <script>
 import Form from './form'
-import Posts from './posts'
+import Post from './post'
 import { csrfToken } from "@rails/ujs"
 
 export default {
   components: {
     'post-form': Form,
-    'posts': Posts,
+    'post': Post,
   },
   data() {
     return {

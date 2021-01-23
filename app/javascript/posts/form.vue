@@ -12,6 +12,7 @@
             placeholder="いまなにしてる？"
             cols="30"
             rows="5"
+            autofocus
             required></textarea>
           <input type="file" name="post[image]" @change="selectImage" id="post-image">
           <button type="submit" :class="['button', 'is-primary', isEmpty]">投稿する</button>
