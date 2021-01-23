@@ -10,5 +10,5 @@ json.set! :posts do
   end
 end
 json.set! :currentuser do
-  json.currentuser current_user.username
+  json.name current_user.username
 end

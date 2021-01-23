@@ -2,6 +2,8 @@
 <div class="container">
   <div class="columns">
     <div class="column is-one-fifth">
+      <a href="/users/sign_out" data-method="delete">ログアウト</a>
+      <p>{{ currentuser.name }}</p>
       <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
     <div class="column is-half">
@@ -36,7 +38,7 @@ export default {
     return {
       isActive: '',
       posts: [],
-      currentuser: '',
+      currentuser: {},
     }
   },
   watch: {
@@ -45,7 +47,7 @@ export default {
         this.posts.unshift(next)
       },
       deep: true
-    }
+    },
   },
   methods: {
     fetchPosts: function() {
