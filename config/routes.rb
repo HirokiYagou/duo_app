@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'posts/index'
   devise_for :users
   root to: 'posts#index'
+  resources 'posts', only: [:index, :create]
   namespace :admin do
     get 'terms', to: 'terms#set_term'
   end
