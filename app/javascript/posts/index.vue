@@ -5,10 +5,12 @@
       <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
     <div class="column is-half">
-      <posts
-        :posts="posts"
-        @delete-post="deletePost($event)"
-      ></posts>
+      <div v-for="post in posts" :key="post.id" :data-id="post.id" class="card">
+        <posts
+          :post="post"
+          @delete-post="deletePost($event)"
+        ></posts>
+      </div>
     </div>
   </div>
 
@@ -34,7 +36,6 @@ export default {
     return {
       isActive: '',
       posts: [],
-      post: {},
     }
   },
   watch: {
@@ -91,3 +92,8 @@ export default {
 }
 </script>
 
+<style scoped>
+.card {
+  overflow: visible;
+}
+</style>
