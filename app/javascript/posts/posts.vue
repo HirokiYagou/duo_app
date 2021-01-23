@@ -25,7 +25,7 @@
       <br>
       <time datetime="2016-1-1">{{ post.created_at }}</time>
     </div>
-    <div class="card-image">
+    <div class="card-image" v-if="post.image">
       <figure class="image is-4by3">
         <img :src="post.image" alt="Placeholder image">
       </figure>
@@ -39,12 +39,5 @@ export default {
   props: {
     posts: Array,
   },
-  // watch: {
-  //   posts: {
-  //     handler: function(next) {
-  //       this
-  //     }
-  //   }
-  // }
 }
 </script>
