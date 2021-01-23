@@ -14,7 +14,12 @@
       </div>
       <div class="media-content">
         <p class="title is-4">たまプラーザ</p>
-        <p class="subtitle is-6">@{{ post.username }}</p>
+        <p class="subtitle is-6">@{{ post.username }}
+          <time :datetime="post.created_at">
+            {{ new Date(post.created_at).getFullYear() }}/{{ new Date(post.created_at).getMonth() + 1 }}/{{ new Date(post.created_at).getDate() }}
+            {{ new Date(post.created_at).getHours() }}:{{ new Date(post.created_at).getMinutes() }}
+          </time>
+        </p>
       </div>
     </div>
 
@@ -22,8 +27,6 @@
       <p>{{ post.content }}</p>
       <!-- <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a> -->
-      <br>
-      <time datetime="2016-1-1">{{ post.created_at }}</time>
     </div>
     <div class="card-image" v-if="post.image">
       <figure class="image is-4by3">
