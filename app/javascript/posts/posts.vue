@@ -1,7 +1,7 @@
 <template>
 <div
   class="card"
-  v-for="post in posts"
+  v-for="(post, index) in posts"
   :key="post.id"
   :data-id="post.id"
 >
@@ -22,9 +22,9 @@
         </p>
       </div>
       <div class="media-right">
-        <div class="dropdown">
+        <div class="dropdown is-right is-hoverable">
           <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+            <button class="button" @click="dropdownActive(index)" aria-haspopup="true" aria-controls="dropdown-menu3">
               <span class="icon is-small">
                 <img src="/assets/bars_24.png" alt="">
                 <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -34,29 +34,14 @@
           <div class="dropdown-menu" id="dropdown-menu3" role="menu">
             <div class="dropdown-content">
               <a href="#" class="dropdown-item">
-                Overview
+                Edit
               </a>
               <a href="#" class="dropdown-item">
-                Modifiers
-              </a>
-              <a href="#" class="dropdown-item">
-                Grid
-              </a>
-              <a href="#" class="dropdown-item">
-                Form
-              </a>
-              <a href="#" class="dropdown-item">
-                Elements
-              </a>
-              <a href="#" class="dropdown-item">
-                Components
-              </a>
-              <a href="#" class="dropdown-item">
-                Layout
+                Show
               </a>
               <hr class="dropdown-divider">
-              <a href="#" class="dropdown-item">
-                More
+              <a href="#" class="dropdown-item is-danger">
+                Delete
               </a>
             </div>
           </div>
@@ -93,5 +78,8 @@ export default {
 }
 .dropdown button {
   border: none;
+}
+.card {
+  overflow: visible;
 }
 </style>
