@@ -11,6 +11,11 @@ class PostsController < ApplicationController
     @post = Post.create(post_params)
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+  end
+
   def destroy
     Post.destroy(params[:id])
   end
