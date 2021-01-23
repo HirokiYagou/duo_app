@@ -36,6 +36,7 @@ export default {
     return {
       isActive: '',
       posts: [],
+      currentuser: '',
     }
   },
   watch: {
@@ -53,7 +54,8 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.posts = data
+          this.posts = data.posts
+          this.currentuser = data.currentuser
         })
         .catch(error => {
           console.log(error)
