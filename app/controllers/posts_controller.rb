@@ -10,6 +10,17 @@ class PostsController < ApplicationController
   def create
     @post = Post.create(post_params)
   end
+  
+  def update
+    post = Post.find(params[:id])
+    post.update(post_params)
+    @post = Post.find(params[:id])
+    render :create
+  end
+
+  def destroy
+    Post.destroy(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:content, :image).merge(user_id: current_user.id)

@@ -1,9 +1,1 @@
-<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-
-<% if signed_in? %>
-  <%= current_user.username %>
-<% else %>
-  たまプラーザ
-<% end %>
-
 <div id="posts"></div>
