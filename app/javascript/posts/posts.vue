@@ -19,9 +19,9 @@
     </div>
 
     <div class="content">
-      {{ post.content }}
-      <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
+      <p>{{ post.content }}</p>
+      <!-- <a>@bulmaio</a>.
+      <a href="#">#css</a> <a href="#">#responsive</a> -->
       <br>
       <time datetime="2016-1-1">{{ post.created_at }}</time>
     </div>
@@ -41,3 +41,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.content> p {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+</style>
