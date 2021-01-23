@@ -36,14 +36,14 @@ export default {
       post: {},
     }
   },
-  // watch: {
-  //   post: {
-  //     handler: function(next) {
-  //       this.post = this.posts.unshift(next)
-  //     },
-  //     deep: true
-  //   }
-  // },
+  watch: {
+    post: {
+      handler: function(next) {
+        this.posts.unshift(next)
+      },
+      deep: true
+    }
+  },
   methods: {
     fetchPosts: function() {
       fetch('/posts.json')
