@@ -10,10 +10,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.create(post_params)
   end
-
+  
   def update
+    post = Post.find(params[:id])
+    post.update(post_params)
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    render :create
   end
 
   def destroy

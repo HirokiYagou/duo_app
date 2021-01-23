@@ -74,8 +74,9 @@ export default {
         })
     },
     doPost: function(formData) {
-      const path = this.editInfo.editPost.id ? `/post/${this.editInfo.editPost.id}` : '/post'
-      const method = this.editInfo.editPost.id ? 'PATCH' : 'POST'
+      const editId = this.editInfo.editPost.id
+      const path = editId ? `/posts/${editId}` : '/posts'
+      const method = editId ? 'PATCH' : 'POST'
       fetch(path, {
           method: method,
           headers: {
@@ -87,8 +88,12 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.post = data
-          this.closeForm()
+          if (editId) {
+            this.posts.splice(this.editInfo.editIndex, 1, data)
+          } else {
+            this.post = data
+          }
+            this.closeForm()
         })
         .catch(error => console.log(error))
     },

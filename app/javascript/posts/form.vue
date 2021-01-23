@@ -62,11 +62,6 @@ export default {
         } else {
           this.uploadContent = ''
         }
-        if (next.editPost.image) {
-          this.uploadImage = next.editPost.image
-        } else {
-          this.uploadImage = null
-        }
       },
       deep: true,
     },
