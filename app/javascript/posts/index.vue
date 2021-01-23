@@ -7,11 +7,11 @@
       <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
     <div class="column is-half">
-      <div v-for="post in posts" :key="post.id" :data-id="post.id" class="card">
+      <div v-for="(post, index) in posts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
           :current_user_name="currentuser.name"
-          @delete-post="deletePost($event)"
+          @delete-post="deletePost($event, index)"
         ></post>
       </div>
     </div>
@@ -82,13 +82,17 @@ export default {
         })
         .catch(error => console.log(error))
     },
-    deletePost: function(post) {
+    deletePost: function(post, index) {
+      window.alert("Are you sure to DELETE?")
+
       fetch(`/posts/${post.id}`, {
         method: 'DELETE',
         headers: {
           'X-CSRF-Token': csrfToken(),
         }
       })
+
+      this.posts.splice(index, 1)
     },
     openForm: function() {
       this.isActive = 'is-active'
