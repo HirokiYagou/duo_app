@@ -7,6 +7,7 @@
     <div class="column is-half">
       <posts
         :posts="posts"
+        @delete-post="deletePost($event)"
       ></posts>
     </div>
   </div>
@@ -73,6 +74,9 @@ export default {
           this.closeForm()
         })
         .catch(error => console.log(error))
+    },
+    deletePost: function(post) {
+      console.log(post)
     },
     openForm: function() {
       this.isActive = 'is-active'
