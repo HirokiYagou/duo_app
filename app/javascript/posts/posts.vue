@@ -34,7 +34,7 @@
               Show
             </a>
             <hr class="dropdown-divider">
-            <div @click="doDeletePost(post)" class="dropdown-item button">
+            <div @click="doDeletePost(post)" v-show="isCurrentUser" class="dropdown-item button">
               Delete
             </div>
           </div>
@@ -60,6 +60,12 @@
 export default {
   props: {
     post: Object,
+    current_user_name: String,
+  },
+  computed: {
+    isCurrentUser: function() {
+      return this.post.username === this.current_user_name
+    },
   },
   methods: {
     doDeletePost: function(post) {

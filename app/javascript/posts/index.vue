@@ -10,6 +10,7 @@
       <div v-for="post in posts" :key="post.id" :data-id="post.id" class="card">
         <posts
           :post="post"
+          :current_user_name="currentuser.name"
           @delete-post="deletePost($event)"
         ></posts>
       </div>
@@ -38,6 +39,7 @@ export default {
     return {
       isActive: '',
       posts: [],
+      post: {},
       currentuser: {},
     }
   },
