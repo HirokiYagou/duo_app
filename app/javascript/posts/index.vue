@@ -1,5 +1,12 @@
 <template>
 <div class="container">
+  <post-form
+    :is-Active="isActive"
+    :edit-info="editInfo"
+    @close-form="closeForm"
+    @do-post="doPost($event)"
+  ></post-form>
+
   <div class="columns">
     <div class="column is-one-fifth">
       <a href="/users/sign_out" data-method="delete">ログアウト</a>
@@ -17,13 +24,6 @@
       </div>
     </div>
   </div>
-
-  <post-form
-    :is-Active="isActive"
-    :edit-info="editInfo"
-    @close-form="closeForm"
-    @do-post="doPost($event)"
-  ></post-form>
 </div>
 </template>
 
