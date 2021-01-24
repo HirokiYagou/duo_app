@@ -31,7 +31,7 @@ DUO3.0の学習と写真投稿型コミュニティをマッチさせたアプ�
 
 
 # URL
-https://duo3exercise.herokuapp.com/
+https://duo3exercise.herokuapp.com
 
 # テストアカウント
 
