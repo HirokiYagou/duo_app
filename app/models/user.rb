@@ -3,7 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
-  
+  has_one :profile
+
   USERNAME_REGEX = /\A[a-zA-Z_0-9]+\z/.freeze
   EMAIL_REGEX = /\A\S+@\S+\.\S+\z/.freeze
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
