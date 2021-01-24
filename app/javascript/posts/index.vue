@@ -23,7 +23,11 @@
     </div>
     <div class="column is-two-thirds">
       <div class="card">
-        <post-header></post-header>
+        <post-header
+          :profile-active="isActives.profileActive"
+          @do-edit-profile="editProfile"
+          @close-form="closeForm"
+        ></post-header>
       </div>
       <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
         <post
@@ -66,6 +70,7 @@ export default {
       isActives: {
         formActive: false,
         imgActive: false,
+        profileActive: false,
       },
       imgSrc: '',
       
@@ -158,9 +163,13 @@ export default {
       this.isActives.imgActive = true
       this.imgSrc =img
     },
+    editProfile: function() {
+      this.isActives.profileActive = true
+    },
     closeForm: function() {
       this.isActives.formActive = false
       this.isActives.imgActive = false
+      this.isActives.profileActive = false
       this.editInfo = {
         editPost: {
           id: undefined,
