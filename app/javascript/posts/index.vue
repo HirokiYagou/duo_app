@@ -18,16 +18,16 @@
         :current_user_name="currentUser.name"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
-        @do-set-user-posts="setUserPosts(currentUser.name)"
+        @do-set-user-posts="setUserPosts(currentUser)"
       ></left-bar>
     </div>
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
-          v-show="showUsername.length"
+          v-show="showUser.name.length"
           :profile-active="isActives.profileActive"
           :current_user="currentUser"
-          :show-username="showUsername"
+          :show-user="showUser"
           @do-edit-profile="editProfile"
           @close-form="closeForm"
         ></post-header>
@@ -84,7 +84,11 @@ export default {
         editIndex: undefined,
       },
 
-      showUsername: '',
+      showUser: {
+        id: null,
+        name: '',
+        nickname: '',
+      },
     }
   },
   watch: {
@@ -105,7 +109,7 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
-          this.showUsername = ''
+          this.showUser = {name: ''}
         })
         .catch(error => {
           console.log(error)
@@ -154,16 +158,15 @@ export default {
       }
       this.openForm()
     },
-    setUserPosts: function(username) {
+    setUserPosts: function(user) {
       this.templatePosts = []
       this.allPosts.forEach(post => {
-        if (post.username === username) {
+        if (post.user.id === user.id) {
           this.templatePosts.push(post)
         }
       })
-      this.showUsername = username
+      this.showUser = user
     },
-    
     openForm: function() {
       this.isActives.formActive = true
     },

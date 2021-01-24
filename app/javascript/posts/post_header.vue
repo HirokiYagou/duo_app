@@ -1,7 +1,7 @@
 <template>
 <div>
-  <p>{{ showUsername }}さん</p>
-  <button class="button" @click="doEditProfile" v-if="showUsername === current_user.name">Edit Profile</button>
+  <p>{{ showUser.nickname }}さん</p>
+  <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
 
   <div :class="['modal', {'is-active': profileActive}]">
     <div class="modal-background" @click.self="doCloseForm"></div>
@@ -16,7 +16,7 @@
               <div class="field-body">
                 <div class="field">
                   <p class="control">
-                    <input class="input" name="nickname" type="email" placeholder="名前" required>
+                    <input v-model="updateNickname" class="input" name="nickname" type="email" placeholder="名前" required>
                   </p>
                 </div>
               </div>
@@ -49,14 +49,19 @@ export default {
   props: {
     current_user: Object,
     profileActive: Boolean,
-    showUsername: {
-      type: String,
+    showUser: {
+      type: Object,
       required: true,
     },
   },
   data() {
     return {
     }
+  },
+  computed: {
+    updateNickname: function() {
+      return this.showUser.nickname
+    },
   },
   methods: {
     doEditProfile: function() {
