@@ -9,7 +9,7 @@
       </figure>
     </div>
     <div class="media-content">
-      <p class="title is-4">たまプラーザ</p>
+      <p class="title is-4">{{ post.nickname }}</p>
       <p class="subtitle is-6">
         <a @click="doSetUserPosts(post.username)">@{{ post.username }}</a>
         <time :datetime="post.created_at">
