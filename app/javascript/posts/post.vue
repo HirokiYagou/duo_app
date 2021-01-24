@@ -91,5 +91,6 @@ export default {
 }
 .columns img {
   max-height: 50vh;
+  cursor: pointer;
 }
 </style>

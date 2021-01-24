@@ -19,7 +19,7 @@
       <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
     </div>
     <div class="column is-two-thirds">
-      <div v-for="(post, index) in posts" :key="post.id" :data-id="post.id" class="card">
+      <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
           :current_user_name="currentuser.name"
@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       currentuser: {},
-      posts: [],
+      allPosts: [],
+      templatePosts: [],
       post: {},
       
       isActives: {
@@ -68,19 +69,22 @@ export default {
   watch: {
     post: {
       handler: function(next) {
-        this.posts.unshift(next)
+        this.allPosts.unshift(next)
       },
       deep: true
     },
   },
   methods: {
+    // setTemplatePosts: function() {
+    //   },
     fetchPosts: function() {
       fetch('/posts.json')
         .then(response => {
           return response.json()
         })
         .then(data => {
-          this.posts = data.posts
+          this.allPosts = data.posts
+          this.templatePosts = this.allPosts
           this.currentuser = data.currentuser
         })
         .catch(error => {
@@ -103,7 +107,7 @@ export default {
         })
         .then(data => {
           if (editId) {
-            this.posts.splice(this.editInfo.editIndex, 1, data)
+            this.allPosts.splice(this.editInfo.editIndex, 1, data)
           } else {
             this.post = data
           }
@@ -121,7 +125,7 @@ export default {
         }
       })
 
-      this.posts.splice(index, 1)
+      this.allPosts.splice(index, 1)
     },
     editPost: function(post, index) {
       this.editInfo = {
