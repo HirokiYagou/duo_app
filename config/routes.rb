@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'profiles', to: 'users/registrations#new_profile'
     post 'profiles', to: 'users/registrations#create_profile'
   end
+
   root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
       patch '/user/:id', to: 'posts#update_profile'
     end
   end
+  
   namespace :admin do
     get 'terms', to: 'terms#set_term'
   end
