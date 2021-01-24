@@ -25,10 +25,10 @@
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
-          v-if="showUser.name.length"
+          v-if="showInfo.showUser.name.length"
           :profile-active="isActives.profileActive"
           :current_user="currentUser"
-          :show-user="showUser"
+          :show-info="showInfo"
           @do-edit-profile="editProfile"
           @update-profile="updateProfile($event)"
           @close-form="closeForm"
@@ -86,10 +86,11 @@ export default {
         editIndex: undefined,
       },
 
-      showUser: {
-        id: null,
-        name: '',
-        nickname: '',
+      showInfo: {
+        showUser: {
+          name: '',
+        },
+        showProfile: {},
       },
     }
   },
@@ -111,7 +112,8 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
-          this.showUser = {name: ''}
+          this.showInfo.showUser = {name: ''}
+          this.showInfo.showProfile = {}
         })
         .catch(error => {
           console.log(error)
@@ -167,7 +169,9 @@ export default {
           this.templatePosts.push(post)
         }
       })
-      this.showUser = user
+      this.showInfo.showUser.id = user.id
+      this.showInfo.showUser.name = user.name
+      this.showInfo.showProfile.nickname = user.nickname
       this.fetchProfile(user.id)
     },
     fetchProfile: function(userId) {
@@ -176,9 +180,9 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.showUser.status = data.status
+          this.showInfo.showProfile.status = data.status
           if (data.header) {
-            this.showUser.header = data.header
+            this.showInfo.showProfile.header = data.header
           }
         })
         .catch(error => {
