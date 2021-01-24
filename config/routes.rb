@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
       get '/user/:id', to: 'posts#get_profile'
+      post '/user/:id', to: 'posts#update_profile'
     end
   end
   namespace :admin do

@@ -26,9 +26,20 @@ class PostsController < ApplicationController
     @profile = Profile.where(user_id: params[:id])[0]
   end
 
+  def update_profile
+    profile = Profile.where(user_id: params[:id])[0]
+    profile.update(profile_params)
+    @profile = Profile.where(user_id: params[:id])[0]
+    render :get_profile
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:content, :image).merge(user_id: current_user.id)
+  end
+
+  def profile_params
+    params.require(:profile).permit(:nickname, :status, :icon, :header)
   end
 end
