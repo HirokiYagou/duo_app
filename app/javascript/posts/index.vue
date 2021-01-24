@@ -26,7 +26,7 @@
         <post-header
           v-show="showUsername.length"
           :profile-active="isActives.profileActive"
-          :current_user_name="currentUser.name"
+          :current_user="currentUser"
           :show-username="showUsername"
           @do-edit-profile="editProfile"
           @close-form="closeForm"

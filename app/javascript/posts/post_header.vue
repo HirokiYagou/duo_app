@@ -1,7 +1,7 @@
 <template>
 <div>
   <p>{{ showUsername }}さん</p>
-  <button class="button" @click="doEditProfile" v-if="showUsername === current_user_name">Edit Profile</button>
+  <button class="button" @click="doEditProfile" v-if="showUsername === current_user.name">Edit Profile</button>
 
   <div :class="['modal', {'is-active': profileActive}]">
     <div class="modal-background" @click.self="doCloseForm"></div>
@@ -16,7 +16,7 @@
 <script>
 export default {
   props: {
-    current_user_name: String,
+    current_user: Object,
     profileActive: Boolean,
     showUsername: {
       type: String,
