@@ -187,7 +187,7 @@ export default {
   },
   mounted: function() {
     this.fetchPosts()
-  }
+  },
 }
 </script>
 

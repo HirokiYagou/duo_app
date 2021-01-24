@@ -23,7 +23,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_profile
     @user = User.new(session["devise.regist_data"]["user"])
-    binding.pry
     @profile = Profile.new(profile_params)
     unless @profile.valid?
       render :new_profile and return
