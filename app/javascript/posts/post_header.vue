@@ -1,9 +1,9 @@
 <template>
 <div>
-  <p>{{ showInfo.showProfile.nickname }}さん</p>
-  <p>@{{ showInfo.showUser.name }}</p>
-  <p>{{ showInfo.showProfile.status }}</p>
-  <button class="button" @click="doEditProfile" v-if="showInfo.showUser.id === current_user.id">Edit Profile</button>
+  <p>{{ showUser.showProfile.nickname }}さん</p>
+  <p>@{{ showUser.name }}</p>
+  <p>{{ showUser.showProfile.status }}</p>
+  <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
 
   <div :class="['modal', {'is-active': profileActive}]">
     <div class="modal-background" @click.self="doCloseForm"></div>
@@ -44,7 +44,7 @@ export default {
   props: {
     current_user: Object,
     profileActive: Boolean,
-    showInfo: Object,
+    showUser: Object,
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
     }
   },
   watch: {
-    showInfo: {
+    showUser: {
       handler: function(next) {
         this.updateNickname = next.showProfile.nickname
         this.updateStatus = next.showProfile.status
@@ -97,3 +97,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.textarea {
+  resize: none;
+}
+</style>

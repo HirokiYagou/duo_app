@@ -25,10 +25,10 @@
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
-          v-if="showInfo.showUser.name.length"
+          v-if="showUser.name.length"
           :profile-active="isActives.profileActive"
           :current_user="currentUser"
-          :show-info="showInfo"
+          :show-user="showUser"
           @do-edit-profile="editProfile"
           @update-profile="updateProfile($event)"
           @close-form="closeForm"
@@ -86,10 +86,8 @@ export default {
         editIndex: undefined,
       },
 
-      showInfo: {
-        showUser: {
-          name: '',
-        },
+      showUser: {
+        name: '',
         showProfile: {},
       },
     }
@@ -112,8 +110,8 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
-          this.showInfo.showUser = {name: ''}
-          this.showInfo.showProfile = {}
+          this.showUser = {name: ''}
+          this.showUser.showProfile = {}
         })
         .catch(error => {
           console.log(error)
@@ -169,9 +167,9 @@ export default {
           this.templatePosts.push(post)
         }
       })
-      this.showInfo.showUser.id = user.id
-      this.showInfo.showUser.name = user.name
-      this.showInfo.showProfile.nickname = user.nickname
+      this.showUser.id = user.id
+      this.showUser.name = user.name
+      this.showUser.showProfile.nickname = user.profile.nickname
       this.fetchProfile(user.id)
     },
     fetchProfile: function(userId) {
@@ -180,9 +178,9 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.showInfo.showProfile.status = data.status
+          this.showUser.showProfile.status = data.status
           if (data.header) {
-            this.showInfo.showProfile.header = data.header
+            this.showUser.showProfile.header = data.header
           }
         })
         .catch(error => {
@@ -198,17 +196,10 @@ export default {
           },
           body: formData,
         })
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          this.showUser.id = data
-          this.showUser.name = currentUser.name
-          this.closeForm()
-        })
-        .catch(error => {
-          console.log(error)
-        })
+        
+      this.closeForm()
+      this.fetchPosts()
+      // this.setUserPosts(this.currentUser)
     },
     openForm: function() {
       this.isActives.formActive = true

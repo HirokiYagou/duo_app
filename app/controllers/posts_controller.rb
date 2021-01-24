@@ -29,8 +29,6 @@ class PostsController < ApplicationController
   def update_profile
     profile = Profile.where(user_id: params[:id])[0]
     profile.update(profile_params)
-    @profile = Profile.where(user_id: params[:id])[0]
-    render :get_profile
   end
 
   private
