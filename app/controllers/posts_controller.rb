@@ -22,6 +22,12 @@ class PostsController < ApplicationController
     Post.destroy(params[:id])
   end
 
+  def get_profile
+    @profile = Profile.find(params[:id])
+  end
+
+  private
+
   def post_params
     params.require(:post).permit(:content, :image).merge(user_id: current_user.id)
   end

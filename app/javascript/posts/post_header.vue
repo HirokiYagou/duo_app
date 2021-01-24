@@ -10,20 +10,13 @@
         <div class="content">
           <form @submit.prevent="doPost">
             <div class="field">
-              <div class="field-label">
-                <label class="label">Nickname</label>
-              </div>
-              <div class="field-body">
-                <div class="field">
-                  <p class="control">
-                    <input v-model="updateNickname" class="input" name="nickname" type="email" placeholder="名前" required>
-                  </p>
-                </div>
-              </div>
+              <label class="label">Nickname</label>
+              <input v-model="updateNickname" class="input" name="nickname" type="email" placeholder="名前" required>
             </div>
             <div class="field">
               <label class="label">Status</label>
               <textarea
+                v-model="updateStatus"
                 name="status"
                 class="textarea is-medium"
                 placeholder="自己紹介"
@@ -56,12 +49,18 @@ export default {
   },
   data() {
     return {
+      updateNickname: '',
+      updateStatus: '',
     }
   },
-  computed: {
-    updateNickname: function() {
-      return this.showUser.nickname
-    },
+  watch: {
+    showUser: {
+      handler: function(next) {
+        this.updateNickname = next.nickname
+        this.updateStatus = next.status
+      },
+      deep: true
+    }
   },
   methods: {
     doEditProfile: function() {

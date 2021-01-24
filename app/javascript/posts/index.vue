@@ -24,10 +24,11 @@
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
-          v-show="showUser.name.length"
+          v-if="showUser.name.length"
           :profile-active="isActives.profileActive"
           :current_user="currentUser"
           :show-user="showUser"
+          v-on="fetchProfile(showUser.id)"
           @do-edit-profile="editProfile"
           @close-form="closeForm"
         ></post-header>
@@ -166,6 +167,21 @@ export default {
         }
       })
       this.showUser = user
+    },
+    fetchProfile: function(userId) {
+      fetch(`/posts/user/${userId}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.showUser.status = data.status
+          if (data.header) {
+            this.showUser.header = data.header
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     openForm: function() {
       this.isActives.formActive = true
