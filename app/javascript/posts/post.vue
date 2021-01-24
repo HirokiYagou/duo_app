@@ -3,13 +3,13 @@
   <div class="media">
     <div class="media-left">
       <figure class="image is-48x48">
-        <a href="/">
+        <a @click="doSetUserPosts(post.username)">
           <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
         </a>
       </figure>
     </div>
     <div class="media-content">
-      <p class="title is-4">{{ post.nickname }}</p>
+      <p class="title is-4" @click="doSetUserPosts(post.username)">{{ post.nickname }}</p>
       <p class="subtitle is-6">
         <a @click="doSetUserPosts(post.username)">@{{ post.username }}</a>
         <time :datetime="post.created_at">
@@ -88,6 +88,9 @@ export default {
 .content> p {
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+.media-content> .title {
+  cursor: pointer;
 }
 .dropdown button {
   border: none;
