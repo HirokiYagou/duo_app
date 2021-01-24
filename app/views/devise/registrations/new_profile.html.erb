@@ -1,0 +1,45 @@
+<h2 class="title is-2">Profile</h2>
+
+<div class="columns is-mobile">
+  <div class="column is-one-third">
+    <%= form_with model: @profile, class: 'form registration-main' do |f| %>
+      <%= render "devise/shared/error_messages", resource: @profile %>
+
+      <div class="field">
+        <%= f.label :Nickname, class: "label" %>
+        <div class="control">
+          <%= f.text_field :nickname, class: "input is-primary", autofocus: true, placeholder: "ex/ Tama-plaza" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :Status, class: "label" %>
+        <div class="control">
+          <%= f.text_area :status, class: "input is-primary" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :Icon, class: "label" %>
+        <div class="control">
+          <%= f.file_field :icon, name: 'profile[icon]', id: 'icon_image', class: "input is-primary" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :Header, class: "label" %>
+        <div class="control">
+          <%= f.file_field :header, name: 'profile[header]', id: 'header_image', class: "input is-primary" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control actions">
+          <%= f.submit "Sign Up", class: "button is-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

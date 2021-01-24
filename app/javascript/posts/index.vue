@@ -18,10 +18,22 @@
         :current_user_name="currentUser.name"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
-        @do-set-user-posts="setUserPosts(currentUser.name)"
+        @do-set-user-posts="setUserPosts(currentUser)"
       ></left-bar>
     </div>
+
     <div class="column is-two-thirds">
+      <div class="card">
+        <post-header
+          v-if="showUser.name.length"
+          :profile-active="isActives.profileActive"
+          :current_user="currentUser"
+          :show-user="showUser"
+          @do-edit-profile="editProfile"
+          @update-profile="updateProfile($event)"
+          @close-form="closeForm"
+        ></post-header>
+      </div>
       <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
@@ -41,6 +53,7 @@
 import LeftBar from './left_bar'
 import Form from './form'
 import Image from './img_modal'
+import PostHeader from './post_header'
 import Post from './post'
 import { csrfToken } from "@rails/ujs"
 
@@ -49,6 +62,7 @@ export default {
     'left-bar': LeftBar,
     'post-form': Form,
     'img-modal': Image,
+    'post-header': PostHeader,
     'post': Post,
   },
   data() {
@@ -61,6 +75,7 @@ export default {
       isActives: {
         formActive: false,
         imgActive: false,
+        profileActive: false,
       },
       imgSrc: '',
       
@@ -69,6 +84,11 @@ export default {
           id: undefined,
         },
         editIndex: undefined,
+      },
+
+      showUser: {
+        name: '',
+        showProfile: {},
       },
     }
   },
@@ -90,6 +110,8 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
+          this.showUser = {name: ''}
+          this.showUser.showProfile = {}
         })
         .catch(error => {
           console.log(error)
@@ -123,11 +145,11 @@ export default {
       window.alert("Are you sure to DELETE?")
 
       fetch(`/posts/${post.id}`, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': csrfToken(),
-        }
-      })
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          }
+        })
 
       this.allPosts.splice(index, 1)
     },
@@ -138,13 +160,46 @@ export default {
       }
       this.openForm()
     },
-    setUserPosts: function(username) {
+    setUserPosts: function(user) {
       this.templatePosts = []
       this.allPosts.forEach(post => {
-        if (post.username === username) {
+        if (post.user.id === user.id) {
           this.templatePosts.push(post)
         }
       })
+      this.showUser.id = user.id
+      this.showUser.name = user.name
+      this.showUser.showProfile.nickname = user.profile.nickname
+      this.fetchProfile(user.id)
+    },
+    fetchProfile: function(userId) {
+      fetch(`/posts/user/${userId}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.showUser.showProfile.status = data.status
+          if (data.header) {
+            this.showUser.showProfile.header = data.header
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    updateProfile: function(formData) {
+      console.log(formData)
+      fetch(`/posts/user/${this.currentUser.id}`, {
+        method: 'PATCH',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          },
+          body: formData,
+        })
+        
+      this.closeForm()
+      this.fetchPosts()
+      // this.setUserPosts(this.currentUser)
     },
     openForm: function() {
       this.isActives.formActive = true
@@ -153,9 +208,13 @@ export default {
       this.isActives.imgActive = true
       this.imgSrc =img
     },
+    editProfile: function() {
+      this.isActives.profileActive = true
+    },
     closeForm: function() {
       this.isActives.formActive = false
       this.isActives.imgActive = false
+      this.isActives.profileActive = false
       this.editInfo = {
         editPost: {
           id: undefined,
@@ -166,7 +225,7 @@ export default {
   },
   mounted: function() {
     this.fetchPosts()
-  }
+  },
 }
 </script>
 

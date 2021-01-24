@@ -3,7 +3,7 @@
 <div class="columns is-mobile">
   <div class="column is-one-third">
     <%= form_with model: @user, url: user_registration_path, class: 'form registration-main', local: true do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: @user %>
 
       <div class="field">
         <%= f.label :UserName, class: "label" %>
@@ -46,7 +46,7 @@
 
       <div class="field">
         <div class="control actions">
-          <%= f.submit "Sign up", class: "button is-link" %>
+          <%= f.submit "Next", class: "button is-link" %>
         </div>
       </div>
     <% end %>

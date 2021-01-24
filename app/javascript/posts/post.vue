@@ -3,15 +3,15 @@
   <div class="media">
     <div class="media-left">
       <figure class="image is-48x48">
-        <a href="/">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+        <a @click="doSetUserPosts(post.user)">
+          <img :src="post.user.profile.icon" alt="Placeholder image">
         </a>
       </figure>
     </div>
     <div class="media-content">
-      <p class="title is-4">たまプラーザ</p>
+      <p class="title is-4" @click="doSetUserPosts(post.user)">{{ post.user.profile.nickname }}</p>
       <p class="subtitle is-6">
-        <a @click="doSetUserPosts(post.username)">@{{ post.username }}</a>
+        <a @click="doSetUserPosts(post.user)">@{{ post.user.name }}</a>
         <time :datetime="post.created_at">
           {{ new Date(post.created_at).getFullYear() }}/{{ new Date(post.created_at).getMonth() + 1 }}/{{ new Date(post.created_at).getDate() }}
           {{ new Date(post.created_at).getHours() }}:{{ new Date(post.created_at).getMinutes() }}
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     isCurrentUser: function() {
-      return this.post.username === this.current_user_name
+      return this.post.user.name === this.current_user_name
     },
   },
   methods: {
@@ -77,8 +77,8 @@ export default {
     openImageModal: function(img) {
       this.$emit("open-img-modal", img)
     },
-    doSetUserPosts: function(username) {
-      this.$emit("set-user-posts", username)
+    doSetUserPosts: function(user) {
+      this.$emit("set-user-posts", user)
     }
   }
 }
@@ -88,6 +88,9 @@ export default {
 .content> p {
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+.media-content> .title {
+  cursor: pointer;
 }
 .dropdown button {
   border: none;
