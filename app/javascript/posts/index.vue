@@ -163,6 +163,7 @@ export default {
       })
       this.showUsername = username
     },
+    
     openForm: function() {
       this.isActives.formActive = true
     },
