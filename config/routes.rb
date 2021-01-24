@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy]
   namespace :admin do
