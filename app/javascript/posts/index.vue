@@ -22,6 +22,9 @@
       ></left-bar>
     </div>
     <div class="column is-two-thirds">
+      <div class="card">
+        <post-header></post-header>
+      </div>
       <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
@@ -41,6 +44,7 @@
 import LeftBar from './left_bar'
 import Form from './form'
 import Image from './img_modal'
+import PostHeader from './post_header'
 import Post from './post'
 import { csrfToken } from "@rails/ujs"
 
@@ -49,6 +53,7 @@ export default {
     'left-bar': LeftBar,
     'post-form': Form,
     'img-modal': Image,
+    'post-header': PostHeader,
     'post': Post,
   },
   data() {
