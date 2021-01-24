@@ -14,15 +14,17 @@
 
   <div class="columns left-menu">
     <div class="column is-one-fifth">
-      <a href="/users/sign_out" data-method="delete">ログアウト</a>
-      <p>{{ currentuser.name }}</p>
-      <button class="button is-primary is-fullwidth" @click="openForm">投稿する</button>
+      <left-bar
+        :current_user_name="currentUser.name"
+        @do-open-form="openForm"
+        @do-set-user-posts="setUserPosts(currentUser.name)"
+      ></left-bar>
     </div>
     <div class="column is-two-thirds">
       <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
         <post
           :post="post"
-          :current_user_name="currentuser.name"
+          :current_user_name="currentUser.name"
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import LeftBar from './left_bar'
 import Form from './form'
 import Image from './img_modal'
 import Post from './post'
@@ -42,13 +45,14 @@ import { csrfToken } from "@rails/ujs"
 
 export default {
   components: {
+    'left-bar': LeftBar,
     'post-form': Form,
     'img-modal': Image,
-    'post': Post
+    'post': Post,
   },
   data() {
     return {
-      currentuser: {},
+      currentUser: {},
       allPosts: [],
       templatePosts: [],
       post: {},
@@ -84,7 +88,7 @@ export default {
         .then(data => {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
-          this.currentuser = data.currentuser
+          this.currentUser = data.currentuser
         })
         .catch(error => {
           console.log(error)
