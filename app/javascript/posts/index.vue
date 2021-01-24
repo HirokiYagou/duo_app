@@ -24,7 +24,10 @@
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
+          v-show="showUsername.length"
           :profile-active="isActives.profileActive"
+          :current_user_name="currentUser.name"
+          :show-username="showUsername"
           @do-edit-profile="editProfile"
           @close-form="closeForm"
         ></post-header>
@@ -80,6 +83,8 @@ export default {
         },
         editIndex: undefined,
       },
+
+      showUsername: '',
     }
   },
   watch: {
@@ -100,6 +105,7 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
+          this.showUsername = ''
         })
         .catch(error => {
           console.log(error)
@@ -155,6 +161,7 @@ export default {
           this.templatePosts.push(post)
         }
       })
+      this.showUsername = username
     },
     openForm: function() {
       this.isActives.formActive = true
