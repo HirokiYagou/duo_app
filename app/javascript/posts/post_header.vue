@@ -10,10 +10,10 @@
     <div class="modal-content">
       <div class="box">
         <div class="content">
-          <form>
+          <form @submit.prevent="setUpdateProfile">
             <div class="field">
               <label class="label">Nickname</label>
-              <input v-model="updateNickname" class="input" name="nickname" type="text" placeholder="名前" required>
+              <input v-model="updateNickname" class="input" name="nickname" type="text" placeholder="名前" autofocus required>
             </div>
             <div class="field">
               <label class="label">Status</label>
@@ -53,6 +53,8 @@ export default {
     return {
       updateNickname: '',
       updateStatus: '',
+      updateIcon: null,
+      updateHeader: null,
     }
   },
   watch: {
@@ -68,12 +70,32 @@ export default {
     doEditProfile: function() {
       this.$emit("do-edit-profile")
     },
+    selectIcon: function(e) {
+      const files = e.target.files
+      this.updateIcon = files[0]
+    },
+    selectHeader: function(e) {
+      const files = e.target.files
+      this.updateHeader = files[0]
+    },
+    setUpdateProfile: function() {
+      const formData = new FormData()
+      formData.append('profile[nickname]', this.updateNickname)
+      formData.append('profile[status]', this.updateStatus)
+      if (this.updateIcon) {
+        formData.append('profile[icon]', this.updateIcon)
+      }
+      if (this.updateHeader) {
+        formData.append('profile[header]', this.updateHeader)
+      }
+      this.$emit('update-profile',formData)
+      this.updateNickname = ''
+      this.updateStatus = ''
+      this.updateIcon = null
+      this.updateHeader = null
+    },
     doCloseForm: function() {
        this.$emit("close-form")
-    },
-    selectImage: function(e) {
-      const files = e.target.files
-      this.uploadImage = files[0]
     },
   }
 }

@@ -21,6 +21,7 @@
         @do-set-user-posts="setUserPosts(currentUser)"
       ></left-bar>
     </div>
+
     <div class="column is-two-thirds">
       <div class="card">
         <post-header
@@ -29,6 +30,7 @@
           :current_user="currentUser"
           :show-user="showUser"
           @do-edit-profile="editProfile"
+          @update-profile="updateProfile($event)"
           @close-form="closeForm"
         ></post-header>
       </div>
@@ -143,11 +145,11 @@ export default {
       window.alert("Are you sure to DELETE?")
 
       fetch(`/posts/${post.id}`, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': csrfToken(),
-        }
-      })
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          }
+        })
 
       this.allPosts.splice(index, 1)
     },
@@ -178,6 +180,27 @@ export default {
           if (data.header) {
             this.showUser.header = data.header
           }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    updateProfile: function(formData) {
+      console.log(formData)
+      fetch(`/posts/user/${this.currentUser.id}`, {
+        method: 'PATCH',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          },
+          body: formData,
+        })
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.showUser.id = data
+          this.showUser.name = currentUser.name
+          this.closeForm()
         })
         .catch(error => {
           console.log(error)
