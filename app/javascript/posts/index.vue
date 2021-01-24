@@ -17,6 +17,7 @@
       <left-bar
         :current_user_name="currentUser.name"
         @do-open-form="openForm"
+        @do-fetch-posts="fetchPosts"
         @do-set-user-posts="setUserPosts(currentUser.name)"
       ></left-bar>
     </div>
