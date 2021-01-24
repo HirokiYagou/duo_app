@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def get_profile
-    @profile = Profile.find(params[:id])
+    @profile = Profile.where(user_id: params[:id])[0]
   end
 
   private

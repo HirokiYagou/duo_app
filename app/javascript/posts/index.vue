@@ -28,7 +28,6 @@
           :profile-active="isActives.profileActive"
           :current_user="currentUser"
           :show-user="showUser"
-          v-on="fetchProfile(showUser.id)"
           @do-edit-profile="editProfile"
           @close-form="closeForm"
         ></post-header>
@@ -167,6 +166,7 @@ export default {
         }
       })
       this.showUser = user
+      this.fetchProfile(user.id)
     },
     fetchProfile: function(userId) {
       fetch(`/posts/user/${userId}`)

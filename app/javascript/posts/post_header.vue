@@ -1,6 +1,8 @@
 <template>
 <div>
   <p>{{ showUser.nickname }}さん</p>
+  <p>@{{ showUser.name }}</p>
+  <p>{{ showUser.status }}</p>
   <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
 
   <div :class="['modal', {'is-active': profileActive}]">
@@ -8,10 +10,10 @@
     <div class="modal-content">
       <div class="box">
         <div class="content">
-          <form @submit.prevent="doPost">
+          <form>
             <div class="field">
               <label class="label">Nickname</label>
-              <input v-model="updateNickname" class="input" name="nickname" type="email" placeholder="名前" required>
+              <input v-model="updateNickname" class="input" name="nickname" type="text" placeholder="名前" required>
             </div>
             <div class="field">
               <label class="label">Status</label>
