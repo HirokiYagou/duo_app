@@ -11,7 +11,7 @@
     <div class="media-content">
       <p class="title is-4">たまプラーザ</p>
       <p class="subtitle is-6">
-        <a href="/">@{{ post.username }}</a>
+        <a @click="doSetUserPosts(post.username)">@{{ post.username }}</a>
         <time :datetime="post.created_at">
           {{ new Date(post.created_at).getFullYear() }}/{{ new Date(post.created_at).getMonth() + 1 }}/{{ new Date(post.created_at).getDate() }}
           {{ new Date(post.created_at).getHours() }}:{{ new Date(post.created_at).getMinutes() }}
@@ -76,6 +76,9 @@ export default {
     },
     openImageModal: function(img) {
       this.$emit("open-img-modal", img)
+    },
+    doSetUserPosts: function(username) {
+      this.$emit("set-user-posts", username)
     }
   }
 }

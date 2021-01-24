@@ -26,6 +26,7 @@
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
+          @set-user-posts="setUserPosts($event)"
         ></post>
       </div>
     </div>
@@ -75,8 +76,6 @@ export default {
     },
   },
   methods: {
-    // setTemplatePosts: function() {
-    //   },
     fetchPosts: function() {
       fetch('/posts.json')
         .then(response => {
@@ -133,6 +132,14 @@ export default {
         editIndex: index,
       }
       this.openForm()
+    },
+    setUserPosts: function(username) {
+      this.templatePosts = []
+      this.allPosts.forEach(post => {
+        if (post.username === username) {
+          this.templatePosts.push(post)
+        }
+      })
     },
     openForm: function() {
       this.isActives.formActive = true
