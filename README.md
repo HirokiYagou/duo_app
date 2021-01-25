@@ -173,7 +173,7 @@ https://duo3exercise.herokuapp.com
 
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
-| user    | reference | null: false, foreign_key: true |
+| user | reference | null: false, foreign_key: true |
 | term | reference | null: false, foreign_key: true|
 | e_or_j | integer | null: false       |
 | score | integer | null: false       |
@@ -188,7 +188,8 @@ https://duo3exercise.herokuapp.com
 
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
-| term_type | integer | null: false       |
+| sentence_id | integer | null: false       |
+| word_id | integer | null: false       |
 | lesson | integer | null: false       |
 | english | string | null: false       |
 | japanese | string | null: false       |
