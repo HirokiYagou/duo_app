@@ -39,11 +39,13 @@ export default {
     },
     goToHome: function() {
       this.page.form = false
-      // this.sentence = false
-      // this.word = false
+      // this.page.sentence = false
+      // this.page.word = false
     },
     goToForm: function() {
       this.page.form = true
+      // this.page.sentence = false
+      // this.page.word = false
     }
   }
 }
