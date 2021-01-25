@@ -188,7 +188,6 @@ export default {
         })
     },
     updateProfile: function(formData) {
-      console.log(formData)
       fetch(`/posts/user/${this.currentUser.id}`, {
         method: 'PATCH',
           headers: {

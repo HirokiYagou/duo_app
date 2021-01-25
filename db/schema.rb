@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_070503) do
 
   create_table "terms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "term_type", null: false
+    t.integer "each_id", null: false
     t.integer "lesson", null: false
     t.text "english", null: false
     t.text "japanese", null: false

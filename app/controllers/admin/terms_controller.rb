@@ -5,6 +5,7 @@ class Admin::TermsController < ApplicationController
   end
 
   def create
+    binding.pry
     Term.create(term_params)
   end
 
@@ -17,6 +18,6 @@ class Admin::TermsController < ApplicationController
   end
 
   def term_params
-    params.require(:term).permit(:term_type, :lesson, :english, :japanses)
+    params.require(:term).permit(:term_type, :each_id, :lesson, :english, :japanese)
   end
 end
