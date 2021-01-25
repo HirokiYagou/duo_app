@@ -223,7 +223,7 @@ export default {
       }
     },
   },
-  mounted: function() {
+  created: function() {
     this.fetchPosts()
   },
 }

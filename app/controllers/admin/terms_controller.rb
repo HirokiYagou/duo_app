@@ -1,7 +1,7 @@
 class Admin::TermsController < ApplicationController
   before_action :valify_admin
 
-  def set_term
+  def index
   end
 
   private
