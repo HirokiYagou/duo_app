@@ -6,12 +6,19 @@ Rails.application.routes.draw do
     get 'profiles', to: 'users/registrations#new_profile'
     post 'profiles', to: 'users/registrations#create_profile'
   end
-
+  
   root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
       get '/user/:id', to: 'posts#get_profile'
       patch '/user/:id', to: 'posts#update_profile'
+    end
+  end
+  
+  resources 'exercises', only: :index do
+    member do
+      get '/sentence', to: 'exercises#get_sentences'
+      get '/word', to: 'exercises#get_words'
     end
   end
 
