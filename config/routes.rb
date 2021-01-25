@@ -14,8 +14,8 @@ Rails.application.routes.draw do
       patch '/user/:id', to: 'posts#update_profile'
     end
   end
-  
+
   namespace :admin do
-    get 'terms', to: 'terms#set_term'
+    resources 'terms', only: [:index, :create]
   end
 end
