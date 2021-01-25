@@ -3,7 +3,7 @@
   <div>
     <div class="columns is-gapless">
       <div class="column">
-        <div class="button is-fullwidth">LESSON</div>
+        <div class="button is-fullwidth is-lesson">LESSON</div>
       </div>
       <div class="column">
         <div class="button is-fullwidth">文章 JtoE</div>
@@ -56,3 +56,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.is-lesson {
+  border: none;
+}
+</style>

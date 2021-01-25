@@ -48,6 +48,8 @@ export default {
       this.isDoing.isTable = true
       this.isDoing.isExercise = false
       // this.isDoing.isSentence = false
+
+      this.questionData = {}
     },
     // goToHome: function() {
     //   this.isDoing.isTable = false

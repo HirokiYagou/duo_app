@@ -1,7 +1,7 @@
 <template>
 <div class="columns is-gapless">
   <div class="column">
-    <div class="button is-fullwidth is-bottom">LESSON{{ lesson }}</div>
+    <div class="button is-fullwidth is-bottom is-lesson">LESSON{{ lesson }}</div>
   </div>
   <div class="column" v-for="exerciseDatum in exerciseData" :key="exerciseDatum.id">
     <exercise-section
@@ -29,25 +29,25 @@ export default {
           id: 1,
           lesson: this.lesson,
           type: 'sentence',
-          display: 'english'
+          display: 'japanese'
         },
         {
           id: 2,
           lesson: this.lesson,
           type: 'sentence',
-          display: 'japanese'
+          display: 'english'
         },
         {
           id: 3,
           lesson: this.lesson,
           type: 'word',
-          display: 'english'
+          display: 'japanese'
         },
         {
           id: 4,
           lesson: this.lesson,
           type: 'word',
-          display: 'japanese'
+          display: 'english'
         },
       ]
     },
@@ -59,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.is-lesson {
+  border: none;
+}
+</style>
