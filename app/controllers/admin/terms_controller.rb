@@ -5,7 +5,6 @@ class Admin::TermsController < ApplicationController
   end
 
   def create
-    binding.pry
     Term.create(term_params)
   end
 
