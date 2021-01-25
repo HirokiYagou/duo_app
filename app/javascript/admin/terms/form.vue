@@ -8,20 +8,14 @@
     <label class="label">JAPANESE</label>
     <textarea v-model="term.japanese" class="textarea is-medium" name="japanese" cols="30" rows="5" placeholder="in japanene" required></textarea>
   </div>
-  <div class="field">
-    <label class="label">NUMBER</label>
-    <input v-model="term.each_id" class="input" name="each_id" type="text" placeholder="each number" required>
-  </div>
-  <div class="field">
-    <div class="control">
-      <label class="radio">
-        <input v-model="term.term_type" type="radio" id="0" value='0' name="term_type">
-        Sentence
-      </label>
-      <label class="radio">
-        <input v-model="term.term_type" type="radio" id="1" value="1" name="term_type" checked>
-        Word
-      </label>
+  <div class="columns feild">
+    <div class="column">
+      <label class="label">SENTENCE Number</label>
+      <input v-model="term.sentence_id" class="input" name="sentence_id" type="text" placeholder="sentence number" required>
+    </div>
+    <div class="column">
+      <label class="label">WORD Number</label>
+      <input v-model="term.word_id" class="input" name="word_id" type="text" placeholder="fill with '0', if registrate sentence" required>
     </div>
   </div>
   <div class="field">
@@ -46,8 +40,8 @@ export default {
       term: {
         english: '',
         japanese: '',
-        each_id: '',
-        term_type: '1',
+        sentence_id: '',
+        word_id: '',
         lesson: '1',
       },
     }
@@ -66,8 +60,8 @@ export default {
 
       this.term.english = ''
       this.term.japanese = ''
-      this.term.each_id = ''
-      this.term.term_type = '1'
+      this.term.sentence_id = ''
+      this.term.word_id = ''
       this.term.lesson = '1'
     }
   }

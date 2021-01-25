@@ -17,6 +17,6 @@ class Admin::TermsController < ApplicationController
   end
 
   def term_params
-    params.require(:term).permit(:term_type, :each_id, :lesson, :english, :japanese)
+    params.require(:term).permit(:sentence_id, :word_id, :lesson, :english, :japanese)
   end
 end

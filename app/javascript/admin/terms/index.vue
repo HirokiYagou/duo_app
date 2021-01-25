@@ -7,8 +7,10 @@
       <button class="button is-fullwidth" @click="goToPost">投稿ページ</button>
       <button class="button is-fullwidth" @click="goToHome">Adminホーム</button>
       <button class="button is-fullwidth" @click="goToForm">新規登録</button>
+      <button class="button is-fullwidth" @click="goToSentences">登録文章一覧</button>
+      <button class="button is-fullwidth" @click="goToWords">登録単語一覧</button>
     </div>
-    <div class="column is-two-thirds">
+    <div class="column auto">
       <create-form v-if="page.form"></create-form>
     </div>
   </div>
@@ -26,6 +28,8 @@ export default {
     return {
       page: {
         form: false,
+        // sentence: false,
+        // word: false,
       }
     }
   },
@@ -35,6 +39,8 @@ export default {
     },
     goToHome: function() {
       this.page.form = false
+      // this.sentence = false
+      // this.word = false
     },
     goToForm: function() {
       this.page.form = true
