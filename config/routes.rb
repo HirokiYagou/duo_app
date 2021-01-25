@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'profiles', to: 'users/registrations#new_profile'
     post 'profiles', to: 'users/registrations#create_profile'
   end
-
+  
   root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       patch '/user/:id', to: 'posts#update_profile'
     end
   end
+  
+  resources 'exercises', only: :index
 
   namespace :admin do
     resources 'terms', only: [:index, :create]
