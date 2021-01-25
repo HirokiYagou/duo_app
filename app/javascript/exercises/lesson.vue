@@ -4,19 +4,19 @@
     <div class="button is-fullwidth is-bottom">LESSON{{ lesson }}</div>
   </div>
   <div class="column" v-for="exerciseDatum in exerciseData" :key="exerciseDatum.id">
-    <exercise-type
+    <exercise-section
       :exercise-datum="exerciseDatum"
-    ></exercise-type>
+    ></exercise-section>
   </div>
 </div>
 </template>
 
 <script>
-import Type from './type'
+import Section from './section'
 
 export default {
   components: {
-    'exercise-type': Type,
+    'exercise-section': Section,
   },
   props: {
     lesson: Number
