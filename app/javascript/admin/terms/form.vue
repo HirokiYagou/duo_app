@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="doCreateTerm">
+<form @submit.prevent="createTerm">
   <div class="field">
     <label class="label">ENGLISH</label>
     <textarea v-model="term.english" class="textarea is-medium" name="english" cols="30" rows="5" placeholder="in english" required></textarea>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import { csrfToken } from "@rails/ujs"
+
 export default {
   data() {
     return {
@@ -51,9 +53,29 @@ export default {
     }
   },
   methods: {
-    doCreateTerm: function() {
-      this.$emit('create-term', this.term)
+    createTerm: function() {
+      const sendData = { term: this.term }
+      fetch('/admin/terms', {
+          method: 'POST',
+          headers: {
+              'X-CSRF-Token': csrfToken(),
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sendData),
+        })
+
+      this.term.english = ''
+      this.term.japanese = ''
+      this.term.each_id = ''
+      this.term.term_type = '1'
+      this.term.lesson = '1'
     }
   }
 }
 </script>
+
+<style scoped>
+.textarea {
+  resize: none;
+}
+</style>

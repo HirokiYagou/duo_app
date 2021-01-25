@@ -12,8 +12,8 @@
     @close-form="closeForm"
   ></img-modal>
 
-  <div class="columns left-menu">
-    <div class="column is-one-fifth">
+  <div class="columns">
+    <div class="column is-one-fifth left-menu">
       <left-bar
         :current_user_name="currentUser.name"
         @do-open-form="openForm"
