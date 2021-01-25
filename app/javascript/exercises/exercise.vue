@@ -6,14 +6,14 @@
     <span class="space-right">{{ questionBefore.toUpperCase() }} to {{ questionAfter.toUpperCase() }}</span>
   </h3>
   <question
-    v-if="currentQuestion"
+    v-if="!isResult"
     :current-question="currentQuestion"
     :current-index="currentIndex"
     :question-length="questionLength"
     @next-question="nextQuestion($event)"
   ></question>
   <result
-    v-if="!currentQuestion"
+    v-if="isResult"
   ></result>
 </div>
 </template>
@@ -34,6 +34,7 @@ export default {
     return {
       currentIndex: 0,
       yourAnswers: [],
+      isResult: false
     }
   },
   computed: {
@@ -67,8 +68,9 @@ export default {
   methods: {
     nextQuestion: function(ans) {
       this.yourAnswers.push(ans)
-      if (this.currentIndex < this.questionLength) {
-        this.currentIndex += 1
+      this.currentIndex += 1
+      if (this.currentIndex === this.questionLength) {
+        this.isResult = true
       }
     }
   }

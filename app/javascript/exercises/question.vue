@@ -13,7 +13,15 @@
       <label class="label">Your Answer</label>
       <div class="columns">
         <div class="column is-10">
-          <textarea type="textarea" v-model="yourAnswer" class="input" name="answer" id="answer" rows="5" cols="30"></textarea>
+          <textarea
+          v-model="yourAnswer"
+          class="textarea is-medium"
+          name="answer"
+          id="answer"
+          rows="2" 
+          cols="30"
+          placeholder="write your answer, if ENGLISH"
+        ></textarea>
         </div>
         <div class="column is-2"><button class="button is-fullwidth">CHECK</button></div>
       </div>
@@ -42,6 +50,7 @@ export default {
   },
   data() {
     return {
+      yourAnswer: '',
       isShowAnswer: false,
     }
   },
