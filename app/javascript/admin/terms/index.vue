@@ -71,6 +71,12 @@ export default {
             },
             body: JSON.stringify(sendData),
         })
+
+      this.term.english = ''
+      this.term.japanese = ''
+      this.term.each_id = ''
+      this.term.term_type = '1'
+      this.term.lesson = '1'
     }
   }
 }
