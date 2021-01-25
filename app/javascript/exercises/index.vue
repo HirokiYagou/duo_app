@@ -9,7 +9,9 @@
       <button class="button is-fullwidth" @click="goToWords">登録単語一覧</button>
     </div>
     <div class="column">
-      <exercise-table></exercise-table>
+      <exercise-table
+        @do-exercise="doExercise($event)"
+      ></exercise-table>
     </div>
   </div>
 </div>
@@ -25,6 +27,9 @@ export default {
   methods: {
     goToPost: function() {
       window.location.href = '/posts'
+    },
+    doExercise: function(questionData) {
+      console.log(questionData)
     }
   }
 }

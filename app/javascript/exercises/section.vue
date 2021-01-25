@@ -13,7 +13,20 @@ export default {
   },
   methods: {
     getExercise: function() {
+      const questionData = {}
       const path = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
+      fetch(path)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          questionData.display = this.exerciseDatum.display
+          questionData.questions = data.questions
+          this.$emit('do-exercise', questionData)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
