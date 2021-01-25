@@ -14,13 +14,14 @@
       <div class="columns">
         <div class="column is-10">
           <textarea
-          v-model="yourAnswer"
+          v-model="writtenAnswer"
           class="textarea is-medium"
           name="answer"
           id="answer"
           rows="2" 
           cols="30"
           placeholder="write your answer, if ENGLISH"
+          autofocus
         ></textarea>
         </div>
         <div class="column is-2"><button class="button is-fullwidth">CHECK</button></div>
@@ -50,7 +51,7 @@ export default {
   },
   data() {
     return {
-      yourAnswer: '',
+      writtenAnswer: '',
       isShowAnswer: false,
     }
   },
@@ -61,7 +62,7 @@ export default {
     saveAnswer: function(ans) {
       this.$emit('next-question', ans)
       this.isShowAnswer = false
-      this.yourAnswer = ''
+      this.writtenAnswer = ''
     }
   }
 }

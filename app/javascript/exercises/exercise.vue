@@ -14,6 +14,7 @@
   ></question>
   <result
     v-if="isResult"
+    :your-results="yourResults"
   ></result>
 </div>
 </template>
@@ -21,6 +22,8 @@
 <script>
 import Question from './question'
 import Result from './result'
+
+const resultFigure = { 0: '○', 1: '△', 2: '×'}
 
 export default {
   components: {
@@ -33,7 +36,7 @@ export default {
   data() {
     return {
       currentIndex: 0,
-      yourAnswers: [],
+      yourResults: [],
       isResult: false
     }
   },
@@ -67,7 +70,11 @@ export default {
   },
   methods: {
     nextQuestion: function(ans) {
-      this.yourAnswers.push(ans)
+      const result = {}
+      result.yourAnswer = resultFigure[ans]
+      result.questionText = this.currentQuestion.text
+      result.questionAnswer = this.currentQuestion.answer
+      this.yourResults.push(result)
       this.currentIndex += 1
       if (this.currentIndex === this.questionLength) {
         this.isResult = true
