@@ -220,13 +220,15 @@ https://duo3exercise.herokuapp.com
 | ------------- | ------- |
 | Ruby on Rails | 6.0.0   |
 | Ruby          | 2.6.5   |
+| MySQL     |   |
 
 * gem
 
 | Name   | Version |
 | ------ | ------- |
-| devise |         |
-| bulma-rails |         |
+| devise | 4.7.3  |
+| bulma-rails | 0.9.1  |
+| aws-sdk-s3 | 1.87.0  |
 
 * npm
 
@@ -234,4 +236,4 @@ https://duo3exercise.herokuapp.com
 | ----------------- | ------- |
 | vue               | 3.0.5   |
 | vue-loader        | 16.1.2  |
-| @vue/compiler-sfc |         |
+| @vue/compiler-sfc | 3.0.5 |
