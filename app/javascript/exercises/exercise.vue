@@ -10,6 +10,7 @@
     :current-question="currentQuestion"
     :current-index="currentIndex"
     :question-length="questionLength"
+    @next-question="nextQuestion($event)"
   ></question>
   <result
     v-if="!currentQuestion"
@@ -54,10 +55,21 @@ export default {
       }
     },
     currentQuestion: function() {
-      return this.questionData.questions[this.currentIndex][this.questionBefore]
+      return {
+        text: this.questionData.questions[this.currentIndex][this.questionBefore],
+        answer: this.questionData.questions[this.currentIndex][this.questionAfter]
+      }
     },
     questionLength: function() {
       return this.questionData.questions.length
+    }
+  },
+  methods: {
+    nextQuestion: function(ans) {
+      this.yourAnswers.push(ans)
+      if (this.currentIndex < this.questionLength) {
+        this.currentIndex += 1
+      }
     }
   }
 }
