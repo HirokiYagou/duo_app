@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources 'exercises', only: :index
+  resources 'exercises', only: :index do
+    member do
+      get '/sentence', to: 'exercises#get_sentences'
+      get '/word', to: 'exercises#get_words'
+    end
+  end
 
   namespace :admin do
     resources 'terms', only: [:index, :create]

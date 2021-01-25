@@ -13,8 +13,7 @@ export default {
   },
   methods: {
     getExercise: function() {
-      // const path = `exercises/`
-      console.log('たまプラーザ')
+      const path = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
     }
   }
 }
