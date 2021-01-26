@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      lessonCount: 2,
+      lessonCount: 44,
     }
   },
   computed: {

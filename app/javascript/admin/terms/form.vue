@@ -24,6 +24,7 @@
       <select v-model="term.lesson">
         <option>1</option>
         <option>2</option>
+        <option>44</option>
       </select>
     </div>
   </div>
