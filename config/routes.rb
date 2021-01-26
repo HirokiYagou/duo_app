@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources 'exercises', only: :index do
+  resources 'exercises', only: [:index, :update] do
     member do
       get '/sentence', to: 'exercises#get_sentences'
       get '/word', to: 'exercises#get_words'

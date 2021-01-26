@@ -182,7 +182,7 @@ https://duo3exercise.herokuapp.com
 
 - belongs_to :user
 
-- belongs_to :terms
+- belongs_to :term
 
 ## termsテーブル
 
