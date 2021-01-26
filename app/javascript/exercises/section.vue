@@ -11,11 +11,6 @@ export default {
   props: {
     exerciseDatum: Object,
   },
-  data() {
-    return {
-      // questionDataParams: {},
-    }
-  },
   methods: {
     doExercise: function() {
       const questionData = {
