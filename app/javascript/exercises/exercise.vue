@@ -22,8 +22,10 @@
 <script>
 import Question from './question'
 import Result from './result'
+import { csrfToken } from "@rails/ujs"
 
 const resultFigure = { 0: '○', 1: '△', 2: '×'}
+const displayNumber = { 'english': 0, 'japanese': 1}
 
 export default {
   components: {
@@ -75,11 +77,28 @@ export default {
       result.questionText = this.currentQuestion.text
       result.questionAnswer = this.currentQuestion.answer
       this.yourResults.push(result)
+
+      this.saveAnswer(ans)
+
       this.currentIndex += 1
       if (this.currentIndex === this.questionLength) {
         this.isResult = true
       }
-    }
+    },
+    saveAnswer: function(ans) {
+      const DISPLAY = this.questionData.display
+      const path = `exercises/${this.questionData.questions[this.currentIndex].id}`
+      const formData = new FormData()
+      formData.append('exercise[e_j]', displayNumber[DISPLAY])
+      formData.append('exercise[score]', ans)
+      fetch(path, {
+          method: 'PUT',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          },
+          body: formData
+        })
+    },
   }
 }
 </script>

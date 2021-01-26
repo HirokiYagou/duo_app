@@ -30,13 +30,13 @@
   </div>
   <div class="container columns" v-show="isShowAnswer">
     <div class="column">
-      <button class="button is-fullwidth is-success" @click="saveAnswer(0)">○</button>
+      <button class="button is-fullwidth is-success" @click="doNextQuestion(0)">○</button>
     </div>
     <div class="column">
-      <button class="button is-fullwidth is-warning" @click="saveAnswer(1)">△</button>
+      <button class="button is-fullwidth is-warning" @click="doNextQuestion(1)">△</button>
     </div>
     <div class="column">
-      <button class="button is-fullwidth is-danger" @click="saveAnswer(2)">×</button>
+      <button class="button is-fullwidth is-danger" @click="doNextQuestion(2)">×</button>
     </div>
   </div>
 </div>
@@ -59,7 +59,7 @@ export default {
     showAnswer: function() {
       this.isShowAnswer = true
     },
-    saveAnswer: function(ans) {
+    doNextQuestion: function(ans) {
       this.$emit('next-question', ans)
       this.isShowAnswer = false
       this.writtenAnswer = ''
