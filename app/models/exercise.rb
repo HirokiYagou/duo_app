@@ -17,7 +17,12 @@ class Exercise < ApplicationRecord
     user = User.find(params[:user_id])
     third_record = user.exercises.where(term_id: id).where(e_j: params[:e_j]).order('updated_at DESC').first(3)[2]
     if third_record
-      third_record.update(params.merge(term_id: id))
+      if third_record[:score] == params[:score].to_i
+        third_record.destroy
+        Exercise.create(params.merge(term_id: id))
+      else
+        third_record.update(params.merge(term_id: id))
+      end
     else
       Exercise.create(params.merge(term_id: id))
     end
