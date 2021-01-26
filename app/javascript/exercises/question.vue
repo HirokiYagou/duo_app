@@ -7,8 +7,9 @@
         v-for="(score, index) in currentQuestion.scores"
         :key="index"
       >
-        <p class="is-size-4">{{ { 0: '○', 1: '△', 2: '×' }[score.score] }}</p>
+        <p class="is-size-4">{{ { 0: '○', 1: '△', 2: '×' }[score.score] }}→</p>
       </div>
+      <div class="column is-1"><p class="is-size6">latest</p></div>
       <div class="column">
         <p class="is-size-5 has-text-right">{{ currentIndex + 1 }} / {{ questionLength }}</p>
       </div>
@@ -82,5 +83,8 @@ export default {
 <style scoped>
 .textarea {
   resize: none;
+}
+.column> p {
+  vertical-align: bottom;
 }
 </style>

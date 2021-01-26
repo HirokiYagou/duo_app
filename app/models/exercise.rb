@@ -31,7 +31,7 @@ class Exercise < ApplicationRecord
     end
     exercises = []
     terms.each do |term|
-      term.exercises.where(user_id: user.id).where(e_j: e_j).order('updated_at DESC').each do |exercise|
+      term.exercises.where(user_id: user.id).where(e_j: e_j).order('updated_at  ASC').each do |exercise|
         exercises << exercise
       end
     end
