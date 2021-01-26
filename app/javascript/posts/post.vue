@@ -23,7 +23,7 @@
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
             <span class="icon is-small">
-              <img src="/assets/bars_24.png" alt="">
+              <img :src="menu_bar" alt="">
               <i class="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
@@ -61,6 +61,7 @@ export default {
   props: {
     post: Object,
     current_user_name: String,
+    menu_bar: String,
   },
   computed: {
     isCurrentUser: function() {

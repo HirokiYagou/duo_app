@@ -38,6 +38,7 @@
         <post
           :post="post"
           :current_user_name="currentUser.name"
+          :menu_bar="assets.menu_bar"
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
@@ -71,6 +72,7 @@ export default {
       allPosts: [],
       templatePosts: [],
       post: {},
+      assets: {},
       
       isActives: {
         formActive: false,
@@ -110,6 +112,7 @@ export default {
           this.allPosts = data.posts
           this.templatePosts = this.allPosts
           this.currentUser = data.currentuser
+          this.assets = data.assets
           this.showUser = {name: ''}
           this.showUser.showProfile = {}
         })
