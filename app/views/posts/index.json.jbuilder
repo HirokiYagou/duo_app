@@ -28,3 +28,6 @@ json.set! :currentuser do
     end
   end
 end
+json.set! :assets do
+  json.menu_bar url_for(/assets/bars_24.png)
+end
