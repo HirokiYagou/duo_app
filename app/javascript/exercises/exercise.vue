@@ -87,7 +87,7 @@ export default {
     },
     saveAnswer: function(ans) {
       const DISPLAY = this.questionData.display
-      const path = `exercises/${this.questionData.questions[this.currentIndex].id}`
+      const path = `exercises/${this.questionData.questions[this.currentIndex].term_id}`
       const formData = new FormData()
       formData.append('exercise[e_j]', displayNumber[DISPLAY])
       formData.append('exercise[score]', ans)
