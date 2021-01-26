@@ -22,4 +22,19 @@ class Exercise < ApplicationRecord
       Exercise.create(params.merge(term_id: id))
     end
   end
+
+  def self.search_exercises(lesson, user, e_j, type)
+    if type == 'sentence'
+      terms = Term.includes(:exercises).where(lesson: lesson).where(word_id: 0)
+    elsif type == 'word'
+      terms = Term.includes(:exercises).where(lesson: lesson).where("word_id > 0")
+    end
+    exercises = []
+    terms.each do |term|
+      term.exercises.where(user_id: user.id).where(e_j: e_j).order('updated_at DESC').each do |exercise|
+        exercises << exercise
+      end
+    end
+    return exercises
+  end
 end

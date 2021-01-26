@@ -1,7 +1,7 @@
 <template>
 <div>
   <p>2020/12/31</p>
-  <div class="button is-fullwidth" @click="getExercise">
+  <div class="button is-fullwidth" @click="getScores">
   </div>
 </div>
 </template>
@@ -11,30 +11,38 @@ export default {
   props: {
     exerciseDatum: Object,
   },
+  data() {
+    return {
+      questionDataParams: {},
+    }
+  },
   methods: {
     getExercise: function() {
-      const questionData = {}
+      this.questionDataParams.display = this.exerciseDatum.display
+      console.log(this.questionDataParams)
+      // this.$emit('do-exercise', questionData)
+    },
+    getQuestions: function() {
       const exercisePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
       fetch(exercisePath)
         .then(response => {
           return response.json()
         })
         .then(data => {
-          questionData.display = this.exerciseDatum.display
-          questionData.questions = data.questions
-          this.$emit('do-exercise', questionData)
+          this.questionDataParams.questions = data.questions
         })
         .catch(error => {
           console.log(error)
         })
-      
-      const scorePath = `exercise/${this.exerciseDatum}.json`
+    },
+    getScores: function() {
+      const scorePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}/${this.exerciseDatum.display}.json`
       fetch(scorePath)
         .then(response => {
           return response.json()
         })
         .then(data => {
-          questionData.scores = data
+          console.log(data)
         })
         .catch(error => {
           console.log(error)
