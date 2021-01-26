@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_064708) do
   create_table "exercises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "e_j", null: false
     t.integer "score", null: false
+    t.bigint "user_id", null: false
     t.bigint "term_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
