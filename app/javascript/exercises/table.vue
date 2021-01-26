@@ -22,7 +22,7 @@
   <div v-for="lesson in lessons" :key="lesson">
     <exercise-lesson
       :lesson="lesson"
-      @do-exercise="doExercise($event)"
+      @go-to-exercise="goToExercise($event)"
     ></exercise-lesson>
   </div>
 </div>
@@ -50,8 +50,8 @@ export default {
     }
   },
   methods: {
-    doExercise: function(questionData) {
-      this.$emit('do-exercise', questionData)
+    goToExercise: function(questionDataParams) {
+      this.$emit('do-exercise', questionDataParams)
     }
   }
 }

@@ -10,11 +10,10 @@
     <div class="column">
       <exercise-table
         v-if="isDoing.isTable"
-        @do-exercise="doExercise($event)"
+        @go-to-exercise="goToExercise($event)"
       ></exercise-table>
       <exercise-area
         v-if="isDoing.isExercise"
-        :question-data="questionData"
       ></exercise-area>
     </div>
   </div>
@@ -56,9 +55,9 @@ export default {
     //   this.isDoing.isExercise = false
     //   this.isDoing.isSentence = true
     // },
-    doExercise: function(questionDataParams) {
+    goToExercise: function(questionDataParams) {
       console.log(questionDataParams)
-      // this.questionData = questionDataParams
+      this.questionData = questionDataParams
       this.isDoing.isTable = false
       this.isDoing.isExercise = true
       // this.isDoing.isSentence = false
