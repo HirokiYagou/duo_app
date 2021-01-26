@@ -11,7 +11,7 @@
     <div class="media-content">
       <p class="title is-4" @click="doSetUserPosts(post.user)">{{ post.user.profile.nickname }}</p>
       <p class="subtitle is-6">
-        <a @click="doSetUserPosts(post.user)">@{{ post.user.name }}</a>
+        <a class="right-margin" @click="doSetUserPosts(post.user)">@{{ post.user.name }}</a>
         <time :datetime="post.created_at">
           {{ new Date(post.created_at).getFullYear() }}/{{ new Date(post.created_at).getMonth() + 1 }}/{{ new Date(post.created_at).getDate() }}
           {{ new Date(post.created_at).getHours() }}:{{ new Date(post.created_at).getMinutes() }}
@@ -23,7 +23,7 @@
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
             <span class="icon is-small">
-              <img src="/assets/bars_24.png" alt="">
+              <img :src="menu_bar" alt="">
               <i class="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
@@ -61,6 +61,7 @@ export default {
   props: {
     post: Object,
     current_user_name: String,
+    menu_bar: String,
   },
   computed: {
     isCurrentUser: function() {
@@ -98,5 +99,8 @@ export default {
 .columns img {
   max-height: 50vh;
   cursor: pointer;
+}
+.right-margin {
+  margin-right: 10px;
 }
 </style>
