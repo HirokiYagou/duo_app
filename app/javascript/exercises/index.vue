@@ -59,10 +59,7 @@ export default {
     doExercise: function(questionDataParams) {
       this.questionData.display = questionDataParams.display
       this.getQuestions(questionDataParams)
-      this.getScores(questionDataParams)
 
-      this.isDoing.isTable = false
-      this.isDoing.isExercise = true
       // this.isDoing.isSentence = false
     },
     getQuestions: function(questionDataParams) {
@@ -73,6 +70,7 @@ export default {
         })
         .then(data => {
           this.questionData.questions = data
+          this.getScores(questionDataParams)
         })
         .catch(error => {
           console.log(error)
@@ -86,10 +84,15 @@ export default {
         })
         .then(data => {
           this.questionData.scores = data
+          this.goToExercise()
         })
         .catch(error => {
           console.log(error)
         })
+    },
+    goToExercise: function() {
+      this.isDoing.isTable = false
+      this.isDoing.isExercise = true
     }
   }
 }

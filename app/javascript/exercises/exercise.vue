@@ -1,7 +1,7 @@
 <template>
 <div>
   <h3 class="title is-3">
-    <!-- <span class="space-right">LESSON{{ questionData.questions[0].lesson }}</span> -->
+    <span class="space-right">LESSON{{ questionData.questions[0].lesson }}</span>
     <span class="space-right">{{ questionType }}</span>
     <span class="space-right">{{ questionBefore.toUpperCase() }} to {{ questionAfter.toUpperCase() }}</span>
   </h3>
