@@ -1,12 +1,23 @@
 <template>
 <div>
   <div class="box">
-    <h4 class="title is-4">{{ currentIndex + 1 }} / {{ questionLength }}</h4>
-    <p>{{ currentQuestion.text }}</p>
+    <div class="columns">
+      <div
+        class="column is-1"
+        v-for="(score, index) in currentQuestion.scores"
+        :key="index"
+      >
+        <p class="is-size-4">{{ { 0: '○', 1: '△', 2: '×' }[score.score] }}</p>
+      </div>
+      <div class="column">
+        <p class="is-size-5 has-text-right">{{ currentIndex + 1 }} / {{ questionLength }}</p>
+      </div>
+    </div>
+    <p class="is-size-4 has-text-weight-medium">{{ currentQuestion.text }}</p>
   </div>
   <div class="box" v-show="isShowAnswer">
-    <h4 class="title is-4">Answer</h4>
-    <p>{{ currentQuestion.answer }}</p>
+    <p class="is-size-5">Answer</p>
+    <p class="is-size-4 has-text-weight-medium">{{ currentQuestion.answer }}</p>
   </div>
   <div class="box">
     <form @submit.prevent="showAnswer">

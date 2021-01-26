@@ -63,8 +63,12 @@ export default {
     currentQuestion: function() {
       return {
         text: this.questionData.questions[this.currentIndex][this.questionBefore],
-        answer: this.questionData.questions[this.currentIndex][this.questionAfter]
+        answer: this.questionData.questions[this.currentIndex][this.questionAfter],
+        scores: this.questionData.scores.filter(score => score.term_id === this.currentTermId)
       }
+    },
+    currentTermId: function() {
+      return this.questionData.questions[this.currentIndex].term_id
     },
     questionLength: function() {
       return this.questionData.questions.length
