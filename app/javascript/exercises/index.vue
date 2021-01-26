@@ -10,10 +10,11 @@
     <div class="column">
       <exercise-table
         v-if="isDoing.isTable"
-        @go-to-exercise="goToExercise($event)"
+        @do-exercise="doExercise($event)"
       ></exercise-table>
       <exercise-area
         v-if="isDoing.isExercise"
+        :question-data="questionData"
       ></exercise-area>
     </div>
   </div>
@@ -55,12 +56,40 @@ export default {
     //   this.isDoing.isExercise = false
     //   this.isDoing.isSentence = true
     // },
-    goToExercise: function(questionDataParams) {
-      console.log(questionDataParams)
-      this.questionData = questionDataParams
+    doExercise: function(questionDataParams) {
       this.isDoing.isTable = false
       this.isDoing.isExercise = true
       // this.isDoing.isSentence = false
+
+      this.questionData.display = questionDataParams.display
+      this.getQuestions(questionDataParams)
+      this.getScores(questionDataParams)
+    },
+    getQuestions: function(questionDataParams) {
+      const exercisePath = `exercises/${questionDataParams.lesson}/${questionDataParams.type}.json`
+      fetch(exercisePath)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.questionData.questions = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    getScores: function(questionDataParams) {
+      const scorePath = `exercises/${questionDataParams.lesson}/${questionDataParams.type}/${questionDataParams.display}.json`
+      fetch(scorePath)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.questionData.scores = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

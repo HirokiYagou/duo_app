@@ -1,7 +1,7 @@
 <template>
 <div>
   <p>2020/12/31</p>
-  <div class="button is-fullwidth" @click="goToExercise">
+  <div class="button is-fullwidth" @click="doExercise">
   </div>
 </div>
 </template>
@@ -17,40 +17,14 @@ export default {
     }
   },
   methods: {
-    goToExercise: function() {
-      const questionDataParams = {
+    doExercise: function() {
+      const questionData = {
         display: this.exerciseDatum.display,
         lesson: this.exerciseDatum.lesson,
         type: this.exerciseDatum.type
       }
-      this.$emit('go-to-exercise', questionDataParams)
+      this.$emit('do-exercise', questionData)
     },
-    // getQuestions: function() {
-    //   const exercisePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
-    //   fetch(exercisePath)
-    //     .then(response => {
-    //       return response.json()
-    //     })
-    //     .then(data => {
-    //       questionDataParams.questions = data
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // },
-    // getScores: function() {
-    //   const scorePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}/${this.exerciseDatum.display}.json`
-    //   fetch(scorePath)
-    //     .then(response => {
-    //       return response.json()
-    //     })
-    //     .then(data => {
-    //       questionDataParams.scores = data
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // }
   }
 }
 </script>

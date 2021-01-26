@@ -6,7 +6,7 @@
   <div class="column" v-for="exerciseDatum in exerciseData" :key="exerciseDatum.id">
     <exercise-section
       :exercise-datum="exerciseDatum"
-      @go-to-exercise="goToExercise($event)"
+      @do-exercise="doExercise($event)"
     ></exercise-section>
   </div>
 </div>
@@ -53,8 +53,8 @@ export default {
     },
   },
   methods: {
-    goToExercise: function(questionDataParams) {
-      this.$emit('go-to-exercise', questionDataParams)
+    doExercise: function(questionData) {
+      this.$emit('do-exercise', questionData)
     }
   }
 }
