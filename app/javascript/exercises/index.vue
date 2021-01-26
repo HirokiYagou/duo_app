@@ -57,13 +57,13 @@ export default {
     //   this.isDoing.isSentence = true
     // },
     doExercise: function(questionDataParams) {
-      this.isDoing.isTable = false
-      this.isDoing.isExercise = true
-      // this.isDoing.isSentence = false
-
       this.questionData.display = questionDataParams.display
       this.getQuestions(questionDataParams)
       this.getScores(questionDataParams)
+
+      this.isDoing.isTable = false
+      this.isDoing.isExercise = true
+      // this.isDoing.isSentence = false
     },
     getQuestions: function(questionDataParams) {
       const exercisePath = `exercises/${questionDataParams.lesson}/${questionDataParams.type}.json`
