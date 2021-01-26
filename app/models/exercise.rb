@@ -12,4 +12,8 @@ class Exercise < ApplicationRecord
       less_than_or_equal_to: 2
     }
   end
+
+  def self.update_third(id, params)
+    Exercise.where(term_id: id).where(e_j: params[:e_j]).order(':updated_at DESC').firsh(3)[2]
+  end
 end
