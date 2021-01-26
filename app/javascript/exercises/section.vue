@@ -1,7 +1,7 @@
 <template>
 <div>
   <p>2020/12/31</p>
-  <div class="button is-fullwidth" @click="getScores">
+  <div class="button is-fullwidth" @click="getExercise">
   </div>
 </div>
 </template>
@@ -19,8 +19,9 @@ export default {
   methods: {
     getExercise: function() {
       this.questionDataParams.display = this.exerciseDatum.display
-      console.log(this.questionDataParams)
-      // this.$emit('do-exercise', questionData)
+      this.getQuestions()
+      this.getScores()
+      this.$emit('do-exercise', this.questionDataParams)
     },
     getQuestions: function() {
       const exercisePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
@@ -30,6 +31,7 @@ export default {
         })
         .then(data => {
           this.questionDataParams.questions = data
+          console.log(data)
         })
         .catch(error => {
           console.log(error)
@@ -42,7 +44,7 @@ export default {
           return response.json()
         })
         .then(data => {
-          console.log(data)
+          this.questionDataParams.scores = data
         })
         .catch(error => {
           console.log(error)

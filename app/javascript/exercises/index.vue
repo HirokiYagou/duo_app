@@ -57,7 +57,8 @@ export default {
     //   this.isDoing.isSentence = true
     // },
     doExercise: function(questionDataParams) {
-      this.questionData = questionDataParams
+      console.log(questionDataParams)
+      // this.questionData = questionDataParams
       this.isDoing.isTable = false
       this.isDoing.isExercise = true
       // this.isDoing.isSentence = false
