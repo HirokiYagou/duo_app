@@ -29,7 +29,7 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.questionDataParams.questions = data.questions
+          this.questionDataParams.questions = data
         })
         .catch(error => {
           console.log(error)
