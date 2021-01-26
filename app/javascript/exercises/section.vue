@@ -14,8 +14,8 @@ export default {
   methods: {
     getExercise: function() {
       const questionData = {}
-      const path = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
-      fetch(path)
+      const exercisePath = `exercises/${this.exerciseDatum.lesson}/${this.exerciseDatum.type}.json`
+      fetch(exercisePath)
         .then(response => {
           return response.json()
         })
@@ -23,6 +23,18 @@ export default {
           questionData.display = this.exerciseDatum.display
           questionData.questions = data.questions
           this.$emit('do-exercise', questionData)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      
+      const scorePath = `exercise/${this.exerciseDatum}.json`
+      fetch(scorePath)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          questionData.scores = data
         })
         .catch(error => {
           console.log(error)
