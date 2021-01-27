@@ -24,6 +24,10 @@ class PostsController < ApplicationController
   end
 
   def favorite
+    user = User.find(current_user.id)
+    Favorite.click(user, params[:id])
+    post = Post.find(params[:id])
+    @count = post.favorites.length
   end
 
   def get_profile
