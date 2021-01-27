@@ -144,10 +144,10 @@ export default {
         })
         .catch(error => console.log(error))
     },
-    deletePost: function(post, index) {
+    deletePost: function(post_id, index) {
       window.alert("Are you sure to DELETE?")
 
-      fetch(`/posts/${post.id}`, {
+      fetch(`/posts/${post_id}`, {
           method: 'DELETE',
           headers: {
             'X-CSRF-Token': csrfToken(),

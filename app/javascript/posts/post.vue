@@ -34,7 +34,7 @@
               Edit
             </a>
             <hr class="dropdown-divider">
-            <a @click="doDeletePost(post)" class="dropdown-item">
+            <a @click="doDeletePost(post.id)" class="dropdown-item">
               Delete
             </a>
           </div>
@@ -71,14 +71,20 @@ export default {
     current_user_name: String,
     menu_bar: String,
   },
+  emits: [
+    'delete-post',
+    'edit-post',
+    'open-img-modal',
+    'set-user-posts'
+  ],
   computed: {
     isCurrentUser: function() {
       return this.post.user.name === this.current_user_name
     },
   },
   methods: {
-    doDeletePost: function(post) {
-      this.$emit("delete-post", post)
+    doDeletePost: function(post_id) {
+      this.$emit("delete-post", post_id)
     },
     doEditPost: function(post) {
       this.$emit("edit-post", post)
