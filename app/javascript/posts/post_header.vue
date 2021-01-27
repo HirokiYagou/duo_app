@@ -6,8 +6,8 @@
   <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
   <div class="tabs is-fullwidth">
     <ul>
-      <li :class="{ 'is-active': isActive === 'all' }" @click="switchIsActive('all')"><a>ALL Posts</a></li>
-      <li :class="{ 'is-active': isActive === 'favorite' }" @click="switchIsActive('favorite')"><a>FAVORITE Posts</a></li>
+      <li :class="{ 'is-active': isActive === 'all' }" @click="switchIsActive('all')"><a>ALL</a></li>
+      <li :class="{ 'is-active': isActive === 'favorite' }" @click="switchIsActive('favorite')"><a>FAVORITE</a></li>
     </ul>
   </div>
 
