@@ -61,7 +61,7 @@
   </div>
   <div class="card-footer-item" @click="dofavorite(post.id)">
     <span class="heart">♡</span>
-    <span>{{ post.favorite_count }}</span>
+    <span v-if="post.favorite_count !== 0">{{ post.favorite_count }}</span>
   </div>
   <div class="card-footer-item">ぷ</div>
 </div>
@@ -116,7 +116,7 @@ export default {
           return response.json()
         })
         .then(data => {
-          console.log(data)
+          this.post.favorite_count = data.favorite_count
         })
         .catch(error => {
           console.log(error)
