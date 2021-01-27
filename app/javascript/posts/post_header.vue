@@ -30,8 +30,8 @@
                 placeholder="自己紹介"
                 cols="30"
                 rows="5"
-                autofocus
-                required></textarea>
+                required
+              ></textarea>
             </div>
             <input type="file" name="profile[icon]" @change="selectIcon" id="profile-icon">
             <input type="file" name="profile[header]" @change="selectHeader" id="profile-header">
@@ -50,9 +50,22 @@ export default {
   props: {
     current_user: Object,
     profileActive: Boolean,
-    showUser: Object,
+    showUser: {
+      type: Object,
+      default: {
+        id: null,
+        name: '',
+        showProfile: {
+          nickname: '',
+          status: '',
+        }
+      },
+    },
   },
   emits: [
+    'do-edit-profile',
+    'update-profile',
+    'close-form',
     'set-user-posts',
     'set-favorite-posts',
   ],
@@ -71,6 +84,7 @@ export default {
         this.updateNickname = next.showProfile.nickname
         this.updateStatus = next.showProfile.status
         this.isActive = 'all'
+        console.log(1234)
       },
       deep: true
     }
