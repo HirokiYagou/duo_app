@@ -243,12 +243,11 @@ export default {
           return response.json()
         })
         .then(data => {
-          if (data.post_ids.length === 0) {
-            this.templatePosts = []
-          } else {
+          this.templatePosts = []
+          if (data.post_ids.length !== 0) {
             data.post_ids.forEach(post_id => {
-              const posts = this.allPosts.filter(onePost => onePost.id === post_id)
-              this.templatePosts = posts
+              const result = this.allPosts.find(post => post.id === post_id)
+              this.templatePosts.push(result)
             })
           }
         })

@@ -12,7 +12,7 @@ class Favorite < ApplicationRecord
   end
 
   def self.get_favorites_post_id(user)
-    favorites = user.favorites
+    favorites = user.favorites.order('post_id DESC')
     post_ids = []
     favorites.each do |favorite|
       post_ids << favorite[:post_id]

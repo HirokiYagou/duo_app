@@ -3,6 +3,8 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user).order(id: "DESC")
     @reply_data = Post.group(:reply_to).count
     @favorite_data = Favorite.group(:post_id).count
+    user = User.find(current_user.id)
+    @post_ids = Favorite.get_favorites_post_id(user)
     respond_to do |format|
       format.html
       format.json

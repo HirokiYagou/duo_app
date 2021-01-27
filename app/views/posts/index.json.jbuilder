@@ -9,6 +9,9 @@ json.set! :posts do
     if @favorite_data[post.id]
       json.favorite_count @favorite_data[post.id]
     end
+    if !@post_ids.find{|n| n == post.id}.nil?
+      json.is_favorite true
+    end
     json.created_at post.created_at
     if post.image.attached?
       json.image url_for(post.image)
