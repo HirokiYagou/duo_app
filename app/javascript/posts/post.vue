@@ -59,7 +59,7 @@
     <span><img src="/assets/reply.png" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
-  <div class="card-footer-item">ま</div>
+  <div class="card-footer-item" @click="dofavorite(post.id)"><span class="heart">♡</span></div>
   <div class="card-footer-item">ぷ</div>
 </div>
 </template>
@@ -106,6 +106,18 @@ export default {
     },
     doShowPost: function(post) {
       this.$emit("show-post", post)
+    },
+    dofavorite: function(post_id) {
+      fetch(`/posts/${post_id}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
@@ -127,6 +139,9 @@ export default {
 }
 .card-footer-item:hover {
   background-color:ghostwhite;
+}
+.card-footer-item> .heart {
+
 }
 .dropdown button {
   border: none;
