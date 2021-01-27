@@ -125,6 +125,7 @@ https://duo3exercise.herokuapp.com
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
 | user    | reference | null: false foreign_key: true |
+| reply_to | integer |        |
 | content | text    | null: false       |
 
 ### Association
@@ -138,19 +139,6 @@ https://duo3exercise.herokuapp.com
 
 - has_many :post_terms
 - has_many :terms, through :post_terms
-
-## commentsテーブル
-
-| Column  | Type      | Options           |
-| ------- | --------- | ----------------- |
-| user    | reference | null: false foreign_key: true |
-| post    | reference | null: false foreign_key: true |
-| content | text    | null: false       |
-
-### Association
-
-- belongs_to :user
-- belongs_to :post
 
 ## favoritesテーブル
 
