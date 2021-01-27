@@ -39,11 +39,12 @@
         v-for="(post, index) in templatePosts"
         :key="post.id"
         :data-id="post.id"
-        :class="['card', { 'is-show-card': post.isShow }]">
+        :class="['card', { 'is-show-card': post.id === showPostId }]">
         <post
           :post="post"
           :current_user_name="currentUser.name"
           :menu_bar="assets.menu_bar"
+          :show-post-id="showPostId"
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
@@ -102,7 +103,9 @@ export default {
 
       replyInfo: {
         reply_to: undefined,
-      }
+      },
+
+      showPostId: undefined,
     }
   },
   watch: {
@@ -126,6 +129,7 @@ export default {
           this.assets = data.assets
           this.showUser = {name: ''}
           this.showProfile = {}
+          this.showPostId = undefined
         })
         .catch(error => {
           console.log(error)
@@ -190,11 +194,8 @@ export default {
       this.openForm()
     },
     showPost: function(post) {
-      this.allPosts.forEach(post => {
-        post.isShow = false
-      })
       this.showUser = {name: ''}
-      post.isShow = true
+      this.showPostId = post.id
       const array = []
       array.push(post)
       const repliedPost = this.allPosts.filter(onePost => onePost.id === post.reply_to)
