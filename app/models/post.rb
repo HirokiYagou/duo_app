@@ -7,7 +7,11 @@ class Post < ApplicationRecord
   def self.reply_count(to_id)
     if to_id
       to_post = Post.find(to_id)
-      to_post.update(replied_count: to_post[:replied_count] += 1)
+      if to_post[:reply_count]
+        to_post.update(replied_count: to_post[:replied_count] += 1)
+      else
+        to_post.update(replied_count: 1)
+      end
     end
   end
   
