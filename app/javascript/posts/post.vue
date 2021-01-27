@@ -55,8 +55,8 @@
   </div>
 </div>
 <div class="card-footer">
-  <div class="card-footer-item pointer" @click="doReply(post.id)">
-    <span>た</span>
+  <div class="card-footer-item" @click="doReply(post.id)">
+    <span><img src="/assets/reply.png" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
   <div class="card-footer-item">ま</div>
@@ -112,10 +112,17 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.media-left img {
+  border-radius: 50%;
+  border: 1px solid ghostwhite;
+}
 .media-content> .title,
 .is-left-content,
 .card-footer-item {
   cursor: pointer;
+}
+.card-footer-item:hover {
+  background-color:ghostwhite;
 }
 .dropdown button {
   border: none;

@@ -1,5 +1,6 @@
 json.nickname @profile.nickname
 json.status @profile.status
+json.nickname @profile.nickname
 if @profile.icon.attached?
   json.icon url_for(@profile.icon)
 end

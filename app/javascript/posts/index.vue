@@ -19,7 +19,7 @@
         :current_user_name="currentUser.name"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
-        @do-set-user-posts="setUserPosts(currentUser)"
+        @do-set-user-posts="fetchProfile(currentUser)"
       ></left-bar>
     </div>
 
@@ -47,7 +47,7 @@
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
-          @set-user-posts="setUserPosts($event)"
+          @set-user-posts="fetchProfile($event)"
           @do-reply="doReply($event)"
           @show-post="showPost($event)"
         ></post>
@@ -97,8 +97,8 @@ export default {
 
       showUser: {
         name: '',
-        showProfile: {},
       },
+      showProfile: {},
 
       replyInfo: {
         reply_to: undefined,
@@ -125,7 +125,7 @@ export default {
           this.currentUser = data.currentuser
           this.assets = data.assets
           this.showUser = {name: ''}
-          this.showUser.showProfile = {}
+          this.showProfile = {}
         })
         .catch(error => {
           console.log(error)
@@ -183,8 +183,7 @@ export default {
       })
       this.showUser.id = user.id
       this.showUser.name = user.name
-      this.showUser.showProfile.nickname = user.profile.nickname
-      this.fetchProfile(user.id)
+      this.showUser.showProfile = this.showProfile
     },
     doReply: function(post_id) {
       this.replyInfo.reply_to = post_id
@@ -199,19 +198,26 @@ export default {
       const array = []
       array.push(post)
       const repliedPost = this.allPosts.filter(onePost => onePost.id === post.reply_to)
-      const replyPost = this.allPosts.filter(onePost => onePost.reply_to === post.id)
+      const replyPost = []
+      this.allPosts.forEach(onePost => {
+        if(onePost.reply_to === post.id) {replyPost.unshift(onePost)}
+        })
       this.templatePosts = repliedPost.concat(array.concat(replyPost))
     },
-    fetchProfile: function(userId) {
-      fetch(`/posts/user/${userId}`)
+    fetchProfile: function(user) {
+      fetch(`/posts/user/${user.id}`)
         .then(response => {
           return response.json()
         })
         .then(data => {
-          this.showUser.showProfile.status = data.status
+          console.log(data)
+          this.showProfile.nickname = data.nickname
+          this.showProfile.status = data.status
           if (data.header) {
-            this.showUser.showProfile.header = data.header
+            this.showProfile.header = data.header
           }
+          console.log(this.showProfile)
+          this.setUserPosts(user)
         })
         .catch(error => {
           console.log(error)
