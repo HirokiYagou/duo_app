@@ -1,5 +1,5 @@
 <template>
-<div class="card-content" @click="doShowPost(post)">
+<div class="card-content">
   <div class="media">
     <div class="media-left">
       <figure class="image is-48x48">
@@ -44,7 +44,7 @@
   </div>
 
   <div :class="{ 'columns': !post.isShow }">
-    <div class="content is-left-content is-medium column is-two-third">
+    <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
       <p :class="{'is-size-3': post.isShow }">{{ post.content }}</p>
       <!-- <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a> -->
@@ -113,6 +113,7 @@ export default {
   word-wrap: break-word;
 }
 .media-content> .title,
+.is-left-content,
 .card-footer-item {
   cursor: pointer;
 }
@@ -122,6 +123,9 @@ export default {
 .columns img {
   max-height: 50vh;
   cursor: pointer;
+}
+.columns img:hover {
+  opacity: 0.8;
 }
 .right-margin {
   margin-right: 10px;

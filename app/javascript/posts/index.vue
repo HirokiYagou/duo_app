@@ -35,7 +35,11 @@
           @close-form="closeForm"
         ></post-header>
       </div>
-      <div v-for="(post, index) in templatePosts" :key="post.id" :data-id="post.id" class="card">
+      <div
+        v-for="(post, index) in templatePosts"
+        :key="post.id"
+        :data-id="post.id"
+        :class="['card', { 'is-show-card': post.isShow }]">
         <post
           :post="post"
           :current_user_name="currentUser.name"
@@ -187,9 +191,10 @@ export default {
       this.openForm()
     },
     showPost: function(post) {
-      this.templatePosts.forEach(templatePost => {
-        templatePost.isShow = false
+      this.allPosts.forEach(post => {
+        post.isShow = false
       })
+      this.showUser = {name: ''}
       post.isShow = true
       const array = []
       array.push(post)
@@ -254,6 +259,9 @@ export default {
 </script>
 
 <style scoped>
+.is-show-card {
+  border: 1px solid blue;
+}
 .card {
   overflow: visible;
 }
