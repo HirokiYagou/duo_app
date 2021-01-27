@@ -1,5 +1,5 @@
 <template>
-<div class="card-content">
+<div class="card-content" @click="doShowPost(post)">
   <div class="media">
     <div class="media-left">
       <figure class="image is-48x48">
@@ -76,7 +76,8 @@ export default {
     'edit-post',
     'open-img-modal',
     'set-user-posts',
-    'do-reply'
+    'do-reply',
+    'show-post'
   ],
   computed: {
     isCurrentUser: function() {
@@ -98,6 +99,9 @@ export default {
     },
     doReply: function(post_id) {
       this.$emit("do-reply", post_id)
+    },
+    doShowPost: function(post) {
+      this.$emit("show-post", post)
     }
   }
 }

@@ -45,6 +45,7 @@
           @open-img-modal="openImgModal($event)"
           @set-user-posts="setUserPosts($event)"
           @do-reply="doReply($event)"
+          @show-post="showPost($event)"
         ></post>
       </div>
     </div>
@@ -184,6 +185,10 @@ export default {
     doReply: function(post_id) {
       this.replyInfo.reply_to = post_id
       this.openForm()
+    },
+    showPost: function(post) {
+      this.templatePosts = []
+      this.templatePosts.push(post)
     },
     fetchProfile: function(userId) {
       fetch(`/posts/user/${userId}`)
