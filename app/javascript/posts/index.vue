@@ -187,11 +187,15 @@ export default {
       this.openForm()
     },
     showPost: function(post) {
+      this.templatePosts.forEach(templatePost => {
+        templatePost.isShow = false
+      })
       post.isShow = true
       const array = []
       array.push(post)
+      const repliedPost = this.allPosts.filter(onePost => onePost.id === post.reply_to)
       const replyPost = this.allPosts.filter(onePost => onePost.reply_to === post.id)
-      this.templatePosts = array.concat(replyPost)
+      this.templatePosts = repliedPost.concat(array.concat(replyPost))
     },
     fetchProfile: function(userId) {
       fetch(`/posts/user/${userId}`)
