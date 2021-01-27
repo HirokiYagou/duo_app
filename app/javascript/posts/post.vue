@@ -59,7 +59,10 @@
     <span><img src="/assets/reply.png" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
-  <div class="card-footer-item" @click="dofavorite(post.id)"><span class="heart">♡</span></div>
+  <div class="card-footer-item" @click="dofavorite(post.id)">
+    <span class="heart">♡</span>
+    <span>{{ post.favorite_count }}</span>
+  </div>
   <div class="card-footer-item">ぷ</div>
 </div>
 </template>

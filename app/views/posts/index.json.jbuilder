@@ -6,6 +6,9 @@ json.set! :posts do
     if @reply_data[post.id]
       json.replied_count @reply_data[post.id]
     end
+    if @favorite_data[post.id]
+      json.favorite_count @favorite_data[post.id]
+    end
     json.created_at post.created_at
     if post.image.attached?
       json.image url_for(post.image)

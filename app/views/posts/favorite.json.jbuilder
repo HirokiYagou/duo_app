@@ -1,1 +1,1 @@
-json.count @count
+json.favorite_count @count

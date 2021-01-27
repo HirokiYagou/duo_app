@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user).order(id: "DESC")
     @reply_data = Post.group(:reply_to).count
+    @favorite_data = Post.group(:id).count
     respond_to do |format|
       format.html
       format.json
