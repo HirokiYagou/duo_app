@@ -238,7 +238,23 @@ export default {
       this.fetchPosts()
     },
     setFavoritePosts: function(user) {
-      
+      fetch(`/favorites/${user.id}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          if (data.post_ids.length === 0) {
+            this.templatePosts = []
+          } else {
+            data.post_ids.forEach(post_id => {
+              const posts = this.allPosts.filter(onePost => onePost.id === post_id)
+              this.templatePosts = posts
+            })
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     openForm: function() {
       this.isActives.formActive = true

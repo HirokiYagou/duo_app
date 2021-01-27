@@ -70,6 +70,7 @@ export default {
       handler: function(next) {
         this.updateNickname = next.showProfile.nickname
         this.updateStatus = next.showProfile.status
+        this.isActive = 'all'
       },
       deep: true
     }

@@ -10,4 +10,13 @@ class Favorite < ApplicationRecord
       Favorite.destroy(favorite.id)
     end
   end
+
+  def self.get_favorites_post_id(user)
+    favorites = user.favorites
+    post_ids = []
+    favorites.each do |favorite|
+      post_ids << favorite[:post_id]
+    end
+    return post_ids
+  end
 end

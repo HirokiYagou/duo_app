@@ -1,3 +1,1 @@
-json.array! @favorites do |favorite|
-  json.post_id favorite.post_id
-end
+json.post_ids @post_ids

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   def get_favorites
     user = User.find(params[:id])
-    @favorites = user.favorites
+    @post_ids = Favorite.get_favorites_post_id(user)
   end
 
   def get_profile
