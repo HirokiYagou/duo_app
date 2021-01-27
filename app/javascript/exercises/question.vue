@@ -14,11 +14,11 @@
         <p class="is-size-5 has-text-right">{{ currentIndex + 1 }} / {{ questionLength }}</p>
       </div>
     </div>
-    <p class="is-size-4 has-text-weight-medium">{{ currentQuestion.text }}</p>
+    <p class="is-size-4 has-text-weight-medium current-question">{{ currentQuestion.text }}</p>
   </div>
   <div class="box" v-show="isShowAnswer">
     <p class="is-size-5">Answer</p>
-    <p class="is-size-4 has-text-weight-medium">{{ currentQuestion.answer }}</p>
+    <p class="is-size-4 has-text-weight-medium current-question">{{ currentQuestion.answer }}</p>
   </div>
   <div class="box">
     <form @submit.prevent="showAnswer">
@@ -86,5 +86,9 @@ export default {
 }
 .column> p {
   vertical-align: bottom;
+}
+.current-question {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 </style>
