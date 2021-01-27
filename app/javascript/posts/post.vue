@@ -43,14 +43,14 @@
     </div>
   </div>
 
-  <div class="columns">
+  <div :class="{ 'columns': !post.isShow }">
     <div class="content is-left-content is-medium column is-two-third">
-      <p>{{ post.content }}</p>
+      <p :class="{'is-size-3': post.isShow }">{{ post.content }}</p>
       <!-- <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a> -->
     </div>
-    <div class="block column is-one-third" v-if="post.image">
-        <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
+    <div :class="['block', 'column', { 'is-one-third': !post.isShow }]" v-if="post.image">
+        <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': post.isShow }" alt="Placeholder image">
     </div>
   </div>
 </div>

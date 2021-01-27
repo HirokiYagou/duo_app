@@ -187,6 +187,7 @@ export default {
       this.openForm()
     },
     showPost: function(post) {
+      post.isShow = true
       const array = []
       array.push(post)
       const replyPost = this.allPosts.filter(onePost => onePost.reply_to === post.id)
