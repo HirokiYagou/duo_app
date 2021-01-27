@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :posts
   has_one :profile
   has_many :exercises
+  has_many :favorites
 
   USERNAME_REGEX = /\A[a-zA-Z_0-9]+\z/.freeze
   EMAIL_REGEX = /\A\S+@\S+\.\S+\z/.freeze
