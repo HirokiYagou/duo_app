@@ -8,7 +8,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.post_create(post_params)
+    @post = Post.create(post_params)
+    Post.reply_count(post_params[:reply_to])
   end
   
   def update
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    Post.destroy_reply(params[:id])
     Post.destroy(params[:id])
   end
 
