@@ -34,7 +34,7 @@
               Edit
             </a>
             <hr class="dropdown-divider">
-            <a @click="doDeletePost(post)" class="dropdown-item">
+            <a @click="doDeletePost(post.id)" class="dropdown-item">
               Delete
             </a>
           </div>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="columns">
-    <div class="content is-medium column is-two-third">
+    <div class="content is-left-content is-medium column is-two-third">
       <p>{{ post.content }}</p>
       <!-- <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a> -->
@@ -53,6 +53,14 @@
         <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
     </div>
   </div>
+</div>
+<div class="card-footer">
+  <div class="card-footer-item pointer" @click="doReply(post.id)">
+    <span>た</span>
+    <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
+  </div>
+  <div class="card-footer-item">ま</div>
+  <div class="card-footer-item">ぷ</div>
 </div>
 </template>
 
@@ -63,14 +71,21 @@ export default {
     current_user_name: String,
     menu_bar: String,
   },
+  emits: [
+    'delete-post',
+    'edit-post',
+    'open-img-modal',
+    'set-user-posts',
+    'do-reply'
+  ],
   computed: {
     isCurrentUser: function() {
       return this.post.user.name === this.current_user_name
     },
   },
   methods: {
-    doDeletePost: function(post) {
-      this.$emit("delete-post", post)
+    doDeletePost: function(post_id) {
+      this.$emit("delete-post", post_id)
     },
     doEditPost: function(post) {
       this.$emit("edit-post", post)
@@ -80,6 +95,9 @@ export default {
     },
     doSetUserPosts: function(user) {
       this.$emit("set-user-posts", user)
+    },
+    doReply: function(post_id) {
+      this.$emit("do-reply", post_id)
     }
   }
 }
@@ -90,7 +108,8 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.media-content> .title {
+.media-content> .title,
+.card-footer-item {
   cursor: pointer;
 }
 .dropdown button {

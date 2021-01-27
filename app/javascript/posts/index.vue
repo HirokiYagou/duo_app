@@ -3,6 +3,7 @@
   <post-form
     :form-active="isActives.formActive"
     :edit-info="editInfo"
+    :reply-info="replyInfo"
     @close-form="closeForm"
     @do-post="doPost($event)"
   ></post-form>
@@ -43,6 +44,7 @@
           @edit-post="editPost($event, index)"
           @open-img-modal="openImgModal($event)"
           @set-user-posts="setUserPosts($event)"
+          @do-reply="doReply($event)"
         ></post>
       </div>
     </div>
@@ -92,6 +94,10 @@ export default {
         name: '',
         showProfile: {},
       },
+
+      replyInfo: {
+        reply_to: undefined,
+      }
     }
   },
   watch: {
@@ -144,10 +150,10 @@ export default {
         })
         .catch(error => console.log(error))
     },
-    deletePost: function(post, index) {
+    deletePost: function(post_id, index) {
       window.alert("Are you sure to DELETE?")
 
-      fetch(`/posts/${post.id}`, {
+      fetch(`/posts/${post_id}`, {
           method: 'DELETE',
           headers: {
             'X-CSRF-Token': csrfToken(),
@@ -174,6 +180,10 @@ export default {
       this.showUser.name = user.name
       this.showUser.showProfile.nickname = user.profile.nickname
       this.fetchProfile(user.id)
+    },
+    doReply: function(post_id) {
+      this.replyInfo.reply_to = post_id
+      this.openForm()
     },
     fetchProfile: function(userId) {
       fetch(`/posts/user/${userId}`)

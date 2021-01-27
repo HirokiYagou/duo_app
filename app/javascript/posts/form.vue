@@ -15,6 +15,7 @@
             autofocus
             required></textarea>
           <input type="file" name="post[image]" @change="selectImage" id="post-image">
+          <input type="hidden" v-model="uploadReplyTo" name="post[reply_to]">
           <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="!isEdit">投稿する</button>
           <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="isEdit">編集する</button>
         </form>
@@ -28,17 +29,19 @@
 <script>
 export default {
   props: {
-    formActive: {
-      type: Boolean,
-    },
-    editInfo: {
-      type: Object,
-    }
+    formActive: Boolean,
+    editInfo: Object,
+    replyInfo: Object
   },
+  emits: [
+    'do-post',
+    'close-form',
+  ],
   data() {
     return {
       uploadContent: '',
       uploadImage: null,
+      uploadReplyTo: null,
     }
   },
   computed: {
@@ -65,6 +68,14 @@ export default {
       },
       deep: true,
     },
+    replyInfo: {
+      handler: function(next) {
+        if (next.reply_to) {
+          this.uploadReplyTo = next.reply_to
+        }
+      },
+      deep: true,
+    }
   },
   methods: {
     selectImage: function(e) {
@@ -76,6 +87,9 @@ export default {
       formData.append('post[content]', this.uploadContent)
       if (this.uploadImage) {
         formData.append('post[image]', this.uploadImage)
+      }
+      if (this.uploadReplyTo) {
+        formData.append('post[reply_to]', this.uploadReplyTo)
       }
       this.$emit("do-post", formData)
       this.uploadContent = ''
