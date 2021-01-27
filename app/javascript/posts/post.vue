@@ -43,20 +43,20 @@
     </div>
   </div>
 
-  <div class="columns">
-    <div class="content is-left-content is-medium column is-two-third">
-      <p>{{ post.content }}</p>
+  <div :class="{ 'columns': !post.isShow }">
+    <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
+      <p :class="{'is-size-3': post.isShow }">{{ post.content }}</p>
       <!-- <a>@bulmaio</a>.
       <a href="#">#css</a> <a href="#">#responsive</a> -->
     </div>
-    <div class="block column is-one-third" v-if="post.image">
-        <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
+    <div :class="['block', 'column', { 'is-one-third': !post.isShow }]" v-if="post.image">
+        <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': post.isShow }" alt="Placeholder image">
     </div>
   </div>
 </div>
 <div class="card-footer">
-  <div class="card-footer-item pointer" @click="doReply(post.id)">
-    <span>た</span>
+  <div class="card-footer-item" @click="doReply(post.id)">
+    <span><img src="/assets/reply.png" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
   <div class="card-footer-item">ま</div>
@@ -76,7 +76,8 @@ export default {
     'edit-post',
     'open-img-modal',
     'set-user-posts',
-    'do-reply'
+    'do-reply',
+    'show-post'
   ],
   computed: {
     isCurrentUser: function() {
@@ -98,6 +99,9 @@ export default {
     },
     doReply: function(post_id) {
       this.$emit("do-reply", post_id)
+    },
+    doShowPost: function(post) {
+      this.$emit("show-post", post)
     }
   }
 }
@@ -108,9 +112,17 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.media-left img {
+  border-radius: 50%;
+  border: 1px solid ghostwhite;
+}
 .media-content> .title,
+.is-left-content,
 .card-footer-item {
   cursor: pointer;
+}
+.card-footer-item:hover {
+  background-color:ghostwhite;
 }
 .dropdown button {
   border: none;
@@ -118,6 +130,9 @@ export default {
 .columns img {
   max-height: 50vh;
   cursor: pointer;
+}
+.columns img:hover {
+  opacity: 0.8;
 }
 .right-margin {
   margin-right: 10px;
