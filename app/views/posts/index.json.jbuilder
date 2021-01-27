@@ -2,6 +2,8 @@ json.set! :posts do
   json.array! @posts do |post|
     json.id post.id
     json.content post.content
+    json.reply_to post.reply_to
+    json.replied_count post.replied_count
     json.created_at post.created_at
     if post.image.attached?
       json.image url_for(post.image)

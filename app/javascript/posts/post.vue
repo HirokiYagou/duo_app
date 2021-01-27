@@ -45,21 +45,22 @@
 
   <div class="columns">
     <div class="content is-left-content is-medium column is-two-third">
-      <div class="text-area">
-        <p>{{ post.content }}</p>
-        <!-- <a>@bulmaio</a>.
-        <a href="#">#css</a> <a href="#">#responsive</a> -->
-      </div>
-      <div class="rel-bar columns">
-        <div class="column">た</div>
-        <div class="column">ま</div>
-        <div class="column">ぷ</div>
-      </div>
+      <p>{{ post.content }}</p>
+      <!-- <a>@bulmaio</a>.
+      <a href="#">#css</a> <a href="#">#responsive</a> -->
     </div>
     <div class="block column is-one-third" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" alt="Placeholder image">
     </div>
   </div>
+</div>
+<div class="card-footer">
+  <div class="card-footer-item">
+    <span>た</span>
+    <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
+  </div>
+  <div class="card-footer-item">ま</div>
+  <div class="card-footer-item">ぷ</div>
 </div>
 </template>
 
@@ -109,18 +110,5 @@ export default {
 }
 .right-margin {
   margin-right: 10px;
-}
-.is-left-content {
-  margin-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.is-left-content> .text-area {
-  margin-bottom: 10px;
-}
-.rel-bar> .column {
-  padding-bottom: 0;
-  width: 80px;
 }
 </style>
