@@ -55,7 +55,7 @@
   </div>
 </div>
 <div class="card-footer">
-  <div class="card-footer-item">
+  <div class="card-footer-item pointer" @click="doReply(post.id)">
     <span>た</span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
@@ -75,7 +75,8 @@ export default {
     'delete-post',
     'edit-post',
     'open-img-modal',
-    'set-user-posts'
+    'set-user-posts',
+    'do-reply'
   ],
   computed: {
     isCurrentUser: function() {
@@ -94,6 +95,9 @@ export default {
     },
     doSetUserPosts: function(user) {
       this.$emit("set-user-posts", user)
+    },
+    doReply: function(post_id) {
+      this.$emit("do-reply", post_id)
     }
   }
 }
@@ -104,7 +108,8 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.media-content> .title {
+.media-content> .title,
+.card-footer-item {
   cursor: pointer;
 }
 .dropdown button {
