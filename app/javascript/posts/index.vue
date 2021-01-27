@@ -179,6 +179,7 @@ export default {
       this.openForm()
     },
     setUserPosts: function(user) {
+      this.showPostId = undefined
       this.templatePosts = []
       this.allPosts.forEach(post => {
         if (post.user.id === user.id) {
