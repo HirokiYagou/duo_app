@@ -23,6 +23,9 @@ class PostsController < ApplicationController
     Post.destroy(params[:id])
   end
 
+  def favorite
+  end
+
   def get_profile
     @profile = Profile.where(user_id: params[:id])[0]
   end

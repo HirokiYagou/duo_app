@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       patch '/user/:id', to: 'posts#update_profile'
     end
   end
+  get '/posts/:id', to: 'posts#favorite'
   
   resources 'exercises', only: [:index, :update] do
     member do
