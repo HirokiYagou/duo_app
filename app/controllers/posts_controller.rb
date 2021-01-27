@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user).order(id: "DESC")
+    @reply_data = Post.group(:reply_to).count
     respond_to do |format|
       format.html
       format.json
@@ -9,7 +10,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-    Post.reply_count(post_params[:reply_to])
   end
   
   def update
@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.destroy_reply(params[:id])
     Post.destroy(params[:id])
   end
 
@@ -36,7 +35,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :reply_to).merge(user_id: current_user.id, replied_count: 0)
+    params.require(:post).permit(:content, :image, :reply_to).merge(user_id: current_user.id)
   end
 
   def profile_params

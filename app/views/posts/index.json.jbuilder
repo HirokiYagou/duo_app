@@ -3,7 +3,9 @@ json.set! :posts do
     json.id post.id
     json.content post.content
     json.reply_to post.reply_to
-    json.replied_count post.replied_count
+    if @reply_data[post.id]
+      json.replied_count @reply_data[post.id]
+    end
     json.created_at post.created_at
     if post.image.attached?
       json.image url_for(post.image)
