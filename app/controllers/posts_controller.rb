@@ -24,11 +24,16 @@ class PostsController < ApplicationController
     Post.destroy(params[:id])
   end
 
-  def favorite
+  def check_favorite
     user = User.find(current_user.id)
     Favorite.click(user, params[:id])
     post = Post.find(params[:id])
     @count = post.favorites.length
+  end
+
+  def get_favorites
+    user = User.find(params[:id])
+    @favorites = user.favorites
   end
 
   def get_profile

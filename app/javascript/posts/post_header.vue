@@ -4,6 +4,12 @@
   <p>@{{ showUser.name }}</p>
   <p>{{ showUser.showProfile.status }}</p>
   <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
+  <div class="tabs is-fullwidth">
+    <ul>
+      <li :class="{ 'is-active': isActive === 'all' }" @click="switchIsActive('all')"><a>ALL Posts</a></li>
+      <li :class="{ 'is-active': isActive === 'favorite' }" @click="switchIsActive('favorite')"><a>FAVORITE Posts</a></li>
+    </ul>
+  </div>
 
   <div :class="['modal', {'is-active': profileActive}]">
     <div class="modal-background" @click.self="doCloseForm"></div>
@@ -46,12 +52,17 @@ export default {
     profileActive: Boolean,
     showUser: Object,
   },
+  emits: [
+    'set-user-posts',
+    'set-favorite-posts',
+  ],
   data() {
     return {
       updateNickname: '',
       updateStatus: '',
       updateIcon: null,
       updateHeader: null,
+      isActive: 'all',
     }
   },
   watch: {
@@ -94,6 +105,14 @@ export default {
     doCloseForm: function() {
        this.$emit("close-form")
     },
+    switchIsActive: function(key) {
+      this.isActive = key
+      if (this.isActive === 'all') {
+        this.$emit('set-user-posts', this.showUser)
+      } else if (this.isActive === 'favorite') {
+        this.$emit('set-favorite-posts', this.showUser)
+      }
+    }
   }
 }
 </script>
@@ -101,5 +120,8 @@ export default {
 <style scoped>
 .textarea {
   resize: none;
+}
+.tabs li:hover {
+  background-color: ghostwhite;
 }
 </style>
