@@ -33,6 +33,8 @@
           @do-edit-profile="editProfile"
           @update-profile="updateProfile($event)"
           @close-form="closeForm"
+          @set-user-posts="fetchProfile($event)"
+          @set-favorite-posts="setFavoritePosts($event)"
         ></post-header>
       </div>
       <div
@@ -212,13 +214,11 @@ export default {
           return response.json()
         })
         .then(data => {
-          console.log(data)
           this.showProfile.nickname = data.nickname
           this.showProfile.status = data.status
           if (data.header) {
             this.showProfile.header = data.header
           }
-          console.log(this.showProfile)
           this.setUserPosts(user)
         })
         .catch(error => {
@@ -236,7 +236,24 @@ export default {
         
       this.closeForm()
       this.fetchPosts()
-      // this.setUserPosts(this.currentUser)
+    },
+    setFavoritePosts: function(user) {
+      fetch(`/favorites/${user.id}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.templatePosts = []
+          if (data.post_ids.length !== 0) {
+            data.post_ids.forEach(post_id => {
+              const result = this.allPosts.find(post => post.id === post_id)
+              this.templatePosts.push(result)
+            })
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     openForm: function() {
       this.isActives.formActive = true

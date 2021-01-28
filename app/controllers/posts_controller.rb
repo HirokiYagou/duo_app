@@ -2,6 +2,9 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user).order(id: "DESC")
     @reply_data = Post.group(:reply_to).count
+    @favorite_data = Favorite.group(:post_id).count
+    user = User.find(current_user.id)
+    @post_ids = Favorite.get_favorites_post_id(user)
     respond_to do |format|
       format.html
       format.json
@@ -21,6 +24,18 @@ class PostsController < ApplicationController
 
   def destroy
     Post.destroy(params[:id])
+  end
+
+  def check_favorite
+    user = User.find(current_user.id)
+    Favorite.click(user, params[:id])
+    post = Post.find(params[:id])
+    @count = post.favorites.length
+  end
+
+  def get_favorites
+    user = User.find(params[:id])
+    @post_ids = Favorite.get_favorites_post_id(user)
   end
 
   def get_profile

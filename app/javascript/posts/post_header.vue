@@ -4,6 +4,12 @@
   <p>@{{ showUser.name }}</p>
   <p>{{ showUser.showProfile.status }}</p>
   <button class="button" @click="doEditProfile" v-if="showUser.id === current_user.id">Edit Profile</button>
+  <div class="tabs is-fullwidth">
+    <ul>
+      <li :class="{ 'is-active': isActive === 'all' }" @click="switchIsActive('all')"><a>ALL</a></li>
+      <li :class="{ 'is-active': isActive === 'favorite' }" @click="switchIsActive('favorite')"><a>FAVORITE</a></li>
+    </ul>
+  </div>
 
   <div :class="['modal', {'is-active': profileActive}]">
     <div class="modal-background" @click.self="doCloseForm"></div>
@@ -24,8 +30,8 @@
                 placeholder="自己紹介"
                 cols="30"
                 rows="5"
-                autofocus
-                required></textarea>
+                required
+              ></textarea>
             </div>
             <input type="file" name="profile[icon]" @change="selectIcon" id="profile-icon">
             <input type="file" name="profile[header]" @change="selectHeader" id="profile-header">
@@ -44,14 +50,32 @@ export default {
   props: {
     current_user: Object,
     profileActive: Boolean,
-    showUser: Object,
+    showUser: {
+      type: Object,
+      default: {
+        id: null,
+        name: '',
+        showProfile: {
+          nickname: '',
+          status: '',
+        }
+      },
+    },
   },
+  emits: [
+    'do-edit-profile',
+    'update-profile',
+    'close-form',
+    'set-user-posts',
+    'set-favorite-posts',
+  ],
   data() {
     return {
       updateNickname: '',
       updateStatus: '',
       updateIcon: null,
       updateHeader: null,
+      isActive: 'all',
     }
   },
   watch: {
@@ -59,6 +83,8 @@ export default {
       handler: function(next) {
         this.updateNickname = next.showProfile.nickname
         this.updateStatus = next.showProfile.status
+        this.isActive = 'all'
+        console.log(1234)
       },
       deep: true
     }
@@ -94,6 +120,14 @@ export default {
     doCloseForm: function() {
        this.$emit("close-form")
     },
+    switchIsActive: function(key) {
+      this.isActive = key
+      if (this.isActive === 'all') {
+        this.$emit('set-user-posts', this.showUser)
+      } else if (this.isActive === 'favorite') {
+        this.$emit('set-favorite-posts', this.showUser)
+      }
+    }
   }
 }
 </script>
@@ -101,5 +135,8 @@ export default {
 <style scoped>
 .textarea {
   resize: none;
+}
+.tabs li:hover {
+  background-color: ghostwhite;
 }
 </style>

@@ -59,7 +59,10 @@
     <span><img src="/assets/reply.png" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
-  <div class="card-footer-item">ま</div>
+  <div :class="['card-footer-item', { 'is-favorite': post.is_favorite }]" @click="dofavorite(post.id)">
+    <span class="heart">♡</span>
+    <span v-if="post.favorite_count !== 0">{{ post.favorite_count }}</span>
+  </div>
   <div class="card-footer-item">ぷ</div>
 </div>
 </template>
@@ -106,6 +109,23 @@ export default {
     },
     doShowPost: function(post) {
       this.$emit("show-post", post)
+    },
+    dofavorite: function(post_id) {
+      fetch(`/posts/${post_id}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.post.favorite_count = data.favorite_count
+          if (this.post.is_favorite) {
+            this.post.is_favorite = false
+          } else {
+            this.post.is_favorite = true
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
@@ -120,13 +140,16 @@ export default {
   border-radius: 50%;
   border: 1px solid ghostwhite;
 }
+.card-footer> .is-favorite {
+  background-color: rgba(255, 112, 96, 0.685);
+}
 .media-content> .title,
 .is-left-content,
 .card-footer-item {
   cursor: pointer;
 }
 .card-footer-item:hover {
-  background-color:ghostwhite;
+  opacity: 0.5;
 }
 .dropdown button {
   border: none;

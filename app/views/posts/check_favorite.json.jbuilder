@@ -1,0 +1,1 @@
+json.favorite_count @count
