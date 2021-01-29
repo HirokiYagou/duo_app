@@ -23,18 +23,18 @@
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
             <span class="icon is-small">
-              <img :src="menu_bar" alt="">
+              <img :src="menu_bar" alt="" id="menu-bar">
               <i class="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
         </div>
         <div class="dropdown-menu" id="dropdown-menu3" role="menu">
           <div class="dropdown-content">
-            <a @click="doEditPost(post)"  class="dropdown-item">
+            <a @click="doEditPost(post)"  class="dropdown-item" id="edit">
               Edit
             </a>
             <hr class="dropdown-divider">
-            <a @click="doDeletePost(post.id)" class="dropdown-item">
+            <a @click="doDeletePost(post.id)" class="dropdown-item" id="delete">
               Delete
             </a>
           </div>
