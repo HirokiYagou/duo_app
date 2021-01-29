@@ -7,6 +7,7 @@
         <form @submit.prevent="doPost">
           <textarea
             name="content"
+            id="post-content"
             v-model="uploadContent"
             class="textarea is-medium"
             placeholder="いまなにしてる？"
