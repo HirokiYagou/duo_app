@@ -9,6 +9,12 @@ RSpec.describe Post, type: :model do
       it 'フォームが全て埋まっていれば投稿できる' do
         expect(@post).to be_valid
       end
+      it 'リプライ機能を使った投稿ができる' do
+        @post.save
+        reply_post = FactoryBot.build(:post)
+        reply_post.reply_to = @post.id
+        expect(reply_post).to be_valid
+      end
     end
     context '新規投稿ができないとき' do
       it '本文が空では投稿できない' do
