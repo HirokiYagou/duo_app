@@ -11,6 +11,9 @@ export default {
   props: {
     exerciseDatum: Object,
   },
+  emits: [
+    'do-exercise',
+  ],
   methods: {
     doExercise: function() {
       const questionData = {

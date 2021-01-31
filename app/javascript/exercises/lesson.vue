@@ -22,6 +22,9 @@ export default {
   props: {
     lesson: Number
   },
+  emits: [
+    'do-exercise',
+  ],
   computed: {
     exerciseData: function() {
       return [
