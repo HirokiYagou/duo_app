@@ -52,9 +52,13 @@ export default {
       this.page.form = false
       this.page.term = false
     },
-    goToForm: function() {
+    openForm: function() {
       this.page.form = true
       this.page.term = false
+    },
+    goToForm: function() {
+      this.openForm()
+      this.clearEditInfo()
     },
     goToTerm: function() {
       this.page.form = false
@@ -62,11 +66,10 @@ export default {
     },
     editTerm: function(term) {
       this.editInfo = term
-      this.goToForm()
+      this.openForm()
     },
     clearEditInfo: function() {
       this.editInfo = {}
-      console.log(this.editInfo)
     }
   }
 }

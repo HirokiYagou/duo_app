@@ -29,7 +29,9 @@
       </select>
     </div>
   </div>
-  <button type="submit" class="button is-primary">登録する</button>
+  <button type="submit" class="button is-primary" v-show="!editInfo.lesson">登録する</button>
+  <button type="submit" class="button is-warning" v-show="editInfo.lesson">編集する</button>
+  <button type="submit" class="button is-danger" v-show="editInfo.lesson" @click="deleteTerm">削除する</button>
 </form>
 </template>
 
@@ -84,12 +86,12 @@ export default {
       const method = editId ? 'PATCH' : 'POST'
       const sendData = { term: this.term }
       fetch(path, {
-          method: method,
+        method: method,
           headers: {
-              'X-CSRF-Token': csrfToken(),
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(sendData),
+            'X-CSRF-Token': csrfToken(),
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sendData),
         })
 
       this.$emit('done-edit')
@@ -98,6 +100,15 @@ export default {
       this.term.sentence_id = ''
       this.term.word_id = ''
       this.term.lesson = '1'
+    },
+    deleteTerm: function() {
+      const editId = this.editInfo.term_id
+      fetch(`/admin/terms/${editId}`, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': csrfToken(),
+          },
+        })
     }
   }
 }

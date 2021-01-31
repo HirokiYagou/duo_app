@@ -13,6 +13,10 @@ class Admin::TermsController < ApplicationController
     term.update(term_params)
   end
 
+  def destroy
+    Term.destroy(params[:id])
+  end
+
   private
 
   def valify_admin
