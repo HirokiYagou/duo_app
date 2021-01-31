@@ -37,6 +37,9 @@
 import { csrfToken } from "@rails/ujs"
 
 export default {
+  props: {
+    editInfo: Object,
+  },
   data() {
     return {
       term: {

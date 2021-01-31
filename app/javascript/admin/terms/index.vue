@@ -6,12 +6,20 @@
       <a class="button is-fullwidth" href="/users/sign_out" data-method="delete">ログアウト</a>
       <button class="button is-fullwidth" @click="goToPost">投稿ページ</button>
       <button class="button is-fullwidth" @click="goToHome">Adminホーム</button>
-      <button class="button is-fullwidth" @click="goToForm">新規登録</button>
+      <button class="button is-fullwidth is-link" @click="goToForm">新規登録</button>
       <button class="button is-fullwidth is-info" @click="goToTerm">登録単語一覧</button>
     </div>
     <div class="column auto">
-      <create-form v-if="page.form"></create-form>
-      <term-index v-if="page.term" :lessonCount="45"></term-index>
+      <create-form
+        v-if="page.form"
+        :edit-info="editInfo"
+      ></create-form>
+      <term-index
+        v-if="page.term"
+        :current-user="'admin'"
+        :lessonCount="45"
+        @edit-term="editTerm($event)"
+      ></term-index>
     </div>
   </div>
 </div>
@@ -31,7 +39,8 @@ export default {
       page: {
         form: false,
         term: false,
-      }
+      },
+      editInfo: {},
     }
   },
   methods: {
@@ -49,6 +58,10 @@ export default {
     goToTerm: function() {
       this.page.form = false
       this.page.term = true
+    },
+    editTerm: function(term) {
+      this.editInfo = term
+      this.goToForm()
     }
   }
 }
