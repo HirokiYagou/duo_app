@@ -86,7 +86,8 @@ export default {
         this.isActive = 'all'
         console.log(1234)
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {

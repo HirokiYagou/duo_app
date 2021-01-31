@@ -16,7 +16,7 @@
   <div class="columns">
     <div class="column is-one-fifth left-menu">
       <left-bar
-        :current_user_name="currentUser.name"
+        :current-user-name="currentUser.name"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
