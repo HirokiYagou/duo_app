@@ -16,6 +16,9 @@
         v-if="isDoing.isExercise"
         :question-data="questionData"
       ></exercise-area>
+      <term-index
+
+      ></term-index>
     </div>
   </div>
 </div>
@@ -24,11 +27,13 @@
 <script>
 import Table from './table'
 import Exercise from './exercise'
+import Term from './term'
 
 export default {
   components: {
     'exercise-table': Table,
     'exercise-area': Exercise,
+    'term-index': Term,
   },
   data() {
     return {

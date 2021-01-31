@@ -37,13 +37,13 @@ export default {
   },
   data() {
     return {
-      lessonCount: 44,
+      lessonCount: 45,
     }
   },
   computed: {
     lessons: function() {
       const array = []
-      for (let i = 0; i < this.lessonCount; i++) {
+      for (let i = 42; i < this.lessonCount; i++) {
         array.push(i + 1)
       }
       return array
