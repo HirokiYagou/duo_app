@@ -5,7 +5,7 @@
       <a class="button is-fullwidth" href="/users/sign_out" data-method="delete">ログアウト</a>
       <button class="button is-fullwidth" @click="goToPost">投稿ページ</button>
       <button class="button is-fullwidth" @click="goToHome">学習ホーム</button>
-      <button class="button is-fullwidth" @click="goToSentences">登録単語一覧</button>
+      <button class="button is-fullwidth" @click="goToTerm">登録単語一覧</button>
     </div>
     <div class="column">
       <exercise-table
@@ -17,7 +17,7 @@
         :question-data="questionData"
       ></exercise-area>
       <term-index
-
+        v-if="isDoing.isTerm"
       ></term-index>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
       isDoing: {
         isTable: true,
         isExercise: false,
-        // isSentence: false,
+        isTerm: false,
       }
     }
   },
@@ -52,20 +52,20 @@ export default {
     goToHome: function() {
       this.isDoing.isTable = true
       this.isDoing.isExercise = false
-      // this.isDoing.isSentence = false
+      this.isDoing.isTerm = false
 
       this.questionData = {}
     },
-    // goToHome: function() {
-    //   this.isDoing.isTable = false
-    //   this.isDoing.isExercise = false
-    //   this.isDoing.isSentence = true
-    // },
+    goToTerm: function() {
+      this.isDoing.isTable = false
+      this.isDoing.isExercise = false
+      this.isDoing.isTerm = true
+
+      this.questionData = {}
+    },
     doExercise: function(questionDataParams) {
       this.questionData.display = questionDataParams.display
       this.getQuestions(questionDataParams)
-
-      // this.isDoing.isSentence = false
     },
     getQuestions: function(questionDataParams) {
       const exercisePath = `exercises/${questionDataParams.lesson}/${questionDataParams.type}.json`
