@@ -35,11 +35,12 @@ export default {
   components: {
     'exercise-lesson': Lesson,
   },
-  data() {
-    return {
-      lessonCount: 45,
-    }
+  props: {
+    lessonCount: Number,
   },
+  emits: [
+    'do-exercise',
+  ],
   computed: {
     lessons: function() {
       const array = []

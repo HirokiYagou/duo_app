@@ -10,6 +10,7 @@
     <div class="column">
       <exercise-table
         v-if="isDoing.isTable"
+        :lesson-count="lessonCount"
         @do-exercise="doExercise($event)"
       ></exercise-table>
       <exercise-area
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       questionData: {},
+      lessonCount: 45,
       isDoing: {
         isTable: true,
         isExercise: false,
