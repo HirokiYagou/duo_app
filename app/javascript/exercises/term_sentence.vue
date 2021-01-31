@@ -69,6 +69,7 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
   padding-left: 0;
+  cursor: pointer;
 }
 .sentence-id {
   display: flex;

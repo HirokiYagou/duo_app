@@ -2,10 +2,10 @@
 <div class="container">
   <div class="columns">
     <div class="column is-one-fifth left-menu">
-      <a class="button is-fullwidth" href="/users/sign_out" data-method="delete">ログアウト</a>
-      <button class="button is-fullwidth" @click="goToPost">投稿ページ</button>
-      <button class="button is-fullwidth" @click="goToHome">学習ホーム</button>
-      <button class="button is-fullwidth" @click="goToTerm">登録単語一覧</button>
+      <a class="button is-fullwidth is-light" href="/users/sign_out" data-method="delete">ログアウト</a>
+      <button class="button is-fullwidth is-light is-primary" @click="goToPost">投稿ページ</button>
+      <button class="button is-fullwidth is-light is-info" @click="goToHome">学習ホーム</button>
+      <button class="button is-fullwidth is-info" @click="goToTerm">登録単語一覧</button>
     </div>
     <div class="column">
       <exercise-table

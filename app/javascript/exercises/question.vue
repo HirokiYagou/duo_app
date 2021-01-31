@@ -36,7 +36,7 @@
           autofocus
         ></textarea>
         </div>
-        <div class="column is-2"><button class="button is-fullwidth">CHECK</button></div>
+        <div class="column is-2"><button class="button is-fullwidth is-info">CHECK</button></div>
       </div>
     </form>
   </div>
