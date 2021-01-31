@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="createTerm">
+<form @submit.prevent="createEditTerm">
   <div class="field">
     <label class="label">ENGLISH</label>
     <textarea v-model="term.english" class="textarea is-medium" name="english" cols="30" rows="5" placeholder="in english" required></textarea>
@@ -38,7 +38,17 @@ import { csrfToken } from "@rails/ujs"
 
 export default {
   props: {
-    editInfo: Object,
+    editInfo: {
+      type: Object,
+      default: {
+        english: '',
+        japanese: '',
+        lesson: undefined,
+        sentence_id: undefined,
+        term_id: undefined,
+        word_id: undefined,
+      },
+    },
   },
   data() {
     return {
@@ -51,11 +61,28 @@ export default {
       },
     }
   },
+  watch: {
+    editInfo: {
+      handler: function(next) {
+        console.log(next)
+        this.term.english = next.english
+        this.term.japanese = next.japanese
+        this.term.sentence_id = next.sentence_id
+        this.term.word_id = next.word_id
+        this.term.lesson = next.lesson
+      },
+      deep: true,
+      immediate: true,
+    }
+  },
   methods: {
-    createTerm: function() {
+    createEditTerm: function() {
+      const editId = this.editInfo.term_id
+      const path = editId ? `/admin/terms/${editId}` : '/admin/terms'
+      const method = editId ? 'PATCH' : 'POST'
       const sendData = { term: this.term }
-      fetch('/admin/terms', {
-          method: 'POST',
+      fetch(path, {
+          method: method,
           headers: {
               'X-CSRF-Token': csrfToken(),
               'Content-Type': 'application/json',
