@@ -9,14 +9,12 @@
   </div>
   <div class="accordion-body">
     <div class="accordion-content">
-      <div
+      <sentence
         v-for="sentence in sentences"
         :key="sentence.term_id"
-      >
-        <sentence
-          :sentence="sentence"
-        ></sentence>
-      </div>
+        :sentence="sentence"
+        :lesson="lesson"
+      ></sentence>
     </div>
   </div>
 </article>
