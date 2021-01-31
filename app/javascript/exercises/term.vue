@@ -6,7 +6,7 @@
       :key="lesson"
     >
       <lesson
-        
+        :lesson="lesson"
       ></lesson>
     </div>
   </section>

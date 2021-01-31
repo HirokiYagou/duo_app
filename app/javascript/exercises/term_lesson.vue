@@ -1,27 +1,69 @@
 <template>
-<article :class="['accordion', { 'is-active': isActive }]">
+<article :class="['accordion', 'is-primary', { 'is-active': isActive }]">
   <div class="accordion-header toggle" @click="doIsActive">
-    <p>Hello World</p>
+    <p>LESSON{{ lesson }}</p>
+    <div>
+      <p v-show="!isActive">+</p>
+      <p v-show="isActive">-</p>
+    </div>
   </div>
   <div class="accordion-body">
     <div class="accordion-content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+      <div
+        v-for="sentence in sentences"
+        :key="sentence.term_id"
+      >
+        <sentence
+          :sentence="sentence"
+        ></sentence>
+      </div>
     </div>
   </div>
 </article>
 </template>
 
 <script>
+import Sentence from './term_sentence'
+
 export default {
+  components: {
+    'sentence': Sentence,
+  },
+  props: {
+    lesson: Number
+  },
   data() {
     return {
       isActive: false,
+      sentences: [],
     }
   },
   methods: {
     doIsActive: function() {
       this.isActive = !this.isActive
+      if (!this.sentences.length) {
+        this.fetchTerms()
+      }
+    },
+    fetchTerms: function() {
+      fetch(`/exercises/${this.lesson}/sentence`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.sentences = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
 </script>
+
+<style scoped>
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
