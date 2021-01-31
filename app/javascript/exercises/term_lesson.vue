@@ -12,9 +12,11 @@
       <sentence
         v-for="sentence in sentences"
         :key="sentence.term_id"
+        :current-user="currentUser"
         :sentence="sentence"
         :lesson="lesson"
         @sort-words="sortWords($event)"
+        @edit-term="editTerm($event)"
       ></sentence>
     </div>
   </div>
@@ -29,8 +31,12 @@ export default {
     'sentence': Sentence,
   },
   props: {
+    currentUser: String,
     lesson: Number
   },
+  emits: [
+    'edit-term',
+  ],
   data() {
     return {
       isActive: false,
@@ -60,6 +66,9 @@ export default {
       for (let i = 0; i < this.sentences.length; i++) {
         this.sentences[i].words = words.filter(word => word.sentence_id === this.sentences[i].sentence_id)
       }
+    },
+    editTerm: function(term) {
+      this.$emit('edit-term', term)
     }
   }
 }

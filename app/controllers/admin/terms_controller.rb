@@ -8,6 +8,15 @@ class Admin::TermsController < ApplicationController
     Term.create(term_params)
   end
 
+  def update
+    term = Term.find(params[:id])
+    term.update(term_params)
+  end
+
+  def destroy
+    Term.destroy(params[:id])
+  end
+
   private
 
   def valify_admin
