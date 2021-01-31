@@ -89,7 +89,7 @@ https://duo3exercise.herokuapp.com
 | Column             | Type   | Options                       |
 | ------------------ | ------ | ----------------------------- |
 | username           | string | null: false, uniqueness: true |
-| email              | string | null: false, uniqueness: true |
+| email              | string | null: false, uniqueness: true, case_sensitive: false |
 | encrypted_password | string | null: false                   |
 | last_name          | string | null: false                   |
 | first_name         | string | null: false                   |
@@ -100,7 +100,6 @@ https://duo3exercise.herokuapp.com
 - has_one :profile
 
 - has_many :posts
-- has_many :comments
 - has_many :favorites
 
 - has_many :exercises
@@ -109,8 +108,8 @@ https://duo3exercise.herokuapp.com
 
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
-| user    | reference | null: false foreign_key: true |
-| nickname | string |       |
+| user    | reference | null: false, foreign_key: true |
+| nickname | string | null: false |
 | status | text |       |
 
 ### Association
@@ -124,7 +123,7 @@ https://duo3exercise.herokuapp.com
 
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
-| user    | reference | null: false foreign_key: true |
+| user    | reference | null: false, foreign_key: true |
 | reply_to | integer |        |
 | content | text    | null: false       |
 
@@ -134,7 +133,6 @@ https://duo3exercise.herokuapp.com
 
 - belongs_to :user
 
-- has_many :comments
 - has_many :favorites
 
 - has_many :post_terms
