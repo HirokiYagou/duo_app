@@ -1,6 +1,6 @@
 <template>
 <article :class="['accordion', { 'is-active': isActive }]">
-  <div class="accordion-header toggle">
+  <div class="accordion-header toggle" @click="doIsActive">
     <p>Hello World</p>
   </div>
   <div class="accordion-body">
@@ -13,6 +13,15 @@
 
 <script>
 export default {
-  
+  data() {
+    return {
+      isActive: false,
+    }
+  },
+  methods: {
+    doIsActive: function() {
+      this.isActive = !this.isActive
+    }
+  }
 }
 </script>
