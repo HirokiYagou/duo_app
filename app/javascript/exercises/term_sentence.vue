@@ -1,12 +1,16 @@
 <template>
 <div>
   <div class="columns" @click="doIsActive">
-    <div class="column is-1">{{ sentence.sentence_id }}</div>
+    <div class="column is-1 sentence-id">
+      {{ sentence.sentence_id }}
+      <p v-show="!isActive">+</p>
+      <p v-show="isActive">-</p>
+    </div>
     <div class="column is-5">{{ sentence.english }}</div>
     <div class="column is-6">{{ sentence.japanese }}</div>
   </div>
   <word
-    v-for="word in words"
+    v-for="word in sentence.words"
     :key="word.term_id"
     :word="word"
     v-show="isActive"
@@ -25,16 +29,18 @@ export default {
     sentence: Object,
     lesson: Number
   },
+  emits: [
+    'sort-words',
+  ],
   data() {
     return {
       isActive: false,
-      words: []
     }
   },
   methods: {
     doIsActive: function() {
       this.isActive = !this.isActive
-      if (!this.words.length) {
+      if (!this.sentence.words) {
         this.fetchWords()
       }
     },
@@ -44,7 +50,8 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.words = data
+          this.$emit('sort-words', data)
+          this.sentence.words = data.filter(datum => datum.sentence_id === this.sentence.sentence_id)
         })
         .catch(error => {
           console.log(error)
@@ -62,5 +69,10 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
   padding-left: 0;
+}
+.sentence-id {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>

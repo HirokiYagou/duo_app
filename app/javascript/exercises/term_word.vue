@@ -18,6 +18,8 @@ export default {
 <style scoped>
 .columns {
   border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 .column {
   white-space: pre-wrap;
