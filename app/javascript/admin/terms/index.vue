@@ -13,6 +13,7 @@
       <create-form
         v-if="page.form"
         :edit-info="editInfo"
+        @done-edit="clearEditInfo"
       ></create-form>
       <term-index
         v-if="page.term"
@@ -62,6 +63,10 @@ export default {
     editTerm: function(term) {
       this.editInfo = term
       this.goToForm()
+    },
+    clearEditInfo: function() {
+      this.editInfo = {}
+      console.log(this.editInfo)
     }
   }
 }

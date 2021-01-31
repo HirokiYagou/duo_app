@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources 'terms', only: [:index, :create]
+    resources 'terms', only: [:index, :create, :update]
   end
 end

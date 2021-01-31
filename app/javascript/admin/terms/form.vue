@@ -50,6 +50,9 @@ export default {
       },
     },
   },
+  emits: [
+    'done-edit',
+  ],
   data() {
     return {
       term: {
@@ -64,7 +67,6 @@ export default {
   watch: {
     editInfo: {
       handler: function(next) {
-        console.log(next)
         this.term.english = next.english
         this.term.japanese = next.japanese
         this.term.sentence_id = next.sentence_id
@@ -90,6 +92,7 @@ export default {
             body: JSON.stringify(sendData),
         })
 
+      this.$emit('done-edit')
       this.term.english = ''
       this.term.japanese = ''
       this.term.sentence_id = ''
