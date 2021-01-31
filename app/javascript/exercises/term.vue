@@ -2,21 +2,14 @@
 <div>
   <section class="accordions">
     <div
-      v-for=""
+      v-for="lesson in lessons"
+      :key="lesson"
     >
-      <article class="accordion is-active">
-        <div class="accordion-header toggle">
-          <p>Hello World</p>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-          </div>
-        </div>
-      </article>
+      <lesson
+        
+      ></lesson>
     </div>
   </section>
-  <lesson></lesson>
 </div>
 </template>
 
@@ -26,7 +19,18 @@ import Lesson from './term_lesson'
 export default {
   components: {
     'lesson': Lesson,
+  },
+  props: {
+    lessonCount: Number
+  },
+  computed: {
+    lessons: function() {
+      const array = []
+      for (let i = 42; i < this.lessonCount; i++) {
+        array.push(i + 1)
+      }
+      return array
+    }
   }
-  
 }
 </script>

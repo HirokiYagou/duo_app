@@ -19,6 +19,7 @@
       ></exercise-area>
       <term-index
         v-if="isDoing.isTerm"
+        :lesson-count="lessonCount"
       ></term-index>
     </div>
   </div>
