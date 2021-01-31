@@ -2,10 +2,12 @@
 <div class="container">
   <div class="columns">
     <div class="column is-one-fifth left-menu">
-      <a class="button is-fullwidth is-light" href="/users/sign_out" data-method="delete">ログアウト</a>
-      <button class="button is-fullwidth is-light is-primary" @click="goToPost">投稿ページ</button>
-      <button class="button is-fullwidth is-light is-info" @click="goToHome">学習ホーム</button>
-      <button class="button is-fullwidth is-info" @click="goToTerm">登録単語一覧</button>
+      <nav-bar
+        :current-user-name="currentUser.name"
+        @do-set-user="doSetUserExercises"
+      ></nav-bar>
+      <button class="button is-fullwidth is-light is-info" @click="goToTerm">Terms Index</button>
+      <button class="button is-fullwidth is-info" @click="goToHome">EXERCISE</button>
     </div>
     <div class="column">
       <exercise-table
@@ -30,9 +32,11 @@
 import Table from './table'
 import Exercise from './exercise'
 import Term from './term'
+import nav_barVue from '../shared/nav_bar.vue'
 
 export default {
   components: {
+    'nav-bar': nav_barVue,
     'exercise-table': Table,
     'exercise-area': Exercise,
     'term-index': Term,
@@ -114,6 +118,9 @@ export default {
     goToExercise: function() {
       this.isDoing.isTable = false
       this.isDoing.isExercise = true
+    },
+    doSetUserExercises: function() {
+      
     }
   },
   created: function() {
