@@ -39,6 +39,7 @@ export default {
   },
   data() {
     return {
+      currentUser: {},
       questionData: {},
       lessonCount: 45,
       isDoing: {
@@ -65,6 +66,18 @@ export default {
       this.isDoing.isTerm = true
 
       this.questionData = {}
+    },
+    fetchCurrentUser: function() {
+      fetch('/exercises.json')
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.currentUser = data.currentuser
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     doExercise: function(questionDataParams) {
       this.questionData.display = questionDataParams.display
@@ -102,6 +115,9 @@ export default {
       this.isDoing.isTable = false
       this.isDoing.isExercise = true
     }
+  },
+  created: function() {
+    this.fetchCurrentUser()
   }
 }
 </script>
