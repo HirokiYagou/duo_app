@@ -27,7 +27,8 @@ Rails.application.routes.draw do
       get '/word/japanese', to: 'exercises#word_japanese_scores'
     end
   end
-  get '/exercises/play', to: 'exercises#play_voice'
+
+  get '/speechs', to: 'speechs#play_voice'
 
   namespace :admin do
     resources 'terms', only: [:index, :create, :update, :destroy]

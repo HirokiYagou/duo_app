@@ -9,6 +9,7 @@
       <button class="button is-fullwidth is-light is-info" @click="goToTerm">Terms Index</button>
       <button class="button is-fullwidth is-info" @click="goToHome">EXERCISE</button>
       <button class="button is-fullwidth" @click="playVoice">EXERCISE</button>
+      <!-- <audio :src="audioSrc" autoplay></audio> -->
     </div>
     <div class="column">
       <exercise-table
@@ -51,7 +52,8 @@ export default {
         isTable: true,
         isExercise: false,
         isTerm: false,
-      }
+      },
+      audio: new Audio(),
     }
   },
   methods: {
@@ -93,21 +95,28 @@ export default {
       //     },
       //     body: JSON.stringify(sendData),
       //   })
-      fetch('/exercises/play')
+      fetch('/speechs.json')
         .then(response => {
           return response.json()
         })
         .then(data => {
           console.log(data.voice_data)
-          const music = new Audio(data.voice_data)
-          music.play()
+          this.audio.src = data.voice_data
+          this.audio.load()
+          this.audio.addEventListener('loadedmetadata', () => {
+            console.log(this.audio)
+            this.audio.play()
+          })
+          this.audio.addEventListener('ended', () => {
+            this.audio = new Audio()
+            console.log(this.audio)
+          })
+          // const voice = new Audio('/output.mp3')
+          // voice.play()
         })
         .catch(error => {
           console.log(error)
         })
-
-      // const music = new Audio('/output.mp3')
-      // music.play()
     },
     fetchCurrentUser: function() {
       fetch('/exercises.json')
