@@ -67,3 +67,5 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem "aws-sdk-s3", require: false
+
+gem 'google-cloud-text_to_speech', '~> 1.1', '>= 1.1.2'

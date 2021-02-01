@@ -8,6 +8,7 @@
       ></nav-bar>
       <button class="button is-fullwidth is-light is-info" @click="goToTerm">Terms Index</button>
       <button class="button is-fullwidth is-info" @click="goToHome">EXERCISE</button>
+      <button class="button is-fullwidth" @click="playVoice">EXERCISE</button>
     </div>
     <div class="column">
       <exercise-table
@@ -70,6 +71,43 @@ export default {
       this.isDoing.isTerm = true
 
       this.questionData = {}
+    },
+    playVoice: function() {
+      // const sendData = {
+      //   "input":{
+      //     "text":"Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets."
+      //   },
+      //   "voice":{
+      //     "languageCode":"en-gb",
+      //     "name":"en-GB-Standard-A",
+      //     "ssmlGender":"FEMALE"
+      //   },
+      //   "audioConfig":{
+      //     "audioEncoding":"MP3"
+      //   }
+      // }
+      // fetch('https://texttospeech.googleapis.com/v1/text:synthesize', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(sendData),
+      //   })
+      fetch('/exercises/play')
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data.voice_data)
+          const music = new Audio(data.voice_data)
+          music.play()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+      // const music = new Audio('/output.mp3')
+      // music.play()
     },
     fetchCurrentUser: function() {
       fetch('/exercises.json')
