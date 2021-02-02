@@ -4,11 +4,17 @@
     <button type="submit" class="button is-fullwidth is-primary">ComplexSearch</button>
     <div class="field">
       <label class="label">Content</label>
-      <input type="text" class="input" v-model="searchInfo.content" placeholder="Content">
+      <input type="text" class="input" @focus="onfocus('content')" v-model="searchInfo.content" placeholder="Content">
     </div>
     <div class="field">
       <label class="label">Term</label>
-      <input type="text" class="input" @keyup="getSearchTerm" v-model="searchInfo.term" placeholder="Term">
+      <input
+        type="text"
+        class="input"
+        @keyup="getSearchTerm"
+        @focus="onfocus('term')"
+        v-model="searchInfo.term"
+        placeholder="Term">
       <ul>
         <li
           v-for="(searchTermResult, index) in searchTermResults"
@@ -20,7 +26,7 @@
     </div>
     <div class="field">
       <label class="label">Username</label>
-      <input type="text" class="input" v-model="searchInfo.username" placeholder="Username">
+      <input type="text" class="input" @focus="onfocus('username')" v-model="searchInfo.username" placeholder="Username">
     </div>
   </form>
 </div>
@@ -42,6 +48,7 @@ export default {
         username: '',
       },
       searchTermResults: [],
+      searchUsernameResults: [],
     }
   },
   watch: {
@@ -58,6 +65,16 @@ export default {
     },
   },
   methods: {
+    onfocus: function(input) {
+      if (input === 'content') {
+        this.searchTermResults = []
+        this.searchUsernameResults = []
+      } else if(input === 'term') {
+        this.searchUsernameResults = []
+      } else if(input === 'username') {
+        this.searchTermResults = []
+      }
+    },
     getSearchTerm: function() {
       fetch(`posts/search/?keyword=${this.searchInfo.term}`)
         .then(response => {
