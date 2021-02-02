@@ -46,8 +46,8 @@
   <div :class="{ 'columns': !isShow }">
     <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
       <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
-      <!-- <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a> -->
+      <!-- <a>@bulmaio</a> -->
+      <!-- <a href="#">#css</a> -->
     </div>
     <div :class="['block', 'column', { 'is-one-third': !isShow }]" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': isShow }" alt="Placeholder image">
@@ -63,7 +63,7 @@
     <span class="heart">♡</span>
     <span v-if="post.favorite_count !== 0">{{ post.favorite_count }}</span>
   </div>
-  <div class="card-footer-item">ぷ</div>
+  <div class="card-footer-item"></div>
 </div>
 </template>
 
@@ -89,7 +89,18 @@ export default {
     },
     isShow: function() {
       return this.post.id === this.showPostId
-    }
+    },
+    linkedPostContent: function() {
+      let str = this.post.content
+      const array = str.match(/(#.*?)(?=\s)/g)
+      if(str.includes('#')) {
+        console.log(array)
+        for(let i = 0; i < array.length; i++) {
+          str = str.replace(array[i], array[i].replace('#','<a>').concat('</a>'))
+        }
+      }
+      return str
+    },
   },
   methods: {
     doDeletePost: function(post_id) {

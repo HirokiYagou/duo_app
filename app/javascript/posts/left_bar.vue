@@ -6,6 +6,9 @@
   ></nav-bar>
   <button class="button is-light is-primary is-fullwidth" @click="doFetchPosts">HOME</button>
   <button class="button is-primary is-fullwidth" @click="doOpenForm">NEW POST</button>
+  <form @submit.prevent="searchPost">
+    <input class="input is-normal" type="text" placeholder="search with keyword">
+  </form>
 </div>
 </template>
 
@@ -42,5 +45,8 @@ export default {
 <style scoped>
 .button {
   border: none;
+}
+form {
+  margin-top: 20px;
 }
 </style>
