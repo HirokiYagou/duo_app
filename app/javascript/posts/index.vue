@@ -188,12 +188,7 @@ export default {
     setUserPosts: function(user) {
       this.showPostId = undefined
       this.searchInfoParams = !this.searchInfoParams
-      this.templatePosts = []
-      this.allPosts.forEach(post => {
-        if (post.user.id === user.id) {
-          this.templatePosts.push(post)
-        }
-      })
+      this.templatePosts = this.allPosts.filter(post => post.user.id === user.id)
       this.showUser.id = user.id
       this.showUser.name = user.name
       this.showUser.showProfile = this.showProfile
@@ -266,7 +261,8 @@ export default {
       this.showUser = {name: ''}
       this.showPostId = undefined
       let searchPosts = this.allPosts
-      searchPosts = this.allPosts.filter(post => post.content.includes(params.content))
+      searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
+      searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
       this.templatePosts = searchPosts
       // console.log(searchPosts)
     },

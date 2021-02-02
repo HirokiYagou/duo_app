@@ -26,14 +26,20 @@
     </div>
     <div class="field">
       <label class="label">Username</label>
-      <input type="text" class="input" @focus="onfocus('username')" v-model="searchInfo.username" placeholder="Username">
+      <input
+        type="text"
+        class="input"
+        @keyup="getSearchUsername"
+        @focus="onfocus('username')"
+        v-model="searchInfo.username"
+        placeholder="Username">
       <ul>
         <li
           v-for="(searchUsernameResult, index) in searchUsernameResults"
           :key="index"
           @click="setSearchUsername(searchUsernameResult.username)"
           class="search-result"
-        ><a>{{ searchTermResult.english }}</a></li>
+        ><a>@{{ searchUsernameResult.username }}</a></li>
       </ul>
     </div>
   </form>
@@ -100,12 +106,12 @@ export default {
       this.searchTermResults = []
     },
     getSearchUsername: function() {
-      fetch(`user/search/?keyword=${this.searchInfo.username}`)
+      fetch(`users/search/?keyword=${this.searchInfo.username}`)
         .then(response => {
           return response.json()
         })
         .then(data => {
-          this.searchUsernameResultsResults = data
+          this.searchUsernameResults = data
         })
         .catch(error => {
           console.log(error)

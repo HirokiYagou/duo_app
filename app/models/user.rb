@@ -23,4 +23,9 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(keyword)
+    if keyword != ""
+      User.where('username LIKE(?)', "%#{keyword}%").order(:id)
+    end
+  end
 end
