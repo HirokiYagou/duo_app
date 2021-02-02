@@ -6,7 +6,7 @@
   ></nav-bar>
   <button class="button is-light is-primary is-fullwidth" @click="doFetchPosts">HOME</button>
   <button class="button is-primary is-fullwidth" @click="doOpenForm">NEW POST</button>
-  <form @submit.prevent="searchPost">
+  <form @submit.prevent="searchPostByInput">
     <input class="input is-normal" type="text" @keyup="searchTerm" v-model="searchInput" placeholder="search with keyword">
   </form>
   <div class="box" v-show="searchInput">
@@ -14,6 +14,7 @@
       <li
         v-for="(searchResult, index) in searchResults"
         :key="index"
+        @click="searchPostByTerm(searchResult.english)"
         class="search-result"
       ><a>{{ searchResult.english }}</a></li>
     </ul>
@@ -32,7 +33,8 @@ export default {
     currentUserName: String,
   },
   emits: [
-    'do-set-user-posts'
+    'do-set-user-posts',
+    'search-post-by-input'
   ],
   data() {
     return {
@@ -64,6 +66,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    searchPostByInput: function() {
+      this.$emit('search-post-by-input', this.searchInput)
     }
   }
 }

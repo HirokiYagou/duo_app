@@ -20,6 +20,7 @@
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
+        @search-post-by-input="searchPostByInput($event)"
       ></left-bar>
     </div>
 
@@ -254,6 +255,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    searchPostByInput: function(input) {
+      this.templatePosts = this.allPosts.filter(post => post.content.includes(input))
     },
     openForm: function() {
       this.isActives.formActive = true

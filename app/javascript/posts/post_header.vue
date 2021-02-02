@@ -84,7 +84,6 @@ export default {
         this.updateNickname = next.showProfile.nickname
         this.updateStatus = next.showProfile.status
         this.isActive = 'all'
-        console.log(1234)
       },
       deep: true,
       immediate: true
