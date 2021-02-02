@@ -136,6 +136,7 @@ export default {
           this.showUser = {name: ''}
           this.showProfile = {}
           this.showPostId = undefined
+          this.searchInfo = {}
         })
         .catch(error => {
           console.log(error)
@@ -186,6 +187,7 @@ export default {
     },
     setUserPosts: function(user) {
       this.showPostId = undefined
+      this.searchInfo = {}
       this.templatePosts = []
       this.allPosts.forEach(post => {
         if (post.user.id === user.id) {
@@ -202,6 +204,7 @@ export default {
     },
     showPost: function(post) {
       this.showUser = {name: ''}
+      this.searchInfo = {}
       this.showPostId = post.id
       const array = []
       array.push(post)
@@ -260,6 +263,8 @@ export default {
         })
     },
     searchPostByInput: function(input) {
+      this.showUser = {name: ''}
+      this.showPostId = undefined
       this.templatePosts = this.allPosts.filter(post => post.content.includes(input))
     },
     openForm: function() {
