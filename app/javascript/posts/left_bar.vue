@@ -9,6 +9,15 @@
   <form @submit.prevent="searchPost">
     <input class="input is-normal" type="text" @keyup="searchTerm" v-model="searchInput" placeholder="search with keyword">
   </form>
+  <div class="box" v-show="searchInput">
+    <ul>
+      <li
+        v-for="(searchResult, index) in searchResults"
+        :key="index"
+        class="search-result"
+      ><a>{{ searchResult.english }}</a></li>
+    </ul>
+  </div>
 </div>
 </template>
 
@@ -27,7 +36,8 @@ export default {
   ],
   data() {
     return {
-      searchInput: ''
+      searchInput: '',
+      searchResults: [],
     }
   },
   methods: {
@@ -49,7 +59,7 @@ export default {
           return response.json()
         })
         .then(data => {
-          console.log(data)
+          this.searchResults = data
         })
         .catch(error => {
           console.log(error)
@@ -65,5 +75,9 @@ export default {
 }
 form {
   margin-top: 20px;
+}
+.search-result {
+  margin-bottom: 10px;
+  border-bottom: 1px solid ghostwhite;
 }
 </style>
