@@ -17,6 +17,7 @@
     <div class="column is-one-fifth left-menu">
       <left-bar
         :current-user-name="currentUser.name"
+        :search-info="searchInfo"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
@@ -109,6 +110,8 @@ export default {
       },
 
       showPostId: undefined,
+
+      searchInfo: {},
     }
   },
   watch: {
