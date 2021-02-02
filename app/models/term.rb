@@ -13,7 +13,7 @@ class Term < ApplicationRecord
 
   def self.search(keyword)
     if keyword != ""
-      Term.where('english LIKE(?)', "%#{keyword}%").where.not(word_id: 0).order(:sentence_id)
+      Term.where('english LIKE(?)', "%#{keyword}%").where.not(word_id: 0).order(:sentence_id).first(10)
     end
   end
 end
