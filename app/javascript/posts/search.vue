@@ -27,6 +27,14 @@
     <div class="field">
       <label class="label">Username</label>
       <input type="text" class="input" @focus="onfocus('username')" v-model="searchInfo.username" placeholder="Username">
+      <ul>
+        <li
+          v-for="(searchUsernameResult, index) in searchUsernameResults"
+          :key="index"
+          @click="setSearchUsername(searchUsernameResult.username)"
+          class="search-result"
+        ><a>{{ searchTermResult.english }}</a></li>
+      </ul>
     </div>
   </form>
 </div>
@@ -90,6 +98,22 @@ export default {
     setSearchTerm: function(term) {
       this.searchInfo.term = term
       this.searchTermResults = []
+    },
+    getSearchUsername: function() {
+      fetch(`user/search/?keyword=${this.searchInfo.username}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.searchUsernameResultsResults = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    setSearchUsername: function(username) {
+      this.searchInfo.username = username
+      this.searchUsernameResults = []
     },
     searchComplex: function() {
       this.$emit('search-complex', this.searchInfo)
