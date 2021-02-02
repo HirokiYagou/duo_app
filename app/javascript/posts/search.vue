@@ -1,74 +1,81 @@
 <template>
 <div class="search-area-wrapper">
-  <div class="search-initially" v-show="!Object.keys(searchInfo).length">
-    <form @submit.prevent="searchPostByInput">
-      <input type="text" class="input is-normal" @keyup="searchTerm" v-model="searchInput" placeholder="search with keyword">
-    </form>
-    <div class="box" v-show="searchInput">
+  <form @submit.prevent="searchComplex">
+    <button type="submit" class="button is-fullwidth is-primary">ComplexSearch</button>
+    <div class="field">
+      <label class="label">Content</label>
+      <input type="text" class="input" v-model="searchInfo.content" placeholder="Content">
+    </div>
+    <div class="field">
+      <label class="label">Term</label>
+      <input type="text" class="input" @keyup="getSearchTerm" v-model="searchInfo.term" placeholder="Term">
       <ul>
         <li
-          v-for="(searchResult, index) in searchResults"
+          v-for="(searchTermResult, index) in searchTermResults"
           :key="index"
-          @click="searchPostByTerm(searchResult.english)"
+          @click="setSearchTerm(searchTermResult.english)"
           class="search-result"
-        ><a>{{ searchResult.english }}</a></li>
+        ><a>{{ searchTermResult.english }}</a></li>
       </ul>
     </div>
-  </div>
-
-  <div class="search-detailly" v-show="Object.keys(searchInfo).length">
-    <h5 class="title is-5 has-text-centered"> ComplexSearch</h5>
-    <form @submit.prevent="searchDetail">
-      <div class="field">
-        <label class="label">Content</label>
-        <input type="text" class="input" v-model="searchContent" placeholder="Content">
-      </div>
-    </form>
-  </div>
+    <div class="field">
+      <label class="label">Username</label>
+      <input type="text" class="input" v-model="searchInfo.username" placeholder="Username">
+    </div>
+  </form>
 </div>
 </template>
 
 <script>
 export default {
   props: {
-    searchInfo: Object,
+    searchInfoParams: Boolean,
   },
   emits: [
-    'search-post-by-input',
+    'search-complex',
   ],
   data() {
     return {
-      searchInput: '',
-      searchResults: [],
-      searchContent: '',
+      searchInfo: {
+        content: '',
+        term: '',
+        username: '',
+      },
+      searchTermResults: [],
     }
   },
   watch: {
-    searchInfo: {
-      handler: function(next) {
-        this.searchContent = next.content
+    searchInfoParams: {
+      handler: function() {
+        this.searchInfo = {
+          content: '',
+          term: '',
+          username: '',
+        }
       },
       deep: true,
       immediate: true
     },
   },
   methods: {
-    searchTerm: function() {
-      fetch(`posts/search/?keyword=${this.searchInput}`)
+    getSearchTerm: function() {
+      fetch(`posts/search/?keyword=${this.searchInfo.term}`)
         .then(response => {
           return response.json()
         })
         .then(data => {
-          this.searchResults = data
+          this.searchTermResults = data
         })
         .catch(error => {
           console.log(error)
         })
     },
-    searchPostByInput: function() {
-      this.$emit('search-post-by-input', this.searchInput)
-      this.searchInfo.content = this.searchInput
-      this.searchInput = ''
+    setSearchTerm: function(term) {
+      this.searchInfo.term = term
+      this.searchTermResults = []
+    },
+    searchComplex: function() {
+      this.$emit('search-complex', this.searchInfo)
     }
   }
 }
@@ -78,8 +85,5 @@ export default {
 .search-result {
   margin-bottom: 10px;
   border-bottom: 1px solid ghostwhite;
-}
-.search-detailly> h5 {
-  margin-bottom: 10px;
 }
 </style>

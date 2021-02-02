@@ -17,11 +17,11 @@
     <div class="column is-one-fifth left-menu">
       <left-bar
         :current-user-name="currentUser.name"
-        :search-info="searchInfo"
+        :search-info-params="searchInfoParams"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
-        @search-post-by-input="searchPostByInput($event)"
+        @search-complex="searchComplex($event)"
       ></left-bar>
     </div>
 
@@ -111,7 +111,7 @@ export default {
 
       showPostId: undefined,
 
-      searchInfo: {},
+      searchInfoParams: false,
     }
   },
   watch: {
@@ -136,7 +136,7 @@ export default {
           this.showUser = {name: ''}
           this.showProfile = {}
           this.showPostId = undefined
-          this.searchInfo = {}
+          this.searchInfoParams = !this.searchInfoParams
         })
         .catch(error => {
           console.log(error)
@@ -187,7 +187,7 @@ export default {
     },
     setUserPosts: function(user) {
       this.showPostId = undefined
-      this.searchInfo = {}
+      this.searchInfoParams = !this.searchInfoParams
       this.templatePosts = []
       this.allPosts.forEach(post => {
         if (post.user.id === user.id) {
@@ -204,7 +204,7 @@ export default {
     },
     showPost: function(post) {
       this.showUser = {name: ''}
-      this.searchInfo = {}
+      this.searchInfoParams = !this.searchInfoParams
       this.showPostId = post.id
       const array = []
       array.push(post)
@@ -262,10 +262,13 @@ export default {
           console.log(error)
         })
     },
-    searchPostByInput: function(input) {
+    searchComplex: function(params) {
       this.showUser = {name: ''}
       this.showPostId = undefined
-      this.templatePosts = this.allPosts.filter(post => post.content.includes(input))
+      let searchPosts = this.allPosts
+      searchPosts = this.allPosts.filter(post => post.content.includes(params.content))
+      this.templatePosts = searchPosts
+      // console.log(searchPosts)
     },
     openForm: function() {
       this.isActives.formActive = true

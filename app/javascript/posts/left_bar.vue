@@ -8,8 +8,8 @@
   <button class="button is-primary is-fullwidth new-post" @click="doOpenForm">NEW POST</button>
 
   <search-area
-    :search-info="searchInfo"
-    @search-post-by-input="searchPostByInput($event)"
+    :search-info-params="searchInfoParams"
+    @search-complex="searchComplex($event)"
   ></search-area>
 </div>
 </template>
@@ -25,13 +25,13 @@ export default {
   },
   props: {
     currentUserName: String,
-    searchInfo: Object,
+    searchInfoParams: Boolean,
   },
   emits: [
     'do-open-form',
     'do-fetch-posts',
     'do-set-user-posts',
-    'search-post-by-input'
+    'search-complex'
   ],
   data() {
     return {
@@ -52,8 +52,8 @@ export default {
     doSetUserPosts: function() {
       this.$emit("do-set-user-posts")
     },
-    searchPostByInput: function(input) {
-      this.$emit('search-post-by-input', input)
+    searchComplex: function(params) {
+      this.$emit('search-complex', params)
     }
   }
 }
