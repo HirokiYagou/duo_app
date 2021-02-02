@@ -26,6 +26,10 @@ class PostsController < ApplicationController
     Post.destroy(params[:id])
   end
 
+  def search
+    @terms = Term.search(params[:keyword])
+  end
+
   def check_favorite
     user = User.find(current_user.id)
     Favorite.click(user, params[:id])

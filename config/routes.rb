@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
+      get 'search'
       get '/user/:id', to: 'posts#get_profile'
       patch '/user/:id', to: 'posts#update_profile'
     end

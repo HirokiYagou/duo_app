@@ -7,7 +7,7 @@
   <button class="button is-light is-primary is-fullwidth" @click="doFetchPosts">HOME</button>
   <button class="button is-primary is-fullwidth" @click="doOpenForm">NEW POST</button>
   <form @submit.prevent="searchPost">
-    <input class="input is-normal" type="text" @keydown="searchTerm" v-model="searchInput" placeholder="search with keyword">
+    <input class="input is-normal" type="text" @keyup="searchTerm" v-model="searchInput" placeholder="search with keyword">
   </form>
 </div>
 </template>
@@ -44,7 +44,16 @@ export default {
       this.$emit("do-set-user-posts")
     },
     searchTerm: function() {
-      fetch(`posts/${this.searchInput}`)
+      fetch(`posts/search/?keyword=${this.searchInput}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

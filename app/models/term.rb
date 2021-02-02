@@ -10,4 +10,10 @@ class Term < ApplicationRecord
     validates :english
     validates :japanese
   end
+
+  def self.search(keyword)
+    if keyword != ""
+      Term.where('english LIKE(?)', "%#{keyword}%").order('sentence_id')
+    end
+  end
 end
