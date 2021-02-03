@@ -1,0 +1,2 @@
+class PostTerm < ApplicationRecord
+end
