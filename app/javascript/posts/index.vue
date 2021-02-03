@@ -55,6 +55,7 @@
           @set-user-posts="fetchProfile($event)"
           @do-reply="doReply($event)"
           @show-post="showPost($event)"
+          @search-complex="searchComplex($event)"
         ></post>
       </div>
     </div>
@@ -262,10 +263,9 @@ export default {
       this.showPostId = undefined
       let searchPosts = this.allPosts
       searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
+      searchPosts = searchPosts.filter(post => post.terms.includes(params.term))
       searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
-      console.log(params)
       this.templatePosts = searchPosts
-      // console.log(searchPosts)
     },
     openForm: function() {
       this.isActives.formActive = true
