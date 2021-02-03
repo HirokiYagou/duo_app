@@ -44,12 +44,12 @@
   </div>
 
   <div :class="{ 'columns': !isShow }">
-    <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
+    <div class="content is-left-content is-medium column is-two-third" @click="doShowPost">
       <div class="post-content">
         <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
       </div>
       <!-- <a>@bulmaio</a> -->
-      <a class="tag" @click.prevent="searchComplex(term.english)" v-for="term in post.terms" :key="term.id">#{{ term.english }}</a>
+      <a class="tag is-link is-light" @click="searchComplex(term.english)" v-for="term in post.terms" :key="term.id">#{{ term.english }}</a>
     </div>
     <div :class="['block', 'column', { 'is-one-third': !isShow }]" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': isShow }" alt="Placeholder image">
@@ -85,6 +85,11 @@ export default {
     'do-reply',
     'show-post'
   ],
+  data() {
+    return {
+      onTag: false,
+    }
+  },
   computed: {
     isCurrentUser: function() {
       return this.post.user.name === this.current_user_name
@@ -120,8 +125,12 @@ export default {
     doReply: function(post_id) {
       this.$emit("do-reply", post_id)
     },
-    doShowPost: function(post) {
-      this.$emit("show-post", post)
+    doShowPost: function() {
+      if (this.onTag) {
+        this.onTag = false
+      } else {
+        this.$emit("show-post", this.post)
+      }
     },
     dofavorite: function(post_id) {
       fetch(`/posts/${post_id}`)
@@ -141,6 +150,7 @@ export default {
         })
     },
     searchComplex: function(term) {
+      this.onTag = true
       console.log(term)
     }
   }
