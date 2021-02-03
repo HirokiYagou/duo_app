@@ -131,6 +131,8 @@ export default {
       this.$emit("do-post", formData)
       this.uploadContent = ''
       this.uploadImage = null
+      this.searchTermInput = ''
+      this.uploadTerms = []
     },
     getSearchTerm: function() {
       fetch(`posts/search/?keyword=${this.searchTermInput}`)
