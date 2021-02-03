@@ -45,10 +45,11 @@
 
   <div :class="{ 'columns': !isShow }">
     <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
-      <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
+      <div class="post-content">
+        <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
+      </div>
       <!-- <a>@bulmaio</a> -->
-      <a href="#">#css</a>
-      <a href="#">#css</a>
+      <a class="tag" @click.prevent="searchComplex(term.english)" v-for="term in post.terms" :key="term.id">#{{ term.english }}</a>
     </div>
     <div :class="['block', 'column', { 'is-one-third': !isShow }]" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': isShow }" alt="Placeholder image">
@@ -138,6 +139,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    searchComplex: function(term) {
+      console.log(term)
     }
   }
 }
