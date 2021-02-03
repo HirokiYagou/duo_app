@@ -211,7 +211,7 @@ export default {
       this.templatePosts = repliedPost.concat(array.concat(replyPost))
     },
     fetchProfile: function(user) {
-      fetch(`/posts/user/${user.id}`)
+      fetch(`/users/${user.id}/profile`)
         .then(response => {
           return response.json()
         })
@@ -228,7 +228,7 @@ export default {
         })
     },
     updateProfile: function(formData) {
-      fetch(`/posts/user/${this.currentUser.id}`, {
+      fetch(`/users/${this.currentUser.id}/profile/`, {
         method: 'PATCH',
           headers: {
             'X-CSRF-Token': csrfToken(),

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources 'users', only: :index do
     collection do
       get 'search'
+      get '/:id/profile', to: 'users#get_profile'
+      patch '/:id/profile', to: 'users#update_profile'
     end
   end
   
@@ -17,8 +19,6 @@ Rails.application.routes.draw do
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
       get 'search'
-      get '/user/:id', to: 'posts#get_profile'
-      patch '/user/:id', to: 'posts#update_profile'
     end
   end
   get '/posts/:id', to: 'posts#check_favorite'
