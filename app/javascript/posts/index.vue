@@ -18,6 +18,7 @@
       <left-bar
         :current-user-name="currentUser.name"
         :search-info-params="searchInfoParams"
+        :search-terms-by-tag="searchTermsByTag"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
@@ -113,6 +114,7 @@ export default {
       showPostId: undefined,
 
       searchInfoParams: false,
+      searchTermsByTag: ''
     }
   },
   watch: {
@@ -266,6 +268,7 @@ export default {
       searchPosts = searchPosts.filter(post => post.terms.includes(params.term))
       searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
       this.templatePosts = searchPosts
+      this.searchTermsByTag = params.term
     },
     openForm: function() {
       this.isActives.formActive = true
