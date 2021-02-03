@@ -23,4 +23,9 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(keyword)
+    if keyword != ""
+      User.where('username LIKE(?)', "%#{keyword}%").where.not(id: 1).order(:id).first(10)
+    end
+  end
 end

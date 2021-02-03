@@ -17,9 +17,11 @@
     <div class="column is-one-fifth left-menu">
       <left-bar
         :current-user-name="currentUser.name"
+        :search-info-params="searchInfoParams"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
+        @search-complex="searchComplex($event)"
       ></left-bar>
     </div>
 
@@ -108,6 +110,8 @@ export default {
       },
 
       showPostId: undefined,
+
+      searchInfoParams: false,
     }
   },
   watch: {
@@ -132,6 +136,7 @@ export default {
           this.showUser = {name: ''}
           this.showProfile = {}
           this.showPostId = undefined
+          this.searchInfoParams = !this.searchInfoParams
         })
         .catch(error => {
           console.log(error)
@@ -182,12 +187,8 @@ export default {
     },
     setUserPosts: function(user) {
       this.showPostId = undefined
-      this.templatePosts = []
-      this.allPosts.forEach(post => {
-        if (post.user.id === user.id) {
-          this.templatePosts.push(post)
-        }
-      })
+      this.searchInfoParams = !this.searchInfoParams
+      this.templatePosts = this.allPosts.filter(post => post.user.id === user.id)
       this.showUser.id = user.id
       this.showUser.name = user.name
       this.showUser.showProfile = this.showProfile
@@ -198,6 +199,7 @@ export default {
     },
     showPost: function(post) {
       this.showUser = {name: ''}
+      this.searchInfoParams = !this.searchInfoParams
       this.showPostId = post.id
       const array = []
       array.push(post)
@@ -254,6 +256,16 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    searchComplex: function(params) {
+      this.showUser = {name: ''}
+      this.showPostId = undefined
+      let searchPosts = this.allPosts
+      searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
+      searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
+      console.log(params)
+      this.templatePosts = searchPosts
+      // console.log(searchPosts)
     },
     openForm: function() {
       this.isActives.formActive = true
