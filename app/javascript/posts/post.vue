@@ -47,7 +47,8 @@
     <div class="content is-left-content is-medium column is-two-third" @click="doShowPost(post)">
       <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
       <!-- <a>@bulmaio</a> -->
-      <!-- <a href="#">#css</a> -->
+      <a href="#">#css</a>
+      <a href="#">#css</a>
     </div>
     <div :class="['block', 'column', { 'is-one-third': !isShow }]" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': isShow }" alt="Placeholder image">

@@ -14,7 +14,35 @@
             cols="30"
             rows="5"
             autofocus
-            required></textarea>
+            required>
+          </textarea>
+          <div class="columns">
+            <div class="column is-half">
+              <input
+                type="text"
+                class="input"
+                @keyup="getSearchTerm"
+                v-model="searchTermInput"
+                placeholder="タグ検索">
+              <ul>
+                <li
+                  v-for="(searchTermResult, index) in searchTermResults"
+                  :key="index"
+                  @click="setSearchTerm(searchTermResult.english)"
+                  class="search-result"
+                ><a>{{ searchTermResult.english }}</a></li>
+              </ul>
+            </div>
+            <div class="column is-half tags">
+              <span
+                class="tag"
+                v-for="(uploadTerm, index) in uploadTerms"
+                :key="index"
+              >{{ uploadTerm }}
+                <button class="delete is-small"></button>
+              </span>
+            </div>
+          </div>
           <input type="file" name="post[image]" @change="selectImage" id="post-image">
           <input type="hidden" v-model="uploadReplyTo" name="post[reply_to]">
           <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="!isEdit">投稿する</button>
@@ -43,6 +71,9 @@ export default {
       uploadContent: '',
       uploadImage: null,
       uploadReplyTo: null,
+      uploadTerms: [],
+      searchTermInput: '',
+      searchTermResults: [],
     }
   },
   computed: {
@@ -96,8 +127,26 @@ export default {
       this.uploadContent = ''
       this.uploadImage = null
     },
+    getSearchTerm: function() {
+      fetch(`posts/search/?keyword=${this.searchTermInput}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.searchTermResults = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    setSearchTerm: function(term) {
+      this.uploadTerms.push(term)
+      this.searchTermResults = []
+      this.searchTermInput = ''
+    },
     doCloseForm: function() {
       this.$emit("close-form")
+      this.searchTermInput = ''
     },
   },
 }
@@ -106,6 +155,9 @@ export default {
 <style scoped>
 .textarea {
   resize: none;
+  border: none;
+}
+.column> .input {
   border: none;
 }
 .empty {
