@@ -42,6 +42,12 @@
         ><a>@{{ searchUsernameResult.username }}</a></li>
       </ul>
     </div>
+    <!-- <div class="field">
+      <label class="label">Date</label>
+      <input type="text" class="input">
+      <p>↓</p>
+      <input type="date" class="input">
+    </div> -->
   </form>
 </div>
 </template>
@@ -60,6 +66,8 @@ export default {
         content: '',
         term: '',
         username: '',
+        // dateFrom: '',
+        // dateTo: "2021-01-01"
       },
       searchTermResults: [],
       searchUsernameResults: [],

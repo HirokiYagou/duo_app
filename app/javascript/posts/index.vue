@@ -263,6 +263,7 @@ export default {
       let searchPosts = this.allPosts
       searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
       searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
+      console.log(params)
       this.templatePosts = searchPosts
       // console.log(searchPosts)
     },
