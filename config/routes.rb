@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     get 'profiles', to: 'users/registrations#new_profile'
     post 'profiles', to: 'users/registrations#create_profile'
   end
-
+  
+  root to: 'users#index'
   resources 'users', only: :index do
     collection do
       get 'search'
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
     end
   end
   
-  root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
       get 'search'
