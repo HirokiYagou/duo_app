@@ -39,7 +39,7 @@
                 v-for="(uploadTerm, index) in uploadTerms"
                 :key="index"
               >{{ uploadTerm }}
-                <button class="delete is-small"></button>
+                <button type="button" class="delete is-small" @click.prevent="deleteUploadTerm(index)"></button>
               </span>
             </div>
           </div>
@@ -143,6 +143,10 @@ export default {
       this.uploadTerms.push(term)
       this.searchTermResults = []
       this.searchTermInput = ''
+    },
+    deleteUploadTerm: function(index) {
+      console.log(index)
+      this.uploadTerms.splice(index, 1)
     },
     doCloseForm: function() {
       this.$emit("close-form")
