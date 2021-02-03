@@ -124,7 +124,9 @@ export default {
         formData.append('post[reply_to]', this.uploadReplyTo)
       }
       if (this.uploadTerms.length) {
-        formData.append('post[term_ids][]', this.uploadTerms)
+        this.uploadTerms.forEach(uploadTerm => {
+          formData.append('post[term_ids][]', uploadTerm.term_id)
+        });
       }
       this.$emit("do-post", formData)
       this.uploadContent = ''
@@ -154,6 +156,7 @@ export default {
     doCloseForm: function() {
       this.$emit("close-form")
       this.searchTermInput = ''
+      this.uploadTerms = []
     },
   },
 }
