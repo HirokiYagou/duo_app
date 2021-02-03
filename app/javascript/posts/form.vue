@@ -28,7 +28,7 @@
                 <li
                   v-for="(searchTermResult, index) in searchTermResults"
                   :key="index"
-                  @click="setSearchTerm(searchTermResult.english)"
+                  @click="setSearchTerm(searchTermResult)"
                   class="search-result"
                 ><a>{{ searchTermResult.english }}</a></li>
               </ul>
@@ -38,7 +38,7 @@
                 class="tag"
                 v-for="(uploadTerm, index) in uploadTerms"
                 :key="index"
-              >{{ uploadTerm }}
+              >{{ uploadTerm.english }}
                 <button type="button" class="delete is-small" @click.prevent="deleteUploadTerm(index)"></button>
               </span>
             </div>
@@ -122,6 +122,9 @@ export default {
       }
       if (this.uploadReplyTo) {
         formData.append('post[reply_to]', this.uploadReplyTo)
+      }
+      if (this.uploadTerms.length) {
+        formData.append('post[term_ids][]', this.uploadTerms)
       }
       this.$emit("do-post", formData)
       this.uploadContent = ''
