@@ -6,19 +6,19 @@ Rails.application.routes.draw do
     get 'profiles', to: 'users/registrations#new_profile'
     post 'profiles', to: 'users/registrations#create_profile'
   end
-
+  
+  root to: 'users#index'
   resources 'users', only: :index do
     collection do
       get 'search'
+      get '/:id/profile', to: 'users#get_profile'
+      patch '/:id/profile', to: 'users#update_profile'
     end
   end
   
-  root to: 'posts#index'
   resources 'posts', only: [:index, :create, :update, :destroy] do
     collection do
       get 'search'
-      get '/user/:id', to: 'posts#get_profile'
-      patch '/user/:id', to: 'posts#update_profile'
     end
   end
   get '/posts/:id', to: 'posts#check_favorite'

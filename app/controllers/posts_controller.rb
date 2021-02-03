@@ -42,22 +42,11 @@ class PostsController < ApplicationController
     @post_ids = Favorite.get_favorites_post_id(user)
   end
 
-  def get_profile
-    @profile = Profile.where(user_id: params[:id])[0]
-  end
 
-  def update_profile
-    profile = Profile.where(user_id: params[:id])[0]
-    profile.update(profile_params)
-  end
 
   private
 
   def post_params
     params.require(:post).permit(:content, :image, :reply_to).merge(user_id: current_user.id)
-  end
-
-  def profile_params
-    params.require(:profile).permit(:nickname, :status, :icon, :header)
   end
 end
