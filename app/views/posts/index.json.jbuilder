@@ -16,11 +16,9 @@ json.set! :posts do
     if post.image.attached?
       json.image url_for(post.image)
     end
-    array = []
-    post.terms.length.times do |i|
-      array << post.terms[i].english
+    json.terms do
+      json.array! post.terms, :id, :english
     end
-    json.terms array
     json.set! :user do
       json.id post.user_id
       json.name post.user.username

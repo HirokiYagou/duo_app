@@ -265,7 +265,13 @@ export default {
       this.showPostId = undefined
       let searchPosts = this.allPosts
       searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
-      searchPosts = searchPosts.filter(post => post.terms.includes(params.term))
+      searchPosts.forEach((post, index) => {
+        const postTerm = post.terms.filter(term => term.english === params.term)
+        if (postTerm.length === 0) {
+          searchPosts.splice(index, 1, 0)
+        }
+      })
+      searchPosts = searchPosts.filter(post => post !== 0)
       searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
       this.templatePosts = searchPosts
       this.searchTermsByTag = params.term

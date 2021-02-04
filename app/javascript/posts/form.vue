@@ -94,6 +94,7 @@ export default {
       handler: function(next) {
         if (next.editPost.content) {
           this.uploadContent = next.editPost.content
+          this.uploadTerms = next.editPost.terms
         } else {
           this.uploadContent = ''
         }

@@ -49,7 +49,7 @@
         <p :class="{'is-size-3': isShow }">{{ post.content }}</p>
       </div>
       <!-- <a>@bulmaio</a> -->
-      <a class="tag is-link is-light is-medium" @click="doSearchComplex(term)" v-for="(term, index) in post.terms" :key="index">#{{ term }}</a>
+      <a class="tag is-link is-light is-medium right-margin" @click="doSearchComplex(term.english)" v-for="(term, index) in post.terms" :key="index">#{{ term.english }}</a>
     </div>
     <div :class="['block', 'column', { 'is-one-third': !isShow }]" v-if="post.image">
         <img @click="openImageModal(post.image)" :src="post.image" :class="{'is-fullwidth': isShow }" alt="Placeholder image">
