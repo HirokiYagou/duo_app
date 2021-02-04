@@ -14,7 +14,35 @@
             cols="30"
             rows="5"
             autofocus
-            required></textarea>
+            required>
+          </textarea>
+          <div class="columns">
+            <div class="column is-half">
+              <input
+                type="text"
+                class="input"
+                @keyup="getSearchTerm"
+                v-model="searchTermInput"
+                placeholder="タグ検索">
+              <ul>
+                <li
+                  v-for="(searchTermResult, index) in searchTermResults"
+                  :key="index"
+                  @click="setSearchTerm(searchTermResult)"
+                  class="search-result"
+                ><a>{{ searchTermResult.english }}</a></li>
+              </ul>
+            </div>
+            <div class="column is-half tags">
+              <span
+                class="tag"
+                v-for="(uploadTerm, index) in uploadTerms"
+                :key="index"
+              >{{ uploadTerm.english }}
+                <button type="button" class="delete is-small" @click.prevent="deleteUploadTerm(index)"></button>
+              </span>
+            </div>
+          </div>
           <input type="file" name="post[image]" @change="selectImage" id="post-image">
           <input type="hidden" v-model="uploadReplyTo" name="post[reply_to]">
           <button type="submit" :class="['button', 'is-primary', isEmpty]" v-show="!isEdit">投稿する</button>
@@ -43,6 +71,9 @@ export default {
       uploadContent: '',
       uploadImage: null,
       uploadReplyTo: null,
+      uploadTerms: [],
+      searchTermInput: '',
+      searchTermResults: [],
     }
   },
   computed: {
@@ -63,6 +94,7 @@ export default {
       handler: function(next) {
         if (next.editPost.content) {
           this.uploadContent = next.editPost.content
+          this.uploadTerms = next.editPost.terms
         } else {
           this.uploadContent = ''
         }
@@ -92,12 +124,42 @@ export default {
       if (this.uploadReplyTo) {
         formData.append('post[reply_to]', this.uploadReplyTo)
       }
+      if (this.uploadTerms.length) {
+        this.uploadTerms.forEach(uploadTerm => {
+          formData.append('post[term_ids][]', uploadTerm.id)
+        });
+      }
       this.$emit("do-post", formData)
       this.uploadContent = ''
       this.uploadImage = null
+      this.searchTermInput = ''
+      this.uploadTerms = []
+    },
+    getSearchTerm: function() {
+      fetch(`posts/search/?keyword=${this.searchTermInput}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.searchTermResults = data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    setSearchTerm: function(term) {
+      this.uploadTerms.push(term)
+      this.searchTermResults = []
+      this.searchTermInput = ''
+    },
+    deleteUploadTerm: function(index) {
+      console.log(index)
+      this.uploadTerms.splice(index, 1)
     },
     doCloseForm: function() {
       this.$emit("close-form")
+      this.searchTermInput = ''
+      this.uploadTerms = []
     },
   },
 }
@@ -106,6 +168,9 @@ export default {
 <style scoped>
 .textarea {
   resize: none;
+  border: none;
+}
+.column> .input {
   border: none;
 }
 .empty {

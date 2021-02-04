@@ -56,6 +56,7 @@
 export default {
   props: {
     searchInfoParams: Boolean,
+    searchTermsByTag: String,
   },
   emits: [
     'search-complex',
@@ -85,6 +86,12 @@ export default {
       deep: true,
       immediate: true
     },
+    searchTermsByTag: {
+      handler: function(next) {
+        this.searchInfo.term = next
+      },
+      deep: true
+    }
   },
   methods: {
     onfocus: function(input) {

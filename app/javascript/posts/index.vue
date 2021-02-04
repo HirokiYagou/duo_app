@@ -18,6 +18,7 @@
       <left-bar
         :current-user-name="currentUser.name"
         :search-info-params="searchInfoParams"
+        :search-terms-by-tag="searchTermsByTag"
         @do-open-form="openForm"
         @do-fetch-posts="fetchPosts"
         @do-set-user-posts="fetchProfile(currentUser)"
@@ -55,6 +56,7 @@
           @set-user-posts="fetchProfile($event)"
           @do-reply="doReply($event)"
           @show-post="showPost($event)"
+          @search-complex="searchComplex($event)"
         ></post>
       </div>
     </div>
@@ -83,7 +85,6 @@ export default {
       currentUser: {},
       allPosts: [],
       templatePosts: [],
-      post: {},
       assets: {},
       
       isActives: {
@@ -112,15 +113,8 @@ export default {
       showPostId: undefined,
 
       searchInfoParams: false,
+      searchTermsByTag: ''
     }
-  },
-  watch: {
-    post: {
-      handler: function(next) {
-        this.allPosts.unshift(next)
-      },
-      deep: true
-    },
   },
   methods: {
     fetchPosts: function() {
@@ -160,7 +154,8 @@ export default {
           if (editId) {
             this.allPosts.splice(this.editInfo.editIndex, 1, data)
           } else {
-            this.post = data
+            this.allPosts.unshift(data)
+            this.templatePosts = this.allPosts
           }
             this.closeForm()
         })
@@ -262,10 +257,16 @@ export default {
       this.showPostId = undefined
       let searchPosts = this.allPosts
       searchPosts = this.allPosts.filter(post => post.content.toLowerCase().includes(params.content))
+      searchPosts.forEach((post, index) => {
+        const postTerm = post.terms.filter(term => term.english === params.term)
+        if (postTerm.length === 0) {
+          searchPosts.splice(index, 1, 0)
+        }
+      })
+      searchPosts = searchPosts.filter(post => post !== 0)
       searchPosts = searchPosts.filter(post => post.user.name.includes(params.username))
-      console.log(params)
       this.templatePosts = searchPosts
-      // console.log(searchPosts)
+      this.searchTermsByTag = params.term
     },
     openForm: function() {
       this.isActives.formActive = true

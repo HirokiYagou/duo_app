@@ -1,5 +1,7 @@
 class Term < ApplicationRecord
   has_many :exercises
+  has_many :post_terms
+  has_many :posts, through: :post_terms
   
   with_options presence: true do
     with_options numericality: true do

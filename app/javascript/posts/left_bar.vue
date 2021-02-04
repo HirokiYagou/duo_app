@@ -9,6 +9,7 @@
 
   <search-area
     :search-info-params="searchInfoParams"
+    :search-terms-by-tag="searchTermsByTag"
     @search-complex="searchComplex($event)"
   ></search-area>
 </div>
@@ -26,6 +27,7 @@ export default {
   props: {
     currentUserName: String,
     searchInfoParams: Boolean,
+    searchTermsByTag: String,
   },
   emits: [
     'do-open-form',
