@@ -85,7 +85,6 @@ export default {
       currentUser: {},
       allPosts: [],
       templatePosts: [],
-      post: {},
       assets: {},
       
       isActives: {
@@ -116,14 +115,6 @@ export default {
       searchInfoParams: false,
       searchTermsByTag: ''
     }
-  },
-  watch: {
-    post: {
-      handler: function(next) {
-        this.allPosts.unshift(next)
-      },
-      deep: true
-    },
   },
   methods: {
     fetchPosts: function() {
@@ -163,7 +154,8 @@ export default {
           if (editId) {
             this.allPosts.splice(this.editInfo.editIndex, 1, data)
           } else {
-            this.post = data
+            this.allPosts.unshift(data)
+            this.templatePosts = this.allPosts
           }
             this.closeForm()
         })
