@@ -126,7 +126,7 @@ export default {
       }
       if (this.uploadTerms.length) {
         this.uploadTerms.forEach(uploadTerm => {
-          formData.append('post[term_ids][]', uploadTerm.term_id)
+          formData.append('post[term_ids][]', uploadTerm.id)
         });
       }
       this.$emit("do-post", formData)
