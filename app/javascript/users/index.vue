@@ -4,7 +4,7 @@
     <div class="container">
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <h1 class="navbar-item title is-1">DUO3.0</h1>
+          <h1 class="navbar-item title is-1">MyDUO</h1>
           <a class="navbar-item" @click="goToPost">
             POST
           </a>
@@ -40,7 +40,7 @@
 
   <section class="hero is-light is-large">
     <div class="hero-body">
-      <p class="title is-1 has-text-centered">Enjoy Yourself with DUO3.0!!</p>
+      <p class="title is-1 has-text-centered">Enjoy Yourself with DUO!!</p>
     </div>
   </section>
 
@@ -53,10 +53,10 @@
     </div>
     <p class="is-size-4 has-text-centered is-vocabulary-book">英単語帳です！</p>
     <p class="is-size-5 has-text-centered">
-      学習していて楽しい。<br>
-      効率の良い学習ができる。<br>
+      学習していて楽しい<br>
+      効率の良い学習ができる<br>
       使い方は無限大！<br>
-      そんなDUOの魅力をお伝えします。
+      そんなDUOの魅力をお伝えします
     </p>
     <div class="columns is-explanation">
       <div class="column is-one-third">
@@ -163,7 +163,7 @@
   <footer class="footer is-ghost">
     <div class="content has-text-centered">
       <p>
-        <strong>MyDuo</strong> by Yagou Hiroki. The source code is on
+        <strong>MyDUO</strong> by Yagou Hiroki. The source code is on
         <a href="https://github.com/HirokiYagou/duo_app">Github</a>. The website content
         is mainly made by Ruby on Rails &amp; Vue.js.
       </p>
