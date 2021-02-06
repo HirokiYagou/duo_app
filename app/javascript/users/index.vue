@@ -61,7 +61,7 @@
     <div class="columns is-explanation">
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">どんな本？</h4>
-        <div class="images columns is-centered" @click="openExplainModal(isBook)">
+        <div class="images columns is-centered" @click="openExplainModal('isBook')">
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
           </div>
@@ -69,7 +69,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">LOVE</h4>
-        <div class="images columns is-centered" @click="openExplainModal(isLove)">
+        <div class="images columns is-centered" @click="openExplainModal('isLove')">
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
           </div>
@@ -77,7 +77,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">いつやるの？</h4>
-        <div class="images columns is-centered" @click="openExplainModal(isHayashi)">
+        <div class="images columns is-centered" @click="openExplainModal('isHayashi')">
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
           </div>
@@ -87,7 +87,7 @@
   </div>
 
   <explain-modal
-    
+    :modal-content="modalContent"
   ></explain-modal>
 
   <div class="container is-policy">
@@ -186,7 +186,8 @@ export default {
   data() {
     return {
       currentUserName: '',
-      isSignedIn: false
+      isSignedIn: false,
+      modalContent: ''
     }
   },
   methods: {
@@ -214,7 +215,7 @@ export default {
         })
     },
     openExplainModal: function(part) {
-
+      this.modalContent = part
     }
   },
   created: function() {
