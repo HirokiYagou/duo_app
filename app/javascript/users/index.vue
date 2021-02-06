@@ -4,7 +4,7 @@
     <div class="container">
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <img src="/assets/duo3.jpg" alt="" class="navbar-item">
+          <h1 class="navbar-item title is-1">DUO3.0</h1>
           <a class="navbar-item" @click="goToPost">
             POST
           </a>
@@ -14,9 +14,10 @@
         </div>
 
         <div class="navbar-end">
+          <p class="navbar-item">ROONEY</p>
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-dark">SignOut</a>
+              <a class="button is-ghost is-large" href="/users/sign_out" data-method="delete">SignOut</a>
             </div>
           </div>
         </div>
@@ -27,7 +28,7 @@
 
   <section class="hero is-light is-large">
     <div class="hero-body">
-      <p class="title has-text-centered">Enjoy Yourself with DUO3.0!!</p>
+      <p class="title is-1 has-text-centered">Enjoy Yourself with DUO3.0!!</p>
     </div>
   </section>
 
@@ -74,6 +75,10 @@ export default {
 <style scoped>
 .navbar {
   height: 10vh;
+}
+.navbar-start h1 {
+  height: 100%;
+  margin-bottom: 0;
 }
 .navbar-back {
   height: 10vh;
