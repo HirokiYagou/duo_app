@@ -32,28 +32,31 @@
     </div>
   </section>
 
-
-  <section class="hero is-primary">
-    <div class="hero-body">
-      <div>
-        <a class="title" @click="goToPost">POST</a>
+  <div class="container is-policy">
+    <h3 class="title is-3 has-text-centered">DUOを心から愛しています</h3>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div>
+          <a class="title" @click="goToPost">POST</a>
+        </div>
+        <p class="subtitle">
+          POST subtitle
+        </p>
       </div>
-      <p class="subtitle">
-        POST subtitle
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <section class="hero is-link">
-    <div class="hero-body">
-      <div>
-        <a class="title" @click="goToExercise">EXERCISE</a>
+    <section class="hero is-link">
+      <div class="hero-body">
+        <div>
+          <a class="title" @click="goToExercise">EXERCISE</a>
+        </div>
+        <p class="subtitle">
+          EXERCISE subtitle
+        </p>
       </div>
-      <p class="subtitle">
-        EXERCISE subtitle
-      </p>
-    </div>
-  </section>
+    </section>
+  </div>
+
 </div>
 </template>
 
@@ -82,6 +85,10 @@ export default {
 }
 .navbar-back {
   height: 10vh;
+}
+
+.is-policy {
+  margin-top: 10vh;
 }
 .top-hero {
   height: 80vh;
