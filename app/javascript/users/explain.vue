@@ -1,6 +1,6 @@
 <template>
 <div :class="['modal', { 'is-active': isModalActive }]">
-  <div class="modal-background"></div>
+  <div class="modal-background" @click.self="doCloseExplainModal"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Modal title</p>
@@ -11,7 +11,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
+      <button class="button" @click="doCloseExplainModal">Cancel</button>
     </footer>
   </div>
 </div>
@@ -22,6 +22,9 @@ export default {
   props: {
     modalContent: String
   },
+  emits: [
+    'do-close-explain-modal'
+  ],
   computed: {
     isModalActive: function() {
       if (this.modalContent) {
@@ -29,6 +32,11 @@ export default {
       } else {
         return false
       }
+    }
+  },
+  methods: {
+    doCloseExplainModal: function() {
+      this.$emit('do-close-explain-modal')
     }
   }
 }

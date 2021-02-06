@@ -88,6 +88,7 @@
 
   <explain-modal
     :modal-content="modalContent"
+    @do-close-explain-modal="closeExplainModal"
   ></explain-modal>
 
   <div class="container is-policy">
@@ -216,6 +217,9 @@ export default {
     },
     openExplainModal: function(part) {
       this.modalContent = part
+    },
+    closeExplainModal: function() {
+      this.modalContent = ''
     }
   },
   created: function() {
@@ -250,7 +254,12 @@ export default {
 .is-love .images {
   height: 20vh;
   align-items: center;
+  cursor: pointer;
 }
+.is-love .images:hover {
+  background-color: ghostwhite;
+}
+
 .is-vocabulary-book {
   margin-bottom: 5vh;
 }
