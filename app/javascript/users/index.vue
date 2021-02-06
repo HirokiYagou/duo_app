@@ -34,6 +34,12 @@
 
   <div class="container is-love">
     <h3 class="title is-3 has-text-centered">DUOって、何？</h3>
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <img src="/assets/duo.jpg" alt="">
+      </div>
+    </div>
+    <p class="is-size-4 has-text-centered is-vocabulary-book">英単語帳です！</p>
     <p class="is-size-5 has-text-centered">
       学習していて楽しい。<br>
       効率の良い学習ができる。<br>
@@ -67,7 +73,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
     <p class="is-size-4 has-text-centered">学習者の次の課題を解決します</p>
@@ -179,6 +185,18 @@ export default {
   height: 10vh;
 }
 
+.top-hero {
+  height: 80vh;
+}
+
+.is-love .images {
+  height: 20vh;
+  align-items: center;
+}
+.is-vocabulary-book {
+  margin-bottom: 5vh;
+}
+
 .is-policy,
 .is-love,
 .is-functions,
@@ -192,13 +210,6 @@ export default {
 .is-problems .images {
   height: 30vh;
   align-items: center;
-}
-.is-love .images {
-  height: 20vh;
-  align-items: center;
-}
-.top-hero {
-  height: 80vh;
 }
 .is-functions .hero-body {
   cursor: pointer;
