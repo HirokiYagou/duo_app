@@ -140,6 +140,16 @@
       </div>
     </section>
   </div>
+
+  <footer class="footer is-ghost">
+    <div class="content has-text-centered">
+      <p>
+        <strong>MyDuo</strong> by Yagou Hiroki. The source code is on
+        <a href="https://github.com/HirokiYagou/duo_app">Github</a>. The website content
+        is mainly made by Ruby on Rails &amp; Vue.js.
+      </p>
+    </div>
+  </footer>
 </div>
 </template>
 
@@ -170,7 +180,8 @@ export default {
 
 .is-policy,
 .is-love,
-.is-functions {
+.is-functions,
+.footer {
   margin-top: 15vh;
 }
 .is-problems,
