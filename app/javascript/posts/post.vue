@@ -169,7 +169,7 @@ export default {
 </script>
 
 <style scoped>
-.content> p {
+.post-content> p {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
