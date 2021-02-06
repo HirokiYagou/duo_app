@@ -32,6 +32,42 @@
     </div>
   </section>
 
+  <div class="container is-love">
+    <h3 class="title is-3 has-text-centered">DUOって、何？</h3>
+    <p class="is-size-5 has-text-centered">
+      学習していて楽しい。<br>
+      効率の良い学習ができる。<br>
+      使い方は無限大！<br>
+      そんなDUOの魅力をお伝えします。
+    </p>
+    <div class="columns is-explanation">
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">どんな本？</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/book.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">LOVE</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/heart_welcome.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">いつやるの？</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/mangrove_hayashi.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
     <p class="is-size-4 has-text-centered">学習者の次の課題を解決します</p>
@@ -80,41 +116,6 @@
     </div>
   </div>
 
-  <div class="container is-love">
-    <h3 class="title is-3 has-text-centered">DUOを心から愛しています</h3>
-    <p class="is-size-5 has-text-centered">
-      学習していて楽しい。<br>
-      効率の良い学習ができる。<br>
-      使い方は無限大！<br>
-      そんなDUOの魅力をお伝えします。
-    </p>
-    <div class="columns is-explanation">
-      <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">どんな本？</h4>
-        <div class="images columns is-centered">
-          <div class="column is-half">
-            <img src="/assets/book.png" alt="">
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">LOVE</h4>
-        <div class="images columns is-centered">
-          <div class="column is-half">
-            <img src="/assets/heart_welcome.png" alt="">
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">いつやるの？</h4>
-        <div class="images columns is-centered">
-          <div class="column is-half">
-            <img src="/assets/mangrove_hayashi.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="container is-functions">
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
