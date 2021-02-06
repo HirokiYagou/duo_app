@@ -4,14 +4,14 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
+      <button class="delete" aria-label="close" @click="doCloseExplainModal"></button>
     </header>
     <section class="modal-card-body">
-      <p>たまプラーザ</p>
+      <p>未実装</p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button" @click="doCloseExplainModal">Cancel</button>
+      <button class="button">back</button>
+      <button class="button">next</button>
     </footer>
   </div>
 </div>
@@ -41,3 +41,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.modal-card-foot {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
