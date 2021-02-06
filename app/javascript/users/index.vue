@@ -68,7 +68,7 @@
         <p class="is-size-5">
           私の前職の同期が本土最北端の稚内に転勤しました。<br>
           彼には生まれたばかりのお子さんがおり、その子は稚内を生まれ故郷として人生を歩みます。<br>
-          この貴重で素晴らしい環境で育ったにもかかわらず、
+          この貴重で素晴らしい環境で育っていくにもかかわらず、
           田舎だからといってチャンスに恵まれずその才能を十分発揮できない可能性があるのならば、
           それは直ちに解決されるべきだと考えます。<br>
           <br>
@@ -82,19 +82,46 @@
 
   <div class="container is-love">
     <h3 class="title is-3 has-text-centered">DUOを心から愛しています</h3>
-    <p class="is-size-4">
-      みなさんも薄々気づいているでしょう。<br>
-      英語学習において単語力がそのまま英語能力に結びつくことに。<br>
-      それなら
+    <p class="is-size-5 has-text-centered">
+      学習していて楽しい。<br>
+      効率の良い学習ができる。<br>
+      使い方は無限大！<br>
+      そんなDUOの魅力をお伝えします。
     </p>
+    <div class="columns is-explanation">
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">どんな本？</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/book.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">LOVE</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/heart_welcome.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <h4 class="title is-4 has-text-centered">いつやるの？</h4>
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/mangrove_hayashi.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container is-functions">
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
     <section class="hero is-light is-primary">
-      <div class="hero-body">
+      <div class="hero-body" @click="goToPost">
         <div>
-          <a class="title" @click="goToPost">POST</a>
+          <a class="title">POST</a>
         </div>
         <p class="subtitle">
           SNSと単語学習をマッチさせる
@@ -103,9 +130,9 @@
     </section>
 
     <section class="hero is-light is-link">
-      <div class="hero-body">
+      <div class="hero-body" @click="goToExercise">
         <div>
-          <a class="title" @click="goToExercise">EXERCISE</a>
+          <a class="title">EXERCISE</a>
         </div>
         <p class="subtitle">
           レッスンごとに日英・英日／文章・単語別にクイズ形式で暗記の勉強ができる
@@ -144,15 +171,24 @@ export default {
 .is-policy,
 .is-love,
 .is-functions {
-  margin-top: 10vh;
+  margin-top: 15vh;
 }
-.is-problems {
+.is-problems,
+.is-explanation {
   margin-top: 25px;
 }
 .is-problems .images {
   height: 30vh;
+  align-items: center;
+}
+.is-love .images {
+  height: 20vh;
+  align-items: center;
 }
 .top-hero {
   height: 80vh;
+}
+.is-functions .hero-body {
+  cursor: pointer;
 }
 </style>
