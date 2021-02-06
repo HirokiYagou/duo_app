@@ -13,12 +13,22 @@
           </a>
         </div>
 
-        <div class="signed-in-check is-true">
+        <div class="signed-in-check" v-if="isSignedIn">
           <div class="navbar-end">
-            <p class="navbar-item">@{{ currentUserName }}</p>
+            <p class="navbar-item is-size-4">@{{ currentUserName }}</p>
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-ghost is-large" href="/users/sign_out" data-method="delete">SignOut</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="signed-in-check" v-if="!isSignedIn">
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-light is-primary is-large" href="/users/sign_up"><strong>SignUp</strong></a>
+                <a class="button is-ghost is-light is-large" href="/users/sign_in">LogIn</a>
               </div>
             </div>
           </div>
@@ -166,7 +176,8 @@
 export default {
   data() {
     return {
-      currentUserName: ''
+      currentUserName: '',
+      isSignedIn: false
     }
   },
   methods: {
@@ -182,7 +193,12 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.currentUserName = data.user.username
+          if (data.user.username) {
+            this.isSignedIn = true
+            this.currentUserName = data.user.username
+          } else {
+            this.isSignedIn = false
+          }
         })
         .catch(error => {
           console.log(error)
@@ -202,6 +218,13 @@ export default {
 .navbar-start h1 {
   height: 100%;
   margin-bottom: 0;
+}
+.signed-in-check {
+  display: flex;
+  align-items: center;
+}
+.signed-in-check .button {
+  width: 150px;
 }
 .navbar-back {
   height: 10vh;
