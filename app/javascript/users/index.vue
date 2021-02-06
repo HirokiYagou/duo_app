@@ -33,7 +33,41 @@
   </section>
 
   <div class="container is-policy">
+    <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
+    <p class="is-size-4 has-text-centered">英語学習者の次の課題を解決します</p>
+    <div class="columns is-problems">
+      <div class="column is-half">
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/study.png" alt="">
+          </div>
+        </div>
+        <h4 class="title is-4 has-text-centered">学習が思うように進まない</h4>
+        <p class="is-size-5">
+          たまプラーザ
+        </p>
+      </div>
+      <div class="column is-half">
+        <div class="images columns is-centered">
+          <div class="column is-half">
+            <img src="/assets/fukei_mura_kaso.png" alt="">
+          </div>
+        </div>
+        <h4 class="title is-4 has-text-centered">均等な学習機会が得られない</h4>
+        <p class="is-size-5">
+          たまプラーザ
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-love">
     <h3 class="title is-3 has-text-centered">DUOを心から愛しています</h3>
+    <p class="is-size-4">
+      みなさんも薄々気づいているでしょう。<br>
+      英語学習において単語力がそのまま英語能力に結びつくことに。<br>
+      それなら
+    </p>
     <section class="hero is-primary">
       <div class="hero-body">
         <div>
@@ -55,6 +89,7 @@
         </p>
       </div>
     </section>
+
   </div>
 
 </div>
@@ -87,8 +122,15 @@ export default {
   height: 10vh;
 }
 
-.is-policy {
+.is-policy,
+.is-love {
   margin-top: 10vh;
+}
+.is-problems {
+  margin-top: 25px;
+}
+.is-problems .images {
+  height: 30vh;
 }
 .top-hero {
   height: 80vh;
