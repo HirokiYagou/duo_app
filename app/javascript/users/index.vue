@@ -87,30 +87,32 @@
       英語学習において単語力がそのまま英語能力に結びつくことに。<br>
       それなら
     </p>
-    <section class="hero is-primary">
+  </div>
+
+  <div class="container is-functions">
+    <h3 class="title is-3 has-text-centered">搭載機能</h3>
+    <section class="hero is-light is-primary">
       <div class="hero-body">
         <div>
           <a class="title" @click="goToPost">POST</a>
         </div>
         <p class="subtitle">
-          POST subtitle
+          SNSと単語学習をマッチさせる
         </p>
       </div>
     </section>
 
-    <section class="hero is-link">
+    <section class="hero is-light is-link">
       <div class="hero-body">
         <div>
           <a class="title" @click="goToExercise">EXERCISE</a>
         </div>
         <p class="subtitle">
-          EXERCISE subtitle
+          レッスンごとに日英・英日／文章・単語別にクイズ形式で暗記の勉強ができる
         </p>
       </div>
     </section>
-
   </div>
-
 </div>
 </template>
 
@@ -142,7 +144,8 @@ export default {
 }
 
 .is-policy,
-.is-love {
+.is-love,
+.is-functions {
   margin-top: 10vh;
 }
 .is-problems {
