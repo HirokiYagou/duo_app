@@ -18,7 +18,7 @@
             <p class="navbar-item is-size-4">@{{ currentUserName }}</p>
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-ghost is-large" href="/users/sign_out" data-method="delete">SignOut</a>
+                <a class="button is-ghost is-light is-large" href="/users/sign_out" data-method="delete">SignOut</a>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
 
   <div class="container is-love">
     <h3 class="title is-3 has-text-centered">DUOって、何？</h3>
-    <div class="columns is-centered">
+    <div class="columns is-centered is-undertitle">
       <div class="column is-half">
         <img src="/assets/duo.jpg" alt="">
       </div>
@@ -88,7 +88,7 @@
 
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
-    <p class="is-size-4 has-text-centered">学習者の次の課題を解決します</p>
+    <p class="is-size-4 has-text-centered is-undertitle">学習者の次の課題を解決します</p>
     <div class="columns is-problems">
       <div class="column is-half">
         <div class="images columns is-centered">
@@ -137,7 +137,7 @@
 
   <div class="container is-functions">
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
-    <section class="hero is-light is-primary">
+    <section class="hero is-light is-primary is-undertitle">
       <div class="hero-body" @click="goToPost">
         <div>
           <a class="title">POST</a>
@@ -258,5 +258,39 @@ export default {
 }
 .is-functions .hero-body {
   cursor: pointer;
+}
+
+h3 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1em;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+}
+h3:before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  display: inline-block;
+  width: 60px;
+  height: 5px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: black;
+}
+.is-undertitle {
+  margin-top: 3vh;
+}
+.is-love h3:before {
+  background-color: rgb(255, 182, 47);
+}
+.is-policy h3:before {
+  background-color: lightgreen;
+}
+.is-functions h3:before {
+  background-color: rgb(179, 170, 255);
 }
 </style>
