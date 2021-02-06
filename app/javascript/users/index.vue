@@ -117,9 +117,7 @@
 </template>
 
 <script>
-import section from '../exercises/section.vue'
 export default {
-  components: { section },
   methods: {
     goToPost: function() {
       window.location.href = '/posts'
