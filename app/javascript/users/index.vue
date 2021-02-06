@@ -34,7 +34,7 @@
 
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
-    <p class="is-size-4 has-text-centered">英語学習者の次の課題を解決します</p>
+    <p class="is-size-4 has-text-centered">学習者の次の課題を解決します</p>
     <div class="columns is-problems">
       <div class="column is-half">
         <div class="images columns is-centered">
@@ -42,9 +42,18 @@
             <img src="/assets/study.png" alt="">
           </div>
         </div>
-        <h4 class="title is-4 has-text-centered">学習が思うように進まない</h4>
+        <h5 class="title is-5 has-text-centered">学習が思うように進まない</h5>
+        <h5 class="title is-5 has-text-centered">↓</h5>
+        <h4 class="title is-4 has-text-centered">熱意ではなく仕組みで解決</h4>
         <p class="is-size-5">
-          たまプラーザ
+          こんな経験はありませんか？<br>
+          「よし、やるぞ！」<br>
+          意気込んでみても、熱意が続くのは三日だけ。<br>
+          「やらなきゃなあ・・・」<br>
+          そう思いつつ現実逃避。<br>
+          <br>
+          私は勉強や継続した努力、ちょっとした積み重ねを気持ちで続けようとすることに無理があると考えます。<br>
+          このフレームワークに乗るだけで勉強に向かうことができる。そんな仕組みを提供します。
         </p>
       </div>
       <div class="column is-half">
@@ -53,9 +62,19 @@
             <img src="/assets/fukei_mura_kaso.png" alt="">
           </div>
         </div>
-        <h4 class="title is-4 has-text-centered">均等な学習機会が得られない</h4>
+        <h5 class="title is-5 has-text-centered">均等な学習機会が得られない</h5>
+        <h5 class="title is-5 has-text-centered">↓</h5>
+        <h4 class="title is-4 has-text-centered">オンライン学習</h4>
         <p class="is-size-5">
-          たまプラーザ
+          私の前職の同期が本土最北端の稚内に転勤しました。<br>
+          彼には生まれたばかりのお子さんがおり、その子は稚内を生まれ故郷として人生を歩みます。<br>
+          この貴重で素晴らしい環境で育ったにもかかわらず、
+          田舎だからといってチャンスに恵まれずその才能を十分発揮できない可能性があるのならば、
+          それは直ちに解決されるべきだと考えます。<br>
+          <br>
+          地方創生<br>
+          その大きな要素の一つとして、均等な学習機会の提供。<br>
+          これを実現するためにオンライン学習のアプリを提供します。
         </p>
       </div>
     </div>
