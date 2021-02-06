@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @posts = Post.includes(:user).order(id: "DESC")
     @reply_data = Post.group(:reply_to).count

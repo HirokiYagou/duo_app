@@ -1,4 +1,5 @@
 class ExercisesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: [
     :sentence_english_scores,
     :sentence_japanese_scores,
