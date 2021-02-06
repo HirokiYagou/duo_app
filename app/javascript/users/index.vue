@@ -13,11 +13,13 @@
           </a>
         </div>
 
-        <div class="navbar-end">
-          <p class="navbar-item">ROONEY</p>
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-ghost is-large" href="/users/sign_out" data-method="delete">SignOut</a>
+        <div class="signed-in-check is-true">
+          <div class="navbar-end">
+            <p class="navbar-item">@{{ currentUserName }}</p>
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-ghost is-large" href="/users/sign_out" data-method="delete">SignOut</a>
+              </div>
             </div>
           </div>
         </div>
@@ -90,7 +92,7 @@
         <p class="is-size-5">
           こんな経験はありませんか？<br>
           「よし、やるぞ！」<br>
-          意気込んでみても、熱意が続くのは三日だけ。<br>
+          意気込んでみても、熱意が続くのは3日だけ。<br>
           「やらなきゃなあ・・・」<br>
           そう思いつつ現実逃避。<br>
           <br>
@@ -162,6 +164,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      currentUserName: ''
+    }
+  },
   methods: {
     goToPost: function() {
       window.location.href = '/posts'
@@ -169,7 +176,22 @@ export default {
     goToExercise: function() {
       window.location.href = '/exercises'
     },
-  }
+    fetchUser: function() {
+      fetch('/users.json')
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          this.currentUserName = data.user.username
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  },
+  created: function() {
+    this.fetchUser()
+  },
 }
 </script>
 
