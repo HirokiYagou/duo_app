@@ -265,9 +265,11 @@ export default {
 }
 
 .is-policy,
-.is-love,
 .is-functions,
 .footer {
+  margin-top: 30vh;
+}
+.is-love {
   margin-top: 15vh;
 }
 .is-problems,
