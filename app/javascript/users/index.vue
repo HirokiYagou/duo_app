@@ -61,7 +61,10 @@
     <div class="columns is-explanation">
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-book">どんな本？</h4>
-        <div class="images columns is-centered" @mouseover="changeContent('isBook')">
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isBook' }]"
+          @mouseover="changeContent('isBook')"
+        >
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
           </div>
@@ -69,7 +72,10 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-love">LOVE</h4>
-        <div class="images columns is-centered" @mouseover="changeContent('isLove')">
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isLove' }]" 
+          @mouseover="changeContent('isLove')"
+        >
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
           </div>
@@ -77,17 +83,19 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-hayashi">いつやるの？</h4>
-        <div class="images columns is-centered" @mouseover="changeContent('isHayashi')">
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isHayashi' }]" 
+          @mouseover="changeContent('isHayashi')"
+        >
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
           </div>
         </div>
       </div>
     </div>
-    <explain-modal
+    <explain
       :content-part="contentPart"
-      @do-close-explain-modal="closeExplainModal"
-    ></explain-modal>
+    ></explain>
   </div>
 
 
@@ -182,7 +190,7 @@ import explainVue from './explain.vue'
 
 export default {
   components: {
-    'explain-modal': explainVue
+    'explain': explainVue
   },
   data() {
     return {
@@ -256,6 +264,9 @@ export default {
 }
 .is-explanation .content-is-hayashi {
   border-bottom: 3px solid lightgreen;
+}
+.is-explanation .content-is-active {
+  background-color: ghostwhite;
 }
 .is-love .images {
   height: 20vh;

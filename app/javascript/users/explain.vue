@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .section {
-  border: 1px solid black;
+  background-color: ghostwhite;
 }
 .title {
   padding-left: 10px;
