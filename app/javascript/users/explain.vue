@@ -66,6 +66,5 @@ export default {
 <style scoped>
 .section {
   border: 1px solid black;
-  /* height: 30vh; */
 }
 </style>

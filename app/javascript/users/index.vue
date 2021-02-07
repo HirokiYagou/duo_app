@@ -60,7 +60,7 @@
     </p>
     <div class="columns is-explanation">
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">どんな本？</h4>
+        <h4 class="title is-4 has-text-centered content-is-book">どんな本？</h4>
         <div class="images columns is-centered" @click="changeContent('isBook')">
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
@@ -68,7 +68,7 @@
         </div>
       </div>
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">LOVE</h4>
+        <h4 class="title is-4 has-text-centered content-is-love">LOVE</h4>
         <div class="images columns is-centered" @click="changeContent('isLove')">
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">いつやるの？</h4>
+        <h4 class="title is-4 has-text-centered content-is-hayashi">いつやるの？</h4>
         <div class="images columns is-centered" @click="changeContent('isHayashi')">
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
@@ -248,8 +248,14 @@ export default {
   height: 80vh;
 }
 
-.is-explanation .title {
-  border-bottom: 3px solid black;
+.is-explanation .content-is-book {
+  border-bottom: 3px solid skyblue;
+}
+.is-explanation .content-is-love {
+  border-bottom: 3px solid pink;
+}
+.is-explanation .content-is-hayashi {
+  border-bottom: 3px solid lightgreen;
 }
 .is-love .images {
   height: 20vh;
