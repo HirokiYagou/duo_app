@@ -138,7 +138,7 @@ https://duo3exercise.herokuapp.com
 
 ### Association
 
-- belongs_to :user
+- belongs_to :user, optional: true
 
 - has_one_attach :icon
 - has_one_attach :header
@@ -157,9 +157,9 @@ https://duo3exercise.herokuapp.com
 
 - belongs_to :user
 
-- has_many :favorites
+- has_many :favorites, dependent: :destroy
 
-- has_many :post_terms
+- has_many :post_terms, dependent: :destroy
 - has_many :terms, through :post_terms
 
 ## favoritesテーブル
@@ -233,7 +233,9 @@ https://duo3exercise.herokuapp.com
 | ------ | ------- |
 | devise | 4.7.3  |
 | bulma-rails | 0.9.1  |
+| bulma-extensions-rails | 6.2.7  |
 | aws-sdk-s3 | 1.87.0  |
+| rspec-rails | 4.0.1 |
 
 * npm
 
