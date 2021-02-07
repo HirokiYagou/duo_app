@@ -1,7 +1,7 @@
 <template>
 <div>
   <section class="section" v-if="bookIsActive">
-    <h4 class="title is-4">単語帳の完成形</h4>
+    <h4 class="title is-4 content-is-book">単語帳の完成形</h4>
     <p class="is-size-5">
       日本の「いろは歌」をヒントに、現代英語の重要単語1600語と重要熟語1000語を
       重複なしで560本の英文に凝縮させてあります。
@@ -11,7 +11,7 @@
     </p>
   </section>
   <section class="section" v-if="loveIsActive">
-    <h4 class="title is-4">全幅の信頼を寄せています</h4>
+    <h4 class="title is-4 content-is-love">全幅の信頼を寄せています</h4>
     <p class="is-size-5">
       単語帳の例文を読んで「おもしろい！」と思ったことはありますか？<br>
       DUOの例文にはナチュラルで暗記する価値のある英文が揃っています。
@@ -21,7 +21,7 @@
     </p>
   </section>
   <section class="section" v-if="hayashiIsActive">
-    <h4 class="title is-4">今でしょ！</h4>
+    <h4 class="title is-4 content-is-hayashi">今でしょ！</h4>
     <p class="is-size-5">
       <a href="https://www.amazon.co.jp/dp/4900790052/ref=cm_sw_r_tw_dp_DWF9JQSTXDARXMTT38XT">さあ、はじめよう！</a>
     </p>
@@ -66,5 +66,17 @@ export default {
 <style scoped>
 .section {
   border: 1px solid black;
+}
+.title {
+  padding-left: 10px;
+}
+.content-is-book {
+  border-left: 10px solid skyblue;
+}
+.content-is-love {
+  border-left: 10px solid pink;
+}
+.content-is-hayashi {
+  border-left: 10px solid lightgreen;
 }
 </style>
