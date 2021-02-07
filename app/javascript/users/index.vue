@@ -61,7 +61,7 @@
     <div class="columns is-explanation">
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">どんな本？</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isBook')">
+        <div class="images columns is-centered" @click="changeContent('isBook')">
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
           </div>
@@ -69,7 +69,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">LOVE</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isLove')">
+        <div class="images columns is-centered" @click="changeContent('isLove')">
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
           </div>
@@ -77,7 +77,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered">いつやるの？</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isHayashi')">
+        <div class="images columns is-centered" @click="changeContent('isHayashi')">
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
           </div>
@@ -85,7 +85,7 @@
       </div>
     </div>
     <explain-modal
-      :modal-content="modalContent"
+      :content-part="contentPart"
       @do-close-explain-modal="closeExplainModal"
     ></explain-modal>
   </div>
@@ -188,7 +188,7 @@ export default {
     return {
       currentUserName: '',
       isSignedIn: false,
-      modalContent: ''
+      contentPart: 'isBook'
     }
   },
   methods: {
@@ -215,12 +215,9 @@ export default {
           console.log(error)
         })
     },
-    openExplainModal: function(part) {
-      this.modalContent = part
+    changeContent: function(part) {
+      this.contentPart = part
     },
-    closeExplainModal: function() {
-      this.modalContent = ''
-    }
   },
   created: function() {
     this.fetchUser()

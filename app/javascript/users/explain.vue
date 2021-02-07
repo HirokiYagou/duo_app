@@ -32,25 +32,34 @@
 <script>
 export default {
   props: {
-    modalContent: String
+    contentPart: String
   },
-  emits: [
-    'do-close-explain-modal'
-  ],
-  computed: {
-    isModalActive: function() {
-      if (this.modalContent) {
-        return true
-      } else {
-        return false
-      }
+  data() {
+    return {
+      bookIsActive: true,
+      loveIsActive: false,
+      hayashiIsActive: false,
     }
   },
-  methods: {
-    doCloseExplainModal: function() {
-      this.$emit('do-close-explain-modal')
-    }
-  }
+  watch: {
+    contentPart: {
+      handler: function(next) {
+        if (next === 'isBook') {
+          this.bookIsActive = true
+          this.loveIsActive = false
+          this.hayashiIsActive = false
+        } else if (next === 'isLove') {
+          this.bookIsActive = false
+          this.loveIsActive = true
+          this.hayashiIsActive = false
+        } else if (next === 'isHayashi') {
+          this.bookIsActive = false
+          this.loveIsActive = false
+          this.hayashiIsActive = true
+        }
+      },
+    },
+  },
 }
 </script>
 
