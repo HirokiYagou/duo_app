@@ -248,6 +248,9 @@ export default {
   height: 80vh;
 }
 
+.is-explanation .title {
+  border-bottom: 3px solid black;
+}
 .is-love .images {
   height: 20vh;
   align-items: center;

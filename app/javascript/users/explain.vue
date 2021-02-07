@@ -1,6 +1,6 @@
 <template>
 <div>
-  <section class="section">
+  <section class="section" v-if="bookIsActive">
     <h4 class="title is-4">単語帳の完成形</h4>
     <p class="is-size-5">
       日本の「いろは歌」をヒントに、現代英語の重要単語1600語と重要熟語1000語を
@@ -10,7 +10,7 @@
       難易度は国公立大学を目指す受験生やTOEICで700点程度を目指す方にオススメです。
     </p>
   </section>
-  <section class="section">
+  <section class="section" v-if="loveIsActive">
     <h4 class="title is-4">全幅の信頼を寄せています</h4>
     <p class="is-size-5">
       単語帳の例文を読んで「おもしろい！」と思ったことはありますか？<br>
@@ -20,7 +20,7 @@
       このDUOを、私は高校2年から10年以上愛用しています。全幅の信頼を寄せています。<br>
     </p>
   </section>
-  <section class="section">
+  <section class="section" v-if="hayashiIsActive">
     <h4 class="title is-4">今でしょ！</h4>
     <p class="is-size-5">
       <a href="https://www.amazon.co.jp/dp/4900790052/ref=cm_sw_r_tw_dp_DWF9JQSTXDARXMTT38XT">さあ、はじめよう！</a>
