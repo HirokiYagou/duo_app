@@ -24,6 +24,7 @@
     <h4 class="title is-4 content-is-hayashi">今でしょ！</h4>
     <p class="is-size-5">
       <a href="https://www.amazon.co.jp/dp/4900790052/ref=cm_sw_r_tw_dp_DWF9JQSTXDARXMTT38XT">さあ、はじめよう！</a>
+      <br><br><br>
     </p>
   </section>
 </div>

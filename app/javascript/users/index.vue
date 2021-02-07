@@ -321,6 +321,6 @@ h3:before {
   background-color: lightgreen;
 }
 .is-functions h3:before {
-  background-color: rgb(179, 170, 255);
+  background-color: pink;
 }
 </style>
