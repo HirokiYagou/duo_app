@@ -84,12 +84,12 @@
         </div>
       </div>
     </div>
+    <explain-modal
+      :modal-content="modalContent"
+      @do-close-explain-modal="closeExplainModal"
+    ></explain-modal>
   </div>
 
-  <explain-modal
-    :modal-content="modalContent"
-    @do-close-explain-modal="closeExplainModal"
-  ></explain-modal>
 
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>

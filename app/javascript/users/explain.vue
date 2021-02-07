@@ -1,20 +1,10 @@
 <template>
-<div :class="['modal', { 'is-active': isModalActive }]">
-  <div class="modal-background" @click.self="doCloseExplainModal"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close" @click="doCloseExplainModal"></button>
-    </header>
-    <section class="modal-card-body">
-      <p>未実装</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button">back</button>
-      <button class="button">next</button>
-    </footer>
-  </div>
-</div>
+<section class="section">
+  <h1 class="title">Section</h1>
+  <h2 class="subtitle">
+    A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+  </h2>
+</section>
 </template>
 
 <script>
@@ -43,8 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-card-foot {
-  display: flex;
-  justify-content: space-between;
+.section {
+  border: 1px solid black;
 }
 </style>
