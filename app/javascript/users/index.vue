@@ -60,36 +60,44 @@
     </p>
     <div class="columns is-explanation">
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">どんな本？</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isBook')">
+        <h4 class="title is-4 has-text-centered content-is-book">どんな本？</h4>
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isBook' }]"
+          @mouseover="changeContent('isBook')"
+        >
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
           </div>
         </div>
       </div>
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">LOVE</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isLove')">
+        <h4 class="title is-4 has-text-centered content-is-love">LOVE</h4>
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isLove' }]" 
+          @mouseover="changeContent('isLove')"
+        >
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
           </div>
         </div>
       </div>
       <div class="column is-one-third">
-        <h4 class="title is-4 has-text-centered">いつやるの？</h4>
-        <div class="images columns is-centered" @click="openExplainModal('isHayashi')">
+        <h4 class="title is-4 has-text-centered content-is-hayashi">いつやるの？</h4>
+        <div
+          :class="['images', 'columns', 'is-centered', { 'content-is-active': contentPart === 'isHayashi' }]" 
+          @mouseover="changeContent('isHayashi')"
+        >
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
           </div>
         </div>
       </div>
     </div>
+    <explain
+      :content-part="contentPart"
+    ></explain>
   </div>
 
-  <explain-modal
-    :modal-content="modalContent"
-    @do-close-explain-modal="closeExplainModal"
-  ></explain-modal>
 
   <div class="container is-policy">
     <h3 class="title is-3 has-text-centered">このアプリが目指すこと</h3>
@@ -182,13 +190,13 @@ import explainVue from './explain.vue'
 
 export default {
   components: {
-    'explain-modal': explainVue
+    'explain': explainVue
   },
   data() {
     return {
       currentUserName: '',
       isSignedIn: false,
-      modalContent: ''
+      contentPart: 'isBook'
     }
   },
   methods: {
@@ -215,12 +223,9 @@ export default {
           console.log(error)
         })
     },
-    openExplainModal: function(part) {
-      this.modalContent = part
+    changeContent: function(part) {
+      this.contentPart = part
     },
-    closeExplainModal: function() {
-      this.modalContent = ''
-    }
   },
   created: function() {
     this.fetchUser()
@@ -251,6 +256,18 @@ export default {
   height: 80vh;
 }
 
+.is-explanation .content-is-book {
+  border-bottom: 3px solid skyblue;
+}
+.is-explanation .content-is-love {
+  border-bottom: 3px solid pink;
+}
+.is-explanation .content-is-hayashi {
+  border-bottom: 3px solid lightgreen;
+}
+.is-explanation .content-is-active {
+  background-color: ghostwhite;
+}
 .is-love .images {
   height: 20vh;
   align-items: center;
@@ -265,9 +282,11 @@ export default {
 }
 
 .is-policy,
-.is-love,
 .is-functions,
 .footer {
+  margin-top: 30vh;
+}
+.is-love {
   margin-top: 15vh;
 }
 .is-problems,
@@ -313,6 +332,6 @@ h3:before {
   background-color: lightgreen;
 }
 .is-functions h3:before {
-  background-color: rgb(179, 170, 255);
+  background-color: pink;
 }
 </style>
