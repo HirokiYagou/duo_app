@@ -61,7 +61,7 @@
     <div class="columns is-explanation">
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-book">どんな本？</h4>
-        <div class="images columns is-centered" @click="changeContent('isBook')">
+        <div class="images columns is-centered" @mouseover="changeContent('isBook')">
           <div class="column is-half">
             <img src="/assets/book.png" alt="">
           </div>
@@ -69,7 +69,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-love">LOVE</h4>
-        <div class="images columns is-centered" @click="changeContent('isLove')">
+        <div class="images columns is-centered" @mouseover="changeContent('isLove')">
           <div class="column is-half">
             <img src="/assets/heart_welcome.png" alt="">
           </div>
@@ -77,7 +77,7 @@
       </div>
       <div class="column is-one-third">
         <h4 class="title is-4 has-text-centered content-is-hayashi">いつやるの？</h4>
-        <div class="images columns is-centered" @click="changeContent('isHayashi')">
+        <div class="images columns is-centered" @mouseover="changeContent('isHayashi')">
           <div class="column is-half">
             <img src="/assets/mangrove_hayashi.png" alt="">
           </div>
