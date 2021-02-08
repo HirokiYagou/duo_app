@@ -150,26 +150,22 @@
 
   <div class="container is-functions">
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
-    <section class="hero is-light is-primary is-undertitle">
-      <div class="hero-body" @click="goToPost">
-        <div>
-          <a class="title">SNS</a>
-        </div>
-        <p class="subtitle">
-          SNSと単語学習をマッチさせる
-        </p>
+    <section class="section is-post" @click="goToPost">
+      <div>
+        <a class="title">SNS</a>
       </div>
+      <p class="subtitle">
+        SNSと単語学習をマッチさせる
+      </p>
     </section>
 
-    <section class="hero is-light is-link">
-      <div class="hero-body" @click="goToExercise">
-        <div>
-          <a class="title">EXERCISE</a>
-        </div>
-        <p class="subtitle">
-          クイズ形式で暗記の勉強ができる
-        </p>
+    <section class="section is-exercise" @click="goToExercise">
+      <div>
+        <a class="title">EXERCISE</a>
       </div>
+      <p class="subtitle">
+        クイズ形式で暗記の勉強ができる
+      </p>
     </section>
   </div>
 
@@ -300,8 +296,14 @@ export default {
   height: 30vh;
   align-items: center;
 }
-.is-functions .hero-body {
+.is-functions .section {
   cursor: pointer;
+}
+.is-functions .is-post {
+  border-left: 10px solid lightgreen;
+}
+.is-functions .is-exercise {
+  border-left: 10px solid skyblue;
 }
 
 h3 {
