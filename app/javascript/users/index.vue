@@ -234,6 +234,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  margin: 0 15vw;
+}
 .navbar {
   height: 10vh;
 }
