@@ -152,10 +152,10 @@
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
     <section class="section is-post" @click="goToPost">
       <div>
-        <a class="title">SNS</a>
+        <a class="title">POST</a>
       </div>
       <p class="subtitle">
-        SNSと単語学習をマッチさせる
+        SNSと単語学習を組み合わせる
       </p>
     </section>
 
