@@ -173,7 +173,7 @@
     <div class="content has-text-centered">
       <p>
         <strong>MyDUO</strong> by Yagou Hiroki. The source code is on
-        <a href="https://github.com/HirokiYagou/duo_app">Github</a>. The website content
+        <a href="https://github.com/HirokiYagou/duo_app">GitHub</a>. The website content
         is mainly made by Ruby on Rails &amp; Vue.js.
       </p>
     </div>
