@@ -150,26 +150,22 @@
 
   <div class="container is-functions">
     <h3 class="title is-3 has-text-centered">搭載機能</h3>
-    <section class="hero is-light is-primary is-undertitle">
-      <div class="hero-body" @click="goToPost">
-        <div>
-          <a class="title">SNS</a>
-        </div>
-        <p class="subtitle">
-          SNSと単語学習をマッチさせる
-        </p>
+    <section class="section is-post" @click="goToPost">
+      <div>
+        <a class="title">SNS</a>
       </div>
+      <p class="subtitle">
+        SNSと単語学習をマッチさせる
+      </p>
     </section>
 
-    <section class="hero is-light is-link">
-      <div class="hero-body" @click="goToExercise">
-        <div>
-          <a class="title">EXERCISE</a>
-        </div>
-        <p class="subtitle">
-          クイズ形式で暗記の勉強ができる
-        </p>
+    <section class="section is-exercise" @click="goToExercise">
+      <div>
+        <a class="title">EXERCISE</a>
       </div>
+      <p class="subtitle">
+        クイズ形式で暗記の勉強ができる
+      </p>
     </section>
   </div>
 
@@ -269,7 +265,7 @@ export default {
   border-bottom: 3px solid lightgreen;
 }
 .is-explanation .content-is-active {
-  background-color: ghostwhite;
+  background-color: whitesmoke;
 }
 .is-love .images {
   height: 20vh;
@@ -277,7 +273,7 @@ export default {
   cursor: pointer;
 }
 .is-love .images:hover {
-  background-color: ghostwhite;
+  background-color: whitesmoke;
 }
 
 .is-vocabulary-book {
@@ -300,9 +296,52 @@ export default {
   height: 30vh;
   align-items: center;
 }
-.is-functions .hero-body {
+.is-functions .section {
   cursor: pointer;
+  position: relative;
 }
+.is-functions .is-post:before,
+.is-functions .is-exercise:before {
+  transition-property: width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.is-functions .is-post:before {
+  background-color: lightgreen;
+}
+.is-functions .is-exercise:before {
+  background-color: skyblue;
+}
+
+.is-functions .is-post {
+  border-left: 20px solid lightgreen;
+  background-color: rgb(240, 255, 240);
+  z-index: 2;
+}
+.is-functions .is-exercise {
+  border-left: 20px solid skyblue;
+  background-color: rgb(240, 251, 255);
+  z-index: 2;
+}
+.is-functions .is-post:hover,
+.is-functions .is-post:active {
+  color: white;
+}
+.is-functions .is-post:hover::before,
+.is-functions .is-post:active::before,
+.is-functions .is-exercise:hover::before,
+.is-functions .is-exercise:active::before {
+  width:100%;
+}
+
 
 h3 {
   position: relative;
@@ -337,4 +376,5 @@ h3:before {
 .is-functions h3:before {
   background-color: pink;
 }
+
 </style>
