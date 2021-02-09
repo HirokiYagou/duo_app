@@ -4,7 +4,7 @@
     <div class="container">
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <h1 class="navbar-item title is-1">MyDUO</h1>
+          <h1 class="navbar-item title is-1" @click="goToRoot">MyDUO</h1>
           <a class="navbar-item" @click="goToPost">
             POST
           </a>
@@ -196,6 +196,9 @@ export default {
     }
   },
   methods: {
+    goToRoot: function() {
+      window.location.href = '/'
+    },
     goToPost: function() {
       window.location.href = '/posts'
     },
@@ -239,6 +242,7 @@ export default {
 .navbar-start h1 {
   height: 100%;
   margin-bottom: 0;
+  cursor: pointer;
 }
 .signed-in-check {
   display: flex;
