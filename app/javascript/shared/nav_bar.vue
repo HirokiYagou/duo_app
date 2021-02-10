@@ -2,7 +2,7 @@
 <div class="nav-bar-template">
   <div class="box pointer" @click="goToRoot">
     <div class="content has-text-centered">
-      <h1 class="title is-1">DUO3.0</h1>
+      <h1 class="title is-1">MyDUO</h1>
     </div>
   </div>
   <a class="button is-light is-fullwidth" href="/users/sign_out" data-method="delete">SignOut</a>
