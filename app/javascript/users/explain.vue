@@ -11,14 +11,14 @@
     </p>
   </section>
   <section class="section" v-if="loveIsActive">
-    <h4 class="title is-4 content-is-love">全幅の信頼を寄せています</h4>
+    <h4 class="title is-4 content-is-love">愛着を持って育てていける</h4>
     <p class="is-size-5">
       単語帳の例文を読んで「おもしろい！」と思ったことはありますか？<br>
       DUOの例文にはナチュラルで暗記する価値のある英文が揃っています。
       ビジネスのひと場面、交通機関を利用するときに聞こえるあの放送、恋愛の修羅場など
       現実的な状況を切り取った英文になっています。<br>
-      またこの単語帳には十人十色の学習法があります。単語帳が本来持っている拡張性を損なわないよう
-      拡張性のあるアプリケーションを実現しました。
+      「やればやるほど好きになる。」<br>
+      この単語帳には、そんな魅力が詰まっています。
     </p>
   </section>
   <section class="section" v-if="hayashiIsActive">
