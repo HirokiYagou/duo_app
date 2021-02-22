@@ -48,7 +48,7 @@
     <h3 class="title is-3 has-text-centered">DUOって、何？</h3>
     <div class="columns is-centered is-undertitle">
       <div class="column is-half">
-        <img src="/assets/duo.jpg" alt="">
+        <img src="/duo.jpg" alt="">
       </div>
     </div>
     <p class="is-size-4 has-text-centered is-vocabulary-book">英単語帳です！</p>
