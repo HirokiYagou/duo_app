@@ -49,6 +49,7 @@
           :post="post"
           :current_user_name="currentUser.name"
           :menu_bar="assets.menu_bar"
+          :reply_icon="assets.reply_icon"
           :show-post-id="showPostId"
           @delete-post="deletePost($event, index)"
           @edit-post="editPost($event, index)"

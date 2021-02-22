@@ -42,5 +42,6 @@ json.set! :currentuser do
   end
 end
 json.set! :assets do
-  json.menu_bar url_for('/assets/bars_24.png')
+  json.menu_bar image_tag('bars_24.png')
+  json.reply_icon image_tag('reply.png')
 end
