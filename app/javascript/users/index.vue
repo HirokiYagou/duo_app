@@ -48,7 +48,7 @@
     <h3 class="title is-3 has-text-centered">DUOって、何？</h3>
     <div class="columns is-centered is-undertitle">
       <div class="column is-half">
-        <img src="/assets/duo.jpg" alt="">
+        <img :src="assets.duo" alt="">
       </div>
     </div>
     <p class="is-size-4 has-text-centered is-vocabulary-book">英単語帳です！</p>
@@ -66,7 +66,7 @@
           @mouseover="changeContent('isBook')"
         >
           <div class="column is-half">
-            <img src="/assets/book.png" alt="">
+            <img :src="assets.book" alt="">
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
           @mouseover="changeContent('isLove')"
         >
           <div class="column is-half">
-            <img src="/assets/heart_welcome.png" alt="">
+            <img :src="assets.heart" alt="">
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
           @mouseover="changeContent('isHayashi')"
         >
           <div class="column is-half">
-            <img src="/assets/mangrove_hayashi.png" alt="">
+            <img :src="assets.hayashi" alt="">
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
       <div class="column is-half">
         <div class="images columns is-centered">
           <div class="column is-half">
-            <img src="/assets/study.png" alt="">
+            <img :src="assets.study" alt="">
           </div>
         </div>
         <h5 class="title is-5 has-text-centered">学習が思うように進まない</h5>
@@ -126,7 +126,7 @@
       <div class="column is-half">
         <div class="images columns is-centered">
           <div class="column is-half">
-            <img src="/assets/fukei_mura_kaso.png" alt="">
+            <img :src="assets.kaso" alt="">
           </div>
         </div>
         <h5 class="title is-5 has-text-centered">均等な学習機会が得られない</h5>
@@ -192,7 +192,8 @@ export default {
     return {
       currentUserName: '',
       isSignedIn: false,
-      contentPart: 'isBook'
+      contentPart: 'isBook',
+      assets: {}
     }
   },
   methods: {
@@ -217,6 +218,7 @@ export default {
           } else {
             this.isSignedIn = false
           }
+          this.assets = data.assets
         })
         .catch(error => {
           console.log(error)
