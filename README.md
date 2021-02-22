@@ -20,7 +20,7 @@ DUO3.0と言う英単語帳の学習ができます。
 
 # 本番環境
 ### URL
-https://duo3exercise.herokuapp.com
+http://35.72.186.128/
 
 ### テストアカウント
 * Email: test@gmail.com
