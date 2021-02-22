@@ -23,7 +23,7 @@
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
             <span class="icon is-small">
-              <img :src="menu_bar.split('&quot;')[1]" alt="" id="menu-bar">
+              <img :src="menu_bar" alt="" id="menu-bar">
               <i class="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
@@ -63,7 +63,7 @@
 </div>
 <div class="card-footer">
   <div class="card-footer-item" @click="doReply(post.id)">
-    <span><img :src="reply_icon.split('&quot;')[1]" alt="reply"></span>
+    <span><img :src="reply_icon" alt="reply"></span>
     <span v-if="post.replied_count !== 0">{{ post.replied_count }}</span>
   </div>
   <div :class="['card-footer-item', { 'is-favorite': post.is_favorite }]" @click="dofavorite(post.id)">
