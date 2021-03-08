@@ -13,20 +13,16 @@ import Terms from "admin/terms/index"
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', component: Users },
-    // { path: '/posts', component: Posts }
+    { path: '/', component: Users}
   ]
 })
 
 document.addEventListener('DOMContentLoaded', () => {
   const users = createApp(Users)
-  const posts = createApp(Posts)
   users.use(router)
   users.mount('#users')
   // createApp(Users).mount('#users')
-  posts.use(router)
-  posts.mount('#posts')
-  // createApp(Posts).mount('#posts')
+  createApp(Posts).mount('#posts')
   createApp(Exercises).mount('#exercises')
   createApp(Terms).mount('#terms')
 });
