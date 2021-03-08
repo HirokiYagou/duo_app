@@ -179,6 +179,7 @@ export default {
         editPost: post,
         editIndex: index,
       }
+      this.$router.push(`/edit/${post.id}`)
       this.openForm()
     },
     setUserPosts: function(user) {
@@ -194,6 +195,7 @@ export default {
       this.openForm()
     },
     showPost: function(post) {
+      this.$router.push(`/show/${post.id}`)
       this.showUser = {name: ''}
       this.searchInfoParams = !this.searchInfoParams
       this.showPostId = post.id
